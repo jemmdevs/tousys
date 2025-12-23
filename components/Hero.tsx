@@ -15,17 +15,16 @@ export default function Hero() {
             {/* Antigravity Background */}
             <div className={styles.antigravityContainer}>
                 <Antigravity
-                    count={350}
+                    count={954}
                     color="#4A90E2"
                     particleSize={0.75}
                     magnetRadius={18}
-                    ringRadius={12}
-                    keepCentered={true}
-                    lerpSpeed={0.1}
-                    waveAmplitude={1.2}
-                    waveSpeed={0.5}
+                    ringRadius={10}
+                    lerpSpeed={0.01}
+                    waveAmplitude={8.9}
+                    waveSpeed={1.9}
                     particleVariance={1.5}
-                    pulseSpeed={2}
+                    pulseSpeed={5}
                 />
             </div>
 
