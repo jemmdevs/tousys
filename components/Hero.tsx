@@ -17,7 +17,7 @@ export default function Hero() {
                 <Antigravity
                     count={350}
                     color="#4A90E2"
-                    particleSize={0.5}
+                    particleSize={0.75}
                     magnetRadius={18}
                     ringRadius={12}
                     keepCentered={true}
