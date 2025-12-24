@@ -204,7 +204,7 @@
 }
 
 .dropdownContentActive .dropdownTitle {
-    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0s both;
 }
 
 .dropdownDescription {
@@ -214,7 +214,7 @@
 }
 
 .dropdownContentActive .dropdownDescription {
-    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0.05s both;
 }
 
 .dropdownCta {
@@ -232,7 +232,7 @@
 }
 
 .dropdownContentActive .dropdownCta {
-    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s both;
 }
 
 .dropdownCta:hover {
@@ -262,27 +262,27 @@
 }
 
 .dropdownContentActive .dropdownLink:nth-child(1) {
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+    animation: slideUp 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.04s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(2) {
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.13s both;
+    animation: slideUp 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.08s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(3) {
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+    animation: slideUp 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.12s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(4) {
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.23s both;
+    animation: slideUp 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.16s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(5) {
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+    animation: slideUp 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(6) {
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.33s both;
+    animation: slideUp 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.24s both;
 }
 
 .dropdownLink:hover {
@@ -306,14 +306,14 @@
     color: var(--foreground);
 }
 
-/* Animación de deslizamiento hacia arriba - estilo Apple */
+/* Animación de lift - estilo Apple */
 @keyframes slideUp {
-    from {
+    0% {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(14px);
     }
 
-    to {
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
