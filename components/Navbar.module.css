@@ -128,14 +128,17 @@
     background: #f2f7f1;
 }
 
+/* Chevron con rotación perfectamente centrada */
 .chevron {
     display: block;
     flex-shrink: 0;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: 50% 50%;
+    will-change: transform;
 }
 
 .navLinkActive .chevron {
-    transform: rotate(-180deg);
+    transform: rotate(180deg);
 }
 
 /* Dropdown Panel - PARTE DE LA NAVBAR - SIN TRANSICIÓN */
