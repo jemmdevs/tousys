@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, CSSProperties } from "react";
+import { useState } from "react";
 import styles from "./Navbar.module.css";
 
 // Links con dropdown tendrán hasDropdown: true
@@ -66,16 +66,16 @@ const dropdownContent: Record<string, React.ReactNode> = {
 const ChevronDown = () => (
     <svg
         className={styles.chevron}
-        width="16"
-        height="16"
-        viewBox="0 0 12 12"
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
     >
         <path
-            d="M3 4.5L6 7.5L9 4.5"
+            d="M4 5.5L7 8.5L10 5.5"
             stroke="currentColor"
-            strokeWidth="1.2"
+            strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
         />
@@ -84,10 +84,6 @@ const ChevronDown = () => (
 
 export default function Navbar() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-    const getDisplayStyle = (dropdownName: string): CSSProperties => ({
-        display: activeDropdown === dropdownName ? 'block' : 'none'
-    });
 
     return (
         <>
@@ -141,11 +137,12 @@ export default function Navbar() {
                 {/* Dropdown Panel */}
                 <div className={`${styles.dropdownPanel} ${activeDropdown ? styles.dropdownPanelOpen : ''}`}>
                     <div className={styles.dropdownContainer}>
-                        {/* Renderizar ambos dropdowns, mostrar solo el activo */}
-                        <div style={getDisplayStyle('Products')}>
+                        {/* Products Dropdown */}
+                        <div className={`${styles.dropdownContent} ${activeDropdown === 'Products' ? styles.dropdownContentActive : ''}`}>
                             {dropdownContent.Products}
                         </div>
-                        <div style={getDisplayStyle('Resources')}>
+                        {/* Resources Dropdown */}
+                        <div className={`${styles.dropdownContent} ${activeDropdown === 'Resources' ? styles.dropdownContentActive : ''}`}>
                             {dropdownContent.Resources}
                         </div>
                     </div>
