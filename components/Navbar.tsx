@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, CSSProperties } from "react";
 import styles from "./Navbar.module.css";
 
 // Links con dropdown tendrán hasDropdown: true
@@ -85,6 +85,10 @@ const ChevronDown = () => (
 export default function Navbar() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
+    const getDisplayStyle = (dropdownName: string): CSSProperties => ({
+        display: activeDropdown === dropdownName ? 'block' : 'none'
+    });
+
     return (
         <>
             <header
@@ -137,7 +141,13 @@ export default function Navbar() {
                 {/* Dropdown Panel */}
                 <div className={`${styles.dropdownPanel} ${activeDropdown ? styles.dropdownPanelOpen : ''}`}>
                     <div className={styles.dropdownContainer}>
-                        {activeDropdown && dropdownContent[activeDropdown]}
+                        {/* Renderizar ambos dropdowns, mostrar solo el activo */}
+                        <div style={getDisplayStyle('Products')}>
+                            {dropdownContent.Products}
+                        </div>
+                        <div style={getDisplayStyle('Resources')}>
+                            {dropdownContent.Resources}
+                        </div>
                     </div>
                 </div>
             </header>
