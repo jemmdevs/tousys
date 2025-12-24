@@ -66,8 +66,8 @@ const dropdownContent: Record<string, React.ReactNode> = {
 const ChevronDown = () => (
     <svg
         className={styles.chevron}
-        width="14"
-        height="14"
+        width="16"
+        height="16"
         viewBox="0 0 12 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@ const ChevronDown = () => (
         <path
             d="M3 4.5L6 7.5L9 4.5"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="1.2"
             strokeLinecap="round"
             strokeLinejoin="round"
         />
@@ -86,59 +86,67 @@ export default function Navbar() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
     return (
-        <header
-            className={styles.navbar}
-            onMouseLeave={() => setActiveDropdown(null)}
-        >
-            <nav className={styles.navContainer}>
-                {/* Logo + Navigation Links */}
-                <div className={styles.navLeft}>
-                    <Link href="/" className={styles.logo}>
-                        <span className={styles.logoMain}>Tousys</span>
-                        <span className={styles.logoSub}>Biotech</span>
-                    </Link>
+        <>
+            <header
+                className={styles.navbar}
+                onMouseLeave={() => setActiveDropdown(null)}
+            >
+                <nav className={styles.navContainer}>
+                    {/* Logo + Navigation Links */}
+                    <div className={styles.navLeft}>
+                        <Link href="/" className={styles.logo}>
+                            <span className={styles.logoMain}>Tousys</span>
+                            <span className={styles.logoSub}>Biotech</span>
+                        </Link>
 
-                    <ul className={styles.navLinks}>
-                        {navLinks.map((link) => (
-                            <li
-                                key={link.label}
-                                onMouseEnter={() => link.hasDropdown ? setActiveDropdown(link.label) : setActiveDropdown(null)}
-                            >
-                                {link.hasDropdown ? (
-                                    <button
-                                        className={`${styles.navLink} ${styles.navLinkDropdown} ${activeDropdown === link.label ? styles.navLinkActive : ''}`}
-                                    >
-                                        {link.label}
-                                        <ChevronDown />
-                                    </button>
-                                ) : (
-                                    <Link
-                                        href={link.href}
-                                        className={styles.navLink}
-                                        onMouseEnter={() => setActiveDropdown(null)}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                        <ul className={styles.navLinks}>
+                            {navLinks.map((link) => (
+                                <li
+                                    key={link.label}
+                                    onMouseEnter={() => link.hasDropdown ? setActiveDropdown(link.label) : setActiveDropdown(null)}
+                                >
+                                    {link.hasDropdown ? (
+                                        <button
+                                            className={`${styles.navLink} ${styles.navLinkDropdown} ${activeDropdown === link.label ? styles.navLinkActive : ''}`}
+                                        >
+                                            {link.label}
+                                            <ChevronDown />
+                                        </button>
+                                    ) : (
+                                        <Link
+                                            href={link.href}
+                                            className={styles.navLink}
+                                            onMouseEnter={() => setActiveDropdown(null)}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
-                {/* Contact CTA */}
-                <div className={styles.navRight}>
-                    <Link href="#" className={styles.contactLink}>
-                        Get in touch
-                    </Link>
-                </div>
-            </nav>
+                    {/* Contact CTA */}
+                    <div className={styles.navRight}>
+                        <Link href="#" className={styles.contactLink}>
+                            Get in touch
+                        </Link>
+                    </div>
+                </nav>
 
-            {/* Dropdown Panel */}
-            <div className={`${styles.dropdownPanel} ${activeDropdown ? styles.dropdownPanelOpen : ''}`}>
-                <div className={styles.dropdownContainer}>
-                    {activeDropdown && dropdownContent[activeDropdown]}
+                {/* Dropdown Panel */}
+                <div className={`${styles.dropdownPanel} ${activeDropdown ? styles.dropdownPanelOpen : ''}`}>
+                    <div className={styles.dropdownContainer}>
+                        {activeDropdown && dropdownContent[activeDropdown]}
+                    </div>
                 </div>
-            </div>
-        </header>
+            </header>
+
+            {/* Overlay oscuro - fuera del header */}
+            <div
+                className={`${styles.overlay} ${activeDropdown ? styles.overlayVisible : ''}`}
+                onClick={() => setActiveDropdown(null)}
+            />
+        </>
     );
 }

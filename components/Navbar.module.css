@@ -124,34 +124,36 @@
 }
 
 .chevron {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navLinkActive .chevron {
     transform: rotate(180deg);
 }
 
-/* Dropdown Panel */
+/* Dropdown Panel - SIN ANIMACIÓN AL CERRAR */
 .dropdownPanel {
     position: absolute;
     top: var(--navbar-height);
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    /* sin borde para continuidad visual con navbar */
+    background: rgb(255, 255, 255);
+    border-radius: 0 0 16px 16px;
     overflow: hidden;
-    max-height: 0;
+    transform: scaleY(0);
+    transform-origin: top center;
     opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.2s ease;
+    transition: none;
     pointer-events: none;
+    z-index: 101;
 }
 
 .dropdownPanelOpen {
-    max-height: 300px;
+    transform: scaleY(1);
     opacity: 1;
     pointer-events: auto;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.25s ease;
 }
 
 .dropdownContainer {
@@ -166,10 +168,20 @@
     }
 }
 
-/* Dropdown Inner Content */
+/* Dropdown Inner Content - SIN ANIMACIÓN AL CERRAR */
 .dropdownInner {
     display: flex;
     gap: 4rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: none;
+}
+
+.dropdownPanelOpen .dropdownInner {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease 0.08s,
+        transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s;
 }
 
 .dropdownSection {
@@ -207,7 +219,7 @@
     border-color: var(--neutral-300);
 }
 
-/* Dropdown Links */
+/* Dropdown Links - OPTIMIZADO */
 .dropdownLinks {
     display: flex;
     flex-direction: column;
@@ -225,7 +237,33 @@
     color: var(--foreground);
     font-size: 0.9375rem;
     font-weight: 500;
-    transition: background var(--transition-fast);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: none;
+}
+
+.dropdownPanelOpen .dropdownLink {
+    opacity: 1;
+    transform: translateX(0);
+    transition: background var(--transition-fast),
+        opacity 0.3s ease,
+        transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dropdownPanelOpen .dropdownLink:nth-child(1) {
+    transition-delay: 0s, 0.12s, 0.12s;
+}
+
+.dropdownPanelOpen .dropdownLink:nth-child(2) {
+    transition-delay: 0s, 0.16s, 0.16s;
+}
+
+.dropdownPanelOpen .dropdownLink:nth-child(3) {
+    transition-delay: 0s, 0.2s, 0.2s;
+}
+
+.dropdownPanelOpen .dropdownLink:nth-child(4) {
+    transition-delay: 0s, 0.24s, 0.24s;
 }
 
 .dropdownLink:hover {
@@ -247,4 +285,40 @@
 .dropdownLink:hover .dropdownArrow {
     transform: translateX(3px);
     color: var(--foreground);
+}
+
+/* Overlay oscuro - SIN ANIMACIÓN AL CERRAR */
+.overlay {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: none;
+    z-index: 99;
+    pointer-events: none;
+}
+
+.overlayVisible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease,
+        visibility 0s;
+}
+
+/* Añade estos estilos si no tienes las variables CSS definidas */
+:root {
+    --navbar-height: 64px;
+    --foreground: #1a1a1a;
+    --background: #ffffff;
+    --neutral-100: #f5f5f5;
+    --neutral-200: #e5e5e5;
+    --neutral-300: #d4d4d4;
+    --neutral-400: #a3a3a3;
+    --neutral-600: #525252;
+    --transition-fast: 0.15s ease;
 }
