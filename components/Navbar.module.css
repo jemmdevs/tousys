@@ -172,30 +172,28 @@
 
 .dropdownContentActive {
     display: block;
+    animation: fadeIn 0.3s ease forwards;
 }
 
-/* Dropdown Inner Content - SIN ANIMACIÓN AL CERRAR */
+/* Animación suave de aparición */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Dropdown Inner Content */
 .dropdownInner {
     display: flex;
     gap: 4rem;
 }
 
-.dropdownContentActive .dropdownInner {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .dropdownSection {
     min-width: 280px;
-    opacity: 0;
-    transform: translateY(16px);
-}
-
-.dropdownContentActive .dropdownSection {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.35s ease-out 0.05s,
-        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.05s;
 }
 
 .dropdownTitle {
@@ -203,30 +201,20 @@
     font-weight: 600;
     color: var(--foreground);
     margin: 0 0 0.5rem 0;
-    opacity: 0;
-    transform: translateY(12px);
 }
 
 .dropdownContentActive .dropdownTitle {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.3s ease-out 0.1s,
-        transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
 }
 
 .dropdownDescription {
     font-size: 0.875rem;
     color: var(--neutral-600);
     margin: 0 0 1.25rem 0;
-    opacity: 0;
-    transform: translateY(12px);
 }
 
 .dropdownContentActive .dropdownDescription {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.3s ease-out 0.15s,
-        transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 
 .dropdownCta {
@@ -239,17 +227,12 @@
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 9999px;
-    opacity: 0;
-    transform: translateY(12px);
+    transition: background var(--transition-fast),
+        border-color var(--transition-fast);
 }
 
 .dropdownContentActive .dropdownCta {
-    opacity: 1;
-    transform: translateY(0);
-    transition: background var(--transition-fast),
-        border-color var(--transition-fast),
-        opacity 0.3s ease-out 0.2s,
-        transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
 .dropdownCta:hover {
@@ -275,40 +258,31 @@
     color: var(--foreground);
     font-size: 0.9375rem;
     font-weight: 500;
-    opacity: 0;
-    transform: translateY(16px);
-}
-
-.dropdownContentActive .dropdownLink {
-    opacity: 1;
-    transform: translateY(0);
-    transition: background var(--transition-fast),
-        opacity 0.3s ease-out,
-        transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: background var(--transition-fast);
 }
 
 .dropdownContentActive .dropdownLink:nth-child(1) {
-    transition-delay: 0s, 0.08s, 0.08s;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(2) {
-    transition-delay: 0s, 0.12s, 0.12s;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.13s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(3) {
-    transition-delay: 0s, 0.16s, 0.16s;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(4) {
-    transition-delay: 0s, 0.2s, 0.2s;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.23s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(5) {
-    transition-delay: 0s, 0.24s, 0.24s;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(6) {
-    transition-delay: 0s, 0.28s, 0.28s;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.33s both;
 }
 
 .dropdownLink:hover {
@@ -332,6 +306,19 @@
     color: var(--foreground);
 }
 
+/* Animación de deslizamiento hacia arriba - estilo Apple */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Overlay oscuro - SIN ANIMACIÓN AL CERRAR */
 .overlay {
     position: fixed;
@@ -351,8 +338,8 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transition: opacity 0.3s ease,
-        visibility 0s;
+    transition: opacity 0.2s ease 0.05s,
+        visibility 0s linear 0.05s;
 }
 
 /* Añade estos estilos si no tienes las variables CSS definidas */
