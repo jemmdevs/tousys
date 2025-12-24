@@ -113,9 +113,9 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
         destY = 0;
       } else if (autoAnimate) {
         // Original figure-8 animation when not keepCentered
-      const time = state.clock.getElapsedTime();
-      destX = Math.sin(time * 0.5) * (v.width / 4);
-      destY = Math.cos(time * 0.5 * 2) * (v.height / 4);
+        const time = state.clock.getElapsedTime();
+        destX = Math.sin(time * 0.5) * (v.width / 4);
+        destY = Math.cos(time * 0.5 * 2) * (v.height / 4);
       }
     }
 
@@ -187,7 +187,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
 
   return (
     <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-      {particleShape === 'capsule' && <capsuleGeometry args={[0.1, 0.4, 4, 8]} />}
+      {particleShape === 'capsule' && <capsuleGeometry args={[0.12, 0.2, 4, 8]} />}
       {particleShape === 'sphere' && <sphereGeometry args={[0.2, 16, 16]} />}
       {particleShape === 'box' && <boxGeometry args={[0.3, 0.3, 0.3]} />}
       {particleShape === 'tetrahedron' && <tetrahedronGeometry args={[0.3]} />}
