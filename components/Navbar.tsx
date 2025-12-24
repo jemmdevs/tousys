@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 
 // Links con dropdown tendrán hasDropdown: true
 const navLinks = [
     { label: "Products", href: "#", hasDropdown: true },
-    { label: "Use Cases", href: "#", hasDropdown: false },
+    { label: "About Us", href: "#", hasDropdown: false },
     { label: "Blog", href: "#", hasDropdown: false },
     { label: "Resources", href: "#", hasDropdown: true },
 ];
@@ -104,11 +104,33 @@ const dropdownContent: Record<string, React.ReactNode> = {
 
 export default function Navbar() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [isHidden, setIsHidden] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 10) {
+                // Scrolling down - hide navbar
+                setIsHidden(true);
+                setActiveDropdown(null); // Close any open dropdown
+            } else {
+                // Scrolling up - show navbar
+                setIsHidden(false);
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
 
     return (
         <>
             <header
-                className={`${styles.navbar} ${activeDropdown ? styles.navbarExpanded : ''}`}
+                className={`${styles.navbar} ${activeDropdown ? styles.navbarExpanded : ''} ${isHidden ? styles.navbarHidden : ''}`}
                 onMouseLeave={() => setActiveDropdown(null)}
             >
                 <nav className={styles.navContainer}>
