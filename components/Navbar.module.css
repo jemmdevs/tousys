@@ -189,17 +189,19 @@
 /* Dropdown Inner Content */
 .dropdownInner {
     display: flex;
-    gap: 4rem;
+    gap: 8rem;
 }
 
 .dropdownSection {
-    min-width: 280px;
+    width: 320px;
+    flex-shrink: 0;
 }
 
 .dropdownTitle {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--foreground);
+    font-size: 24px;
+    font-weight: 400;
+    color: #121317;
+    line-height: 26px;
     margin: 0 0 0.5rem 0;
 }
 
@@ -208,8 +210,10 @@
 }
 
 .dropdownDescription {
-    font-size: 0.875rem;
-    color: var(--neutral-600);
+    font-size: 15px;
+    font-weight: 370;
+    color: #45474d;
+    line-height: 21px;
     margin: 0 0 1.25rem 0;
 }
 
@@ -219,9 +223,10 @@
 
 .dropdownCta {
     display: inline-block;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--foreground);
+    font-size: 15px;
+    font-weight: 600;
+    color: #121317;
+    line-height: 21px;
     background: var(--background);
     border: 1px solid var(--neutral-200);
     text-decoration: none;
@@ -244,20 +249,25 @@
 .dropdownLinks {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0;
 }
 
 .dropdownLink {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    padding: 0.625rem 1rem;
+    padding: 0.25rem 0;
     border-radius: 8px;
     text-decoration: none;
-    color: var(--foreground);
-    font-size: 0.9375rem;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 400;
+    color: #121317;
+    line-height: 25px;
     transition: background var(--transition-fast);
+}
+
+.dropdownLink:first-child {
+    padding-top: 0;
 }
 
 .dropdownContentActive .dropdownLink:nth-child(1) {
