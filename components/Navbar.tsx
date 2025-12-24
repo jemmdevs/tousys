@@ -92,7 +92,7 @@ export default function Navbar() {
     return (
         <>
             <header
-                className={styles.navbar}
+                className={`${styles.navbar} ${activeDropdown ? styles.navbarExpanded : ''}`}
                 onMouseLeave={() => setActiveDropdown(null)}
             >
                 <nav className={styles.navContainer}>
