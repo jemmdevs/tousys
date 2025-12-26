@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "./ScrollyTellingSection.module.css";
 
 // Datos de ejemplo para las features
@@ -82,26 +82,6 @@ function FeatureBlock({
     );
 }
 
-// Image Visual Component
-function ImageVisual({ feature }: { feature: typeof features[0] }) {
-    return (
-        <motion.div
-            key={feature.id}
-            className={styles.visualCard}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-        >
-            <img
-                src={feature.image}
-                alt={feature.title}
-                className={styles.featureImage}
-            />
-        </motion.div>
-    );
-}
-
 export default function ScrollyTellingSection() {
     const [activeFeature, setActiveFeature] = useState(0);
 
@@ -124,11 +104,27 @@ export default function ScrollyTellingSection() {
                 <div className={styles.visualColumn}>
                     <div className={styles.stickyWrapper}>
                         <div className={styles.visualCard}>
-                            <img
-                                src={features[activeFeature].image}
-                                alt={features[activeFeature].title}
-                                className={styles.featureImage}
-                            />
+                            {/* Todas las imágenes apiladas - solo la activa visible */}
+                            {features.map((feature, index) => (
+                                <motion.div
+                                    key={feature.id}
+                                    className={styles.visualCardInner}
+                                    initial={false}
+                                    animate={{
+                                        opacity: index === activeFeature ? 1 : 0
+                                    }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: [0.4, 0, 0.2, 1]
+                                    }}
+                                >
+                                    <img
+                                        src={feature.image}
+                                        alt={feature.title}
+                                        className={styles.featureImage}
+                                    />
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </div>
