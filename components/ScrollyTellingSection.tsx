@@ -51,7 +51,16 @@ function FeatureBlock({
     // Estados de visibilidad
     const isActive = index === activeFeature;
     const isExiting = index < activeFeature; // El texto anterior está saliendo
-    const isUpcoming = index > activeFeature; // El texto siguiente está esperando
+    const isNextUp = index === activeFeature + 1; // El siguiente texto que va a aparecer
+    const isUpcoming = index > activeFeature + 1; // Los textos más adelante
+
+    // Calcular opacidad del título
+    const getTitleOpacity = () => {
+        if (isActive) return 1;
+        if (isExiting) return 0.2;
+        if (isNextUp) return 0.9; // Preview del siguiente - más visible
+        return 0.15; // Los demás upcoming
+    };
 
     return (
         <motion.div
@@ -65,8 +74,8 @@ function FeatureBlock({
             <motion.h3
                 className={styles.featureTitle}
                 animate={{
-                    opacity: isActive ? 1 : isExiting ? 0.25 : 0.15,
-                    color: isActive ? "#121317" : "#e5e7eb",
+                    opacity: getTitleOpacity(),
+                    color: isActive ? "#121317" : "#d1d5db",
                 }}
                 transition={{
                     duration: 0.5,
@@ -76,16 +85,16 @@ function FeatureBlock({
                 {feature.title}
             </motion.h3>
 
-            {/* Cuerpo - desaparece rápido pero suave */}
+            {/* Cuerpo - solo visible cuando está activo */}
             <motion.p
                 className={styles.featureDescription}
                 animate={{
                     opacity: isActive ? 1 : 0,
-                    color: isActive ? "#6b7280" : "#e5e7eb",
+                    color: isActive ? "#45474d" : "#e5e7eb",
                 }}
                 transition={{
-                    duration: isActive ? 0.6 : 0.15, // Rápido pero no instantáneo
-                    ease: [0.25, 0.1, 0.25, 1], // Apple ease curve
+                    duration: isActive ? 0.6 : 0.15,
+                    ease: [0.25, 0.1, 0.25, 1],
                 }}
             >
                 {feature.description}
@@ -217,6 +226,11 @@ export default function ScrollyTellingSection() {
                             }}
                         />
                     ))}
+
+                    {/* Botón Explore Product */}
+                    <a href="#" className={styles.exploreButton}>
+                        Explore Product
+                    </a>
 
                     {/* Espaciador final para que el último texto pueda scrollearse hasta los 15vh */}
                     <div className={styles.endSpacer} />
