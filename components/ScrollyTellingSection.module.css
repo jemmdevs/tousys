@@ -26,9 +26,9 @@
     position: relative;
 }
 
-/* Espaciador inicial para centrar el primer texto */
+/* Espaciador inicial - el primer texto aparece con su final en la mitad de la pantalla */
 .startSpacer {
-    min-height: 40vh;
+    min-height: 15vh;
 }
 
 .featureBlock {
@@ -38,6 +38,11 @@
     flex-direction: column;
     justify-content: center;
     padding: 4rem 0;
+}
+
+/* Espaciador final - permite que el último texto llegue hasta los 15vh */
+.endSpacer {
+    min-height: 45vh;
 }
 
 .featureTitle {

@@ -217,6 +217,9 @@ export default function ScrollyTellingSection() {
                             }}
                         />
                     ))}
+
+                    {/* Espaciador final para que el último texto pueda scrollearse hasta los 15vh */}
+                    <div className={styles.endSpacer} />
                 </div>
 
                 {/* Columna Derecha - Visual sticky (NO TOCAR) */}
