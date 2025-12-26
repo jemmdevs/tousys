@@ -56,7 +56,6 @@
 .textColumnMaskTop {
     top: 0;
     height: 28vh;
-    /* Más alto para que el texto se esconda antes */
     background: linear-gradient(to bottom,
             #ffffff 0%,
             #ffffff 45%,
@@ -66,7 +65,6 @@
 .textColumnMaskBottom {
     bottom: 0;
     height: 50vh;
-    /* Mucho más alto para que el texto aparezca desde más arriba */
     background: linear-gradient(to top,
             #ffffff 0%,
             #ffffff 40%,
@@ -75,14 +73,13 @@
 
 .featureBlock {
     min-height: 70vh;
-    /* Reducido para que los textos estén más cerca y se solapen en la transición */
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 4rem 0;
 }
 
-/* Espaciador al final - solo permite que el último texto llegue hasta un poco por encima de la mitad */
+/* Espaciador al final */
 .endSpacer {
     min-height: 25vh;
 }

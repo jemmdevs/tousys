@@ -2,6 +2,8 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
+import Snap from "lenis/snap";
 import styles from "./ScrollyTellingSection.module.css";
 
 // Datos de ejemplo para las features
@@ -10,7 +12,6 @@ const features = [
         id: 1,
         title: "An AI IDE Core",
         description: "Google Antigravity's Editor view offers tab autocompletion, natural language code commands, and a configurable, and context-aware configurable agent.",
-        // Placeholder images - se pueden reemplazar con imágenes reales
         image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
     },
     {
@@ -37,11 +38,13 @@ const features = [
 function FeatureBlock({
     feature,
     index,
-    setActiveFeature
+    setActiveFeature,
+    blockRef
 }: {
     feature: typeof features[0];
     index: number;
     setActiveFeature: (index: number) => void;
+    blockRef: (el: HTMLDivElement | null) => void;
 }) {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -69,7 +72,10 @@ function FeatureBlock({
 
     return (
         <motion.div
-            ref={ref}
+            ref={(el) => {
+                (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
+                blockRef(el);
+            }}
             className={styles.featureBlock}
             initial={{ opacity: 0.3 }}
             whileInView={{ opacity: 1 }}
@@ -86,22 +92,64 @@ export default function ScrollyTellingSection() {
     const [activeFeature, setActiveFeature] = useState(0);
     const [isSectionActive, setIsSectionActive] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
+    const blockRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const snapRef = useRef<Snap | null>(null);
 
-    // Detectar cuándo la sección está "sticky" (su top ha llegado al viewport)
+    // Hook de Lenis
+    const lenis = useLenis();
+
+    // Configurar Lenis Snap cuando tenemos la instancia de lenis y los elementos
+    useEffect(() => {
+        if (!lenis || blockRefs.current.length === 0) return;
+
+        // Crear instancia de Snap con configuración menos agresiva
+        const snap = new Snap(lenis, {
+            type: 'proximity', // Solo snapea cuando está cerca
+            debounce: 500, // Esperar más tiempo antes de snapear (medio segundo)
+            distanceThreshold: '15%', // Solo snapea si está muy cerca (15% del viewport)
+        });
+
+        // Añadir cada bloque como punto de snap
+        blockRefs.current.forEach((block) => {
+            if (block) {
+                snap.addElement(block, {
+                    align: ['center'], // Alinear al centro del viewport
+                });
+            }
+        });
+
+        // Desactivar el snap inicialmente - se activará cuando la sección esté sticky
+        snap.stop();
+        snapRef.current = snap;
+
+        return () => {
+            snap.stop();
+        };
+    }, [lenis]);
+
+    // Activar/desactivar el snap según si la sección está "sticky"
+    useEffect(() => {
+        if (!snapRef.current) return;
+
+        if (isSectionActive) {
+            snapRef.current.start();
+        } else {
+            snapRef.current.stop();
+        }
+    }, [isSectionActive]);
+
+    // Detectar cuándo la sección está "sticky"
     useEffect(() => {
         const handleScroll = () => {
             if (sectionRef.current) {
                 const rect = sectionRef.current.getBoundingClientRect();
-                const sectionHeight = sectionRef.current.offsetHeight;
-                // La sección está activa cuando su top está en o por encima del viewport
-                // y aún no hemos pasado completamente la sección
                 const isActive = rect.top <= 0 && rect.bottom > window.innerHeight * 0.5;
                 setIsSectionActive(isActive);
             }
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // Check initial state
+        handleScroll();
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -126,6 +174,9 @@ export default function ScrollyTellingSection() {
                             feature={feature}
                             index={index}
                             setActiveFeature={setActiveFeature}
+                            blockRef={(el) => {
+                                blockRefs.current[index] = el;
+                            }}
                         />
                     ))}
 
