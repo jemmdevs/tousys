@@ -25,10 +25,10 @@
     line-height: 56px;
     color: #121317;
     letter-spacing: -0.02em;
-    max-width: 900px;
+    max-width: 50%;
     text-align: left;
-    min-height: 224px;
-    /* Espacio para ~4 líneas */
+    min-height: 168px;
+    /* Espacio para ~3 líneas */
 }
 
 /* Cursor con gradiente negro-azul */

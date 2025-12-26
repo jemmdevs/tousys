@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./IntroSection.module.css";
 
-const introText = "Tousys Biotech is our integrated intelligence ecosystem, bridging the gap between advanced computation and physical architecture.";
+const introText = "Tousys Biotech is our web app ecosystem, crafting intelligent, scalable digital experiences.";
 
 export default function IntroSection() {
     const [displayedText, setDisplayedText] = useState("");
