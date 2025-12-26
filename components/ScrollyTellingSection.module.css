@@ -26,62 +26,18 @@
     position: relative;
 }
 
-/* Overlay con gradientes para ocultar el contenido en los bordes */
-.textColumnMaskTop,
-.textColumnMaskBottom {
-    position: fixed;
-    left: var(--section-padding-x);
-    width: calc((100vw - 2 * var(--section-padding-x)) * 0.35);
-    max-width: calc(1600px * 0.35);
-    pointer-events: none;
-    z-index: 10;
-    opacity: 0;
-    transition: opacity 0.3s ease-out;
-}
-
-/* Clase para mostrar los overlays cuando la sección está activa */
-.maskVisible {
-    opacity: 1;
-}
-
-@media (min-width: 1024px) {
-
-    .textColumnMaskTop,
-    .textColumnMaskBottom {
-        left: var(--section-padding-x-lg);
-        width: calc((100vw - 2 * var(--section-padding-x-lg)) * 0.35);
-    }
-}
-
-.textColumnMaskTop {
-    top: 0;
-    height: 28vh;
-    background: linear-gradient(to bottom,
-            #ffffff 0%,
-            #ffffff 45%,
-            rgba(255, 255, 255, 0) 100%);
-}
-
-.textColumnMaskBottom {
-    bottom: 0;
-    height: 50vh;
-    background: linear-gradient(to top,
-            #ffffff 0%,
-            #ffffff 40%,
-            rgba(255, 255, 255, 0) 100%);
+/* Espaciador inicial para centrar el primer texto */
+.startSpacer {
+    min-height: 40vh;
 }
 
 .featureBlock {
-    min-height: 70vh;
+    min-height: 60vh;
+    /* Reducido para que el siguiente texto aparezca desde más arriba */
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 4rem 0;
-}
-
-/* Espaciador al final */
-.endSpacer {
-    min-height: 25vh;
 }
 
 .featureTitle {

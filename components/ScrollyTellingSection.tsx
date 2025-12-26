@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import Snap from "lenis/snap";
@@ -38,52 +38,58 @@ const features = [
 function FeatureBlock({
     feature,
     index,
-    setActiveFeature,
+    activeFeature,
     blockRef
 }: {
     feature: typeof features[0];
     index: number;
-    setActiveFeature: (index: number) => void;
-    blockRef: (el: HTMLDivElement | null) => void;
+    activeFeature: number;
+    blockRef?: (el: HTMLDivElement | null) => void;
 }) {
     const ref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-                        setActiveFeature(index);
-                    }
-                });
-            },
-            {
-                threshold: [0.3, 0.5, 0.7],
-                rootMargin: "-30% 0px -30% 0px"
-            }
-        );
-
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
-
-        return () => observer.disconnect();
-    }, [index, setActiveFeature]);
+    // Estados de visibilidad
+    const isActive = index === activeFeature;
+    const isExiting = index < activeFeature; // El texto anterior está saliendo
+    const isUpcoming = index > activeFeature; // El texto siguiente está esperando
 
     return (
         <motion.div
             ref={(el) => {
                 (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
-                blockRef(el);
+                blockRef?.(el);
             }}
             className={styles.featureBlock}
-            initial={{ opacity: 0.3 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.5 }}
         >
-            <h3 className={styles.featureTitle}>{feature.title}</h3>
-            <p className={styles.featureDescription}>{feature.description}</p>
+            {/* Título - transición suave estilo Apple */}
+            <motion.h3
+                className={styles.featureTitle}
+                animate={{
+                    opacity: isActive ? 1 : isExiting ? 0.25 : 0.15,
+                    color: isActive ? "#121317" : "#e5e7eb",
+                }}
+                transition={{
+                    duration: 0.5,
+                    ease: [0.25, 0.1, 0.25, 1], // Apple ease curve
+                }}
+            >
+                {feature.title}
+            </motion.h3>
+
+            {/* Cuerpo - desaparece rápido pero suave */}
+            <motion.p
+                className={styles.featureDescription}
+                animate={{
+                    opacity: isActive ? 1 : 0,
+                    color: isActive ? "#6b7280" : "#e5e7eb",
+                }}
+                transition={{
+                    duration: isActive ? 0.6 : 0.15, // Rápido pero no instantáneo
+                    ease: [0.25, 0.1, 0.25, 1], // Apple ease curve
+                }}
+            >
+                {feature.description}
+            </motion.p>
         </motion.div>
     );
 }
@@ -94,31 +100,63 @@ export default function ScrollyTellingSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const blockRefs = useRef<(HTMLDivElement | null)[]>([]);
     const snapRef = useRef<Snap | null>(null);
+    const lastActiveRef = useRef(0);
 
-    // Hook de Lenis
     const lenis = useLenis();
 
-    // Configurar Lenis Snap cuando tenemos la instancia de lenis y los elementos
+    // Detectar qué feature está en el centro basándose en la posición de scroll
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!isSectionActive) return;
+
+            const viewportCenter = window.innerHeight * 0.45; // Un poco por encima del centro
+
+            for (let i = blockRefs.current.length - 1; i >= 0; i--) {
+                const block = blockRefs.current[i];
+                if (!block) continue;
+
+                const rect = block.getBoundingClientRect();
+                // El bloque está activo si su parte superior está por encima del centro del viewport
+                if (rect.top < viewportCenter) {
+                    if (i !== activeFeature) {
+                        setActiveFeature(i);
+                    }
+                    break;
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isSectionActive, activeFeature]);
+
+    // Configurar Lenis Snap
     useEffect(() => {
         if (!lenis || blockRefs.current.length === 0) return;
 
-        // Crear instancia de Snap con configuración menos agresiva
+        // Snap suave estilo Apple
         const snap = new Snap(lenis, {
-            type: 'proximity', // Solo snapea cuando está cerca
-            debounce: 500, // Esperar más tiempo antes de snapear (medio segundo)
-            distanceThreshold: '15%', // Solo snapea si está muy cerca (15% del viewport)
+            type: 'proximity',
+            debounce: 250, // Más tiempo para sentirse natural
+            distanceThreshold: '8%', // Solo cuando está muy cerca
+            duration: 1.0, // Animación más larga y fluida
+            easing: (t) => {
+                // Ease curve estilo Apple (ease-out-quint suave)
+                return 1 - Math.pow(1 - t, 5);
+            },
         });
 
         // Añadir cada bloque como punto de snap
         blockRefs.current.forEach((block) => {
             if (block) {
                 snap.addElement(block, {
-                    align: ['center'], // Alinear al centro del viewport
+                    align: ['start'],
                 });
             }
         });
 
-        // Desactivar el snap inicialmente - se activará cuando la sección esté sticky
         snap.stop();
         snapRef.current = snap;
 
@@ -127,16 +165,22 @@ export default function ScrollyTellingSection() {
         };
     }, [lenis]);
 
-    // Activar/desactivar el snap según si la sección está "sticky"
+    // Activar snap cuando cambia el feature activo
     useEffect(() => {
-        if (!snapRef.current) return;
+        if (!snapRef.current || !isSectionActive) return;
 
-        if (isSectionActive) {
+        // Solo activar snap cuando avanzamos hacia adelante
+        if (activeFeature > lastActiveRef.current) {
             snapRef.current.start();
-        } else {
-            snapRef.current.stop();
+
+            // Desactivar después de completar la animación
+            setTimeout(() => {
+                snapRef.current?.stop();
+            }, 1200); // Más tiempo para la animación suave
         }
-    }, [isSectionActive]);
+
+        lastActiveRef.current = activeFeature;
+    }, [activeFeature, isSectionActive]);
 
     // Detectar cuándo la sección está "sticky"
     useEffect(() => {
@@ -157,38 +201,28 @@ export default function ScrollyTellingSection() {
     return (
         <section ref={sectionRef} className={styles.section}>
             <div className={styles.container}>
-                {/* Columna Izquierda - Textos que hacen scroll */}
+                {/* Columna Izquierda - Textos */}
                 <div className={styles.textColumn}>
-                    {/* Overlay gradiente superior - solo visible cuando la sección está activa */}
-                    <div
-                        className={`${styles.textColumnMaskTop} ${isSectionActive ? styles.maskVisible : ''}`}
-                    />
-                    {/* Overlay gradiente inferior - solo visible cuando la sección está activa */}
-                    <div
-                        className={`${styles.textColumnMaskBottom} ${isSectionActive ? styles.maskVisible : ''}`}
-                    />
+                    {/* Espaciador inicial */}
+                    <div className={styles.startSpacer} />
 
                     {features.map((feature, index) => (
                         <FeatureBlock
                             key={feature.id}
                             feature={feature}
                             index={index}
-                            setActiveFeature={setActiveFeature}
+                            activeFeature={activeFeature}
                             blockRef={(el) => {
                                 blockRefs.current[index] = el;
                             }}
                         />
                     ))}
-
-                    {/* Espaciador para permitir que el último texto llegue a la zona de desvanecimiento */}
-                    <div className={styles.endSpacer} />
                 </div>
 
-                {/* Columna Derecha - Visual sticky */}
+                {/* Columna Derecha - Visual sticky (NO TOCAR) */}
                 <div className={styles.visualColumn}>
                     <div className={styles.stickyWrapper}>
                         <div className={styles.visualCard}>
-                            {/* Todas las imágenes apiladas - solo la activa visible */}
                             {features.map((feature, index) => (
                                 <motion.div
                                     key={feature.id}
