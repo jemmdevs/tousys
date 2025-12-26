@@ -84,12 +84,42 @@ function FeatureBlock({
 
 export default function ScrollyTellingSection() {
     const [activeFeature, setActiveFeature] = useState(0);
+    const [isSectionActive, setIsSectionActive] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    // Detectar cuándo la sección está "sticky" (su top ha llegado al viewport)
+    useEffect(() => {
+        const handleScroll = () => {
+            if (sectionRef.current) {
+                const rect = sectionRef.current.getBoundingClientRect();
+                const sectionHeight = sectionRef.current.offsetHeight;
+                // La sección está activa cuando su top está en o por encima del viewport
+                // y aún no hemos pasado completamente la sección
+                const isActive = rect.top <= 0 && rect.bottom > window.innerHeight * 0.5;
+                setIsSectionActive(isActive);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Check initial state
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <section className={styles.section}>
+        <section ref={sectionRef} className={styles.section}>
             <div className={styles.container}>
                 {/* Columna Izquierda - Textos que hacen scroll */}
                 <div className={styles.textColumn}>
+                    {/* Overlay gradiente superior - solo visible cuando la sección está activa */}
+                    <div
+                        className={`${styles.textColumnMaskTop} ${isSectionActive ? styles.maskVisible : ''}`}
+                    />
+                    {/* Overlay gradiente inferior - solo visible cuando la sección está activa */}
+                    <div
+                        className={`${styles.textColumnMaskBottom} ${isSectionActive ? styles.maskVisible : ''}`}
+                    />
+
                     {features.map((feature, index) => (
                         <FeatureBlock
                             key={feature.id}
@@ -98,6 +128,9 @@ export default function ScrollyTellingSection() {
                             setActiveFeature={setActiveFeature}
                         />
                     ))}
+
+                    {/* Espaciador para permitir que el último texto llegue a la zona de desvanecimiento */}
+                    <div className={styles.endSpacer} />
                 </div>
 
                 {/* Columna Derecha - Visual sticky */}
