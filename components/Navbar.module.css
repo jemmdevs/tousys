@@ -146,7 +146,7 @@
 }
 
 .navLinkActive .chevron {
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
 }
 
 /* Dropdown Panel - PARTE DE LA NAVBAR - SIN TRANSICIÓN */
