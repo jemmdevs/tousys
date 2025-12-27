@@ -2,10 +2,14 @@
 
 import Link from "next/link";
 import styles from "./Hero.module.css";
+import NeuralNoiseBackground from "./NeuralNoiseBackground";
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
+            {/* Neural Noise Animation Background */}
+            <NeuralNoiseBackground />
+
             <div className={styles.content}>
                 {/* Company Logo */}
                 <div className={styles.companyLogo}>

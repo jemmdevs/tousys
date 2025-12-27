@@ -1,22 +1,23 @@
 .introSection {
     width: 100%;
-    padding: 6rem var(--section-padding-x);
+    padding-top: 6rem;
+    padding-bottom: 6rem;
     background: var(--background);
     min-height: 50vh;
-}
-
-@media (min-width: 1024px) {
-    .introSection {
-        padding-left: var(--section-padding-x-lg);
-        padding-right: var(--section-padding-x-lg);
-    }
 }
 
 .container {
     max-width: 1440px;
     margin: 0 auto;
+    padding: 0 0.75rem;
     display: flex;
     justify-content: flex-start;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
 }
 
 .introText {

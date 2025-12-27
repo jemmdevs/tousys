@@ -45,7 +45,7 @@ export default function IntroSection() {
                 setIsTyping(false);
                 clearInterval(typingInterval);
             }
-        }, 30); // Velocidad de escritura
+        }, 19); // Velocidad de escritura
 
         return () => clearInterval(typingInterval);
     }, [isTyping]);
