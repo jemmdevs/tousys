@@ -3,7 +3,8 @@
     width: 100%;
     overflow: hidden;
     display: flex;
-    margin-top: 4rem;
+    margin-top: 6rem;
+    padding: 1.5rem 0;
     pointer-events: none;
 
     /* Fade effect on edges */

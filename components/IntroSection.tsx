@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./IntroSection.module.css";
 import LogoMarquee from "./LogoMarquee";
+// import SpiralText from "./SpiralText"; // Prueba temporal deshabilitada
 
 const introText = "Tousys Biotech is our web app ecosystem, crafting intelligent, scalable digital experiences.";
 
@@ -59,6 +60,7 @@ export default function IntroSection() {
                     {showCursor && <span className={styles.cursor}>|</span>}
                 </p>
                 <LogoMarquee />
+                {/* <SpiralText /> */}
             </div>
         </section>
     );
