@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import IntroSection from "@/components/IntroSection";
 import ScrollyTellingSection from "@/components/ScrollyTellingSection";
 import DeveloperSection from "@/components/DeveloperSection";
+import DualCardsSection from "@/components/DualCardsSection";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <IntroSection />
         <ScrollyTellingSection />
         <DeveloperSection />
+        <DualCardsSection />
       </main>
     </>
   );
