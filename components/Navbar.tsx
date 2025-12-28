@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Navbar.module.css";
 
 // Links con dropdown tendrán hasDropdown: true
 const navLinks = [
     { label: "Products", href: "#", hasDropdown: true },
-    { label: "About Us", href: "#", hasDropdown: false },
-    { label: "Blog", href: "#", hasDropdown: false },
+    { label: "Use Cases", href: "#", hasDropdown: true },
     { label: "Resources", href: "#", hasDropdown: true },
+    { label: "Blog", href: "#", hasDropdown: false },
+
 ];
 
 // Componente de flecha hacia abajo (para Products/Resources)
@@ -104,6 +105,29 @@ const dropdownContent: Record<string, React.ReactNode> = {
             </div>
         </div>
     ),
+    "Use Cases": (
+        <div className={styles.dropdownInner}>
+            <div className={styles.dropdownSection}>
+                <h4 className={styles.dropdownTitle}>Discover what's possible</h4>
+                <p className={styles.dropdownDescription}>See how teams are using our platform</p>
+                <Link href="#" className={styles.dropdownCta}>View all use cases</Link>
+            </div>
+            <div className={styles.dropdownLinks}>
+                <Link href="#" className={styles.dropdownLink}>
+                    <span className={styles.dropdownLinkText}>Research Labs</span>
+                    <ChevronRight />
+                </Link>
+                <Link href="#" className={styles.dropdownLink}>
+                    <span className={styles.dropdownLinkText}>Pharmaceutical</span>
+                    <ChevronRight />
+                </Link>
+                <Link href="#" className={styles.dropdownLink}>
+                    <span className={styles.dropdownLinkText}>Biotech Startups</span>
+                    <ChevronRight />
+                </Link>
+            </div>
+        </div>
+    ),
     Resources: (
         <div className={styles.dropdownInner}>
             <div className={styles.dropdownSection}>
@@ -132,27 +156,35 @@ const dropdownContent: Record<string, React.ReactNode> = {
 export default function Navbar() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [isHidden, setIsHidden] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const lastScrollYRef = useRef(0);
 
     useEffect(() => {
+        let ticking = false;
+
         const handleScroll = () => {
-            const currentScrollY = window.scrollY;
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
 
-            if (currentScrollY > lastScrollY && currentScrollY > 10) {
-                // Scrolling down - hide navbar
-                setIsHidden(true);
-                setActiveDropdown(null); // Close any open dropdown
-            } else {
-                // Scrolling up - show navbar
-                setIsHidden(false);
+                    if (currentScrollY > lastScrollYRef.current && currentScrollY > 10) {
+                        // Scrolling down - hide navbar
+                        setIsHidden(true);
+                        setActiveDropdown(null);
+                    } else {
+                        // Scrolling up - show navbar
+                        setIsHidden(false);
+                    }
+
+                    lastScrollYRef.current = currentScrollY;
+                    ticking = false;
+                });
+                ticking = true;
             }
-
-            setLastScrollY(currentScrollY);
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    }, []);
 
     return (
         <>
@@ -210,6 +242,10 @@ export default function Navbar() {
                         {/* Products Dropdown */}
                         <div className={`${styles.dropdownContent} ${activeDropdown === 'Products' ? styles.dropdownContentActive : ''}`}>
                             {dropdownContent.Products}
+                        </div>
+                        {/* Use Cases Dropdown */}
+                        <div className={`${styles.dropdownContent} ${activeDropdown === 'Use Cases' ? styles.dropdownContentActive : ''}`}>
+                            {dropdownContent["Use Cases"]}
                         </div>
                         {/* Resources Dropdown */}
                         <div className={`${styles.dropdownContent} ${activeDropdown === 'Resources' ? styles.dropdownContentActive : ''}`}>

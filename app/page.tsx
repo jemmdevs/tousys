@@ -33,6 +33,11 @@ const PreFooter = dynamic(() => import("@/components/PreFooter"), {
   ssr: true,
 });
 
+const Footer = dynamic(() => import("@/components/Footer"), {
+  loading: () => <div style={{ minHeight: '60px' }} />,
+  ssr: true,
+});
+
 export default function Home() {
   return (
     <>
@@ -46,6 +51,7 @@ export default function Home() {
         <CTASection />
         <PreFooter />
       </main>
+      <Footer />
     </>
   );
 }
