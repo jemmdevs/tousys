@@ -16,21 +16,25 @@
     }
 }
 
-/* Bento Grid Layout - 4 columns */
+/* ===========================================
+   BENTO GRID LAYOUT - 6 columnas para flexibilidad
+   =========================================== */
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 390px);
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 200px;
     gap: 1.25rem;
 }
 
-/* Base Card */
+/* ===========================================
+   BASE CARD
+   =========================================== */
 .card {
     position: relative;
     background: #FCFCFC;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 24px;
-    padding: 2rem;
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -42,133 +46,268 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* Card Background - para SVGs/imágenes personalizadas */
-.cardBackground {
+/* ===========================================
+   CARD VISUAL - Área para SVG/imágenes
+   =========================================== */
+.cardVisual {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
     pointer-events: none;
     z-index: 0;
+    padding: 1.5rem;
 }
 
-.cardBackground svg,
-.cardBackground img {
+.cardVisual svg,
+.cardVisual img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 }
 
-/* Card Content */
+/* ===========================================
+   CARD CONTENT
+   =========================================== */
 .cardContent {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
     z-index: 1;
     position: relative;
 }
 
-.value {
-    font-size: 48px;
+.cardTitle {
+    font-size: 20px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.2;
     color: #121317;
-    letter-spacing: -0.02em;
+    margin: 0;
 }
 
-.label {
-    font-size: 15px;
+.cardDescription {
+    font-size: 14px;
     font-weight: 400;
+    line-height: 1.5;
     color: #6b7280;
+    margin: 0;
+}
+
+/* Checkpoints list */
+.checkpoints {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.checkpoint {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 13px;
+    color: #45474d;
+}
+
+.checkIcon {
+    width: 14px;
+    height: 14px;
+    color: #121317;
+    flex-shrink: 0;
+}
+
+/* Highlight badge */
+.highlight {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #45474d;
+    width: fit-content;
     margin-top: 0.5rem;
 }
 
 /* ===========================================
-   CARD LAYOUTS - Personaliza cada tarjeta aquí
+   CARD SIZES & POSITIONS
    =========================================== */
 
-/* Card 1: Sequences - Grande (2 columnas) */
-.sequences {
+/* 1. Codon Optimization Engine - LARGE (4 cols, 2 rows) */
+.codon_optimization {
+    grid-column: span 4;
+    grid-row: span 2;
+}
+
+/* 2. Ribosomal Kinetic Profile - MEDIUM (2 cols, 2 rows) */
+.kinetic_profile {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* 3. Multi-Organism - SMALL (2 cols, 1 row) */
+.multi_organism {
     grid-column: span 2;
     grid-row: span 1;
 }
 
-/* Card 2: Accuracy */
-.accuracy {
-    grid-column: span 1;
-    grid-row: span 1;
+/* 4. 3D Protein Structure - MEDIUM (2 cols, 2 rows) */
+.protein_structure {
+    grid-column: span 2;
+    grid-row: span 2;
 }
 
-/* Card 3: Partners */
-.partners {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
-/* Card 4: Processing */
-.processing {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
-/* Card 5: Speed */
-.speed {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
-/* Card 6: Network - Grande (2 columnas) */
-.network {
+/* 5. DAIS Score - SMALL (2 cols, 1 row) */
+.dais_score {
     grid-column: span 2;
     grid-row: span 1;
+}
+
+/* 6. Restriction Sites - SMALL (2 cols, 1 row) */
+.restriction_sites {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+/* 7. AI Kinetic Analysis - MEDIUM (2 cols, 2 rows) */
+.ai_analysis {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* 8. Visual Canvas Workflow - LARGE (4 cols, 2 rows) */
+.visual_canvas {
+    grid-column: span 4;
+    grid-row: span 2;
+}
+
+/* 9. Project Management - SMALL (2 cols, 1 row) */
+.project_management {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+/* 10. Theme Toggle - MINI (1 col, 1 row) */
+.theme_toggle {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Ajuste para tarjetas pequeñas - contenido más compacto */
+.multi_organism .cardDescription,
+.dais_score .cardDescription,
+.restriction_sites .cardDescription,
+.project_management .cardDescription,
+.theme_toggle .cardDescription {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.theme_toggle .cardTitle {
+    font-size: 16px;
+}
+
+.theme_toggle .cardDescription {
+    font-size: 12px;
+}
+
+/* Tarjetas grandes - más espacio para visual */
+.codon_optimization .cardVisual,
+.visual_canvas .cardVisual {
+    bottom: 40%;
+}
+
+.codon_optimization .cardTitle,
+.visual_canvas .cardTitle {
+    font-size: 24px;
 }
 
 /* ===========================================
    RESPONSIVE
    =========================================== */
-
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(4, 220px);
+        grid-template-columns: repeat(4, 1fr);
     }
 
-    .sequences,
-    .network {
+    .codon_optimization,
+    .visual_canvas {
+        grid-column: span 4;
+    }
+
+    .kinetic_profile,
+    .protein_structure,
+    .ai_analysis {
         grid-column: span 2;
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 180px;
+    }
+
+    .codon_optimization,
+    .visual_canvas {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .kinetic_profile,
+    .protein_structure,
+    .ai_analysis {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .multi_organism,
+    .dais_score,
+    .restriction_sites,
+    .project_management {
+        grid-column: span 1;
+    }
+
+    .theme_toggle {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 480px) {
     .section {
-        padding: 2rem 0 5rem;
+        padding: 2rem 0 4rem;
     }
 
     .grid {
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        gap: 0.75rem;
-    }
-
-    .sequences,
-    .accuracy,
-    .partners,
-    .processing,
-    .speed,
-    .network {
-        grid-column: span 1;
-        min-height: 180px;
+        grid-auto-rows: auto;
+        gap: 1rem;
     }
 
     .card {
-        padding: 1.5rem;
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        min-height: 160px;
+        padding: 1.25rem;
     }
 
-    .value {
-        font-size: 40px;
+    .codon_optimization,
+    .visual_canvas {
+        min-height: 220px;
+    }
+
+    .cardTitle {
+        font-size: 18px !important;
+    }
+
+    .cardDescription {
+        font-size: 13px !important;
     }
 }
