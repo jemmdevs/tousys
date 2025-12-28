@@ -45,9 +45,9 @@ export default function Home() {
       <main>
         <Hero />
         <IntroSection />
+        <BentoStatsSection />
         <ScrollyTellingSection />
         <DeveloperSection />
-        <BentoStatsSection />
         <CTASection />
         <PreFooter />
       </main>

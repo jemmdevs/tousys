@@ -195,10 +195,14 @@ export default function Navbar() {
                 <nav className={styles.navContainer}>
                     {/* Logo + Navigation Links */}
                     <div className={styles.navLeft}>
-                        <Link href="/" className={styles.logo}>
+                        <button
+                            className={styles.logo}
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            aria-label="Scroll to top"
+                        >
                             <span className={styles.logoMain}>Al-Awal</span>
                             <span className={styles.logoSub}>Biotech</span>
-                        </Link>
+                        </button>
 
                         <ul className={styles.navLinks}>
                             {navLinks.map((link) => (
