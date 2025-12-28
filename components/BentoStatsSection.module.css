@@ -1,0 +1,174 @@
+.section {
+    width: 100%;
+    padding: 2rem 0 8rem;
+    background: var(--background);
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 0.75rem;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
+/* Bento Grid Layout - 4 columns */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 390px);
+    gap: 1.25rem;
+}
+
+/* Base Card */
+.card {
+    position: relative;
+    background: #FCFCFC;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Card Background - para SVGs/imágenes personalizadas */
+.cardBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cardBackground svg,
+.cardBackground img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Card Content */
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 1;
+    position: relative;
+}
+
+.value {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1;
+    color: #121317;
+    letter-spacing: -0.02em;
+}
+
+.label {
+    font-size: 15px;
+    font-weight: 400;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+/* ===========================================
+   CARD LAYOUTS - Personaliza cada tarjeta aquí
+   =========================================== */
+
+/* Card 1: Sequences - Grande (2 columnas) */
+.sequences {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+/* Card 2: Accuracy */
+.accuracy {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Card 3: Partners */
+.partners {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Card 4: Processing */
+.processing {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Card 5: Speed */
+.speed {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Card 6: Network - Grande (2 columnas) */
+.network {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 220px);
+    }
+
+    .sequences,
+    .network {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 640px) {
+    .section {
+        padding: 2rem 0 5rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 0.75rem;
+    }
+
+    .sequences,
+    .accuracy,
+    .partners,
+    .processing,
+    .speed,
+    .network {
+        grid-column: span 1;
+        min-height: 180px;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .value {
+        font-size: 40px;
+    }
+}
