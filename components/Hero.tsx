@@ -13,7 +13,7 @@ export default function Hero() {
             <div className={styles.content}>
                 {/* Company Logo */}
                 <div className={styles.companyLogo}>
-                    <span className={styles.logoMain}>Tousys</span>
+                    <span className={styles.logoMain}>Al-Awal</span>
                     <span className={styles.logoSub}>Biotech</span>
                 </div>
 

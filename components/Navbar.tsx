@@ -164,7 +164,7 @@ export default function Navbar() {
                     {/* Logo + Navigation Links */}
                     <div className={styles.navLeft}>
                         <Link href="/" className={styles.logo}>
-                            <span className={styles.logoMain}>Tousys</span>
+                            <span className={styles.logoMain}>Al-Awal</span>
                             <span className={styles.logoSub}>Biotech</span>
                         </Link>
 
