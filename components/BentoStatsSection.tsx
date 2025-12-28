@@ -15,75 +15,51 @@ interface FeatureCard {
 const features: FeatureCard[] = [
     // Fila 1: Large + Medium + Medium
     {
-        id: "codon-optimization",
-        title: "Codon Optimization Engine",
-        description: "Optimize DNA sequences using LGRK kinetic models and tRNA availability data",
+        id: "ai-codon-optimization",
+        title: "AI-Powered Codon Optimization",
+        description: "Our proprietary AI engine analyzes and optimizes your DNA sequences using advanced kinetic models, maximizing protein expression rates.",
         size: "large",
         checkpoints: [
-            "Real-time kinetic scoring",
-            "Multiple organism support",
-            "Intelligent codon selection"
+            "LGRK kinetic modeling",
+            "tRNA availability scoring",
+            "Intelligent bottleneck detection"
         ]
     },
     {
-        id: "kinetic-profile",
-        title: "Ribosomal Kinetic Profile",
-        description: "Visualize translation bottlenecks with interactive Vector T analysis",
+        id: "privacy-security",
+        title: "Enterprise-Grade Security",
+        description: "Your sequences never leave your control. End-to-end encryption and secure authentication protect your intellectual property.",
+        size: "medium"
+    },
+    {
+        id: "cloud-storage",
+        title: "Cloud Storage",
+        description: "Save and sync your projects securely. Access your work from anywhere, anytime.",
+        size: "medium"
+    },
+    // Fila 2: Medium + Medium + Medium
+    {
+        id: "complete-toolkit",
+        title: "Complete Toolkit",
+        description: "Everything you need in one place: 3D structure prediction, restriction site detection, kinetic profiling, mutation analysis, and more.",
+        size: "medium"
+    },
+    {
+        id: "real-time-analytics",
+        title: "Real-Time Analytics",
+        description: "Instant feedback with DAIS scoring, GC content analysis, and interactive kinetic profiles. Understand your sequence at a glance.",
         size: "medium"
     },
     {
         id: "multi-organism",
-        title: "Multi-Organism",
-        description: "Switch between E. coli, Yeast, and Human codon tables instantly",
-        size: "medium"
-    },
-    // Fila 2: Medium + Medium + Medium + Medium
-    {
-        id: "protein-structure",
-        title: "3D Structure Prediction",
-        description: "Fold proteins and visualize translation stress with ESMFold integration",
+        title: "Multi-Organism Support",
+        description: "Optimize for E. coli, Yeast, or Human expression systems with validated codon tables.",
         size: "medium"
     },
     {
-        id: "dais-score",
-        title: "DAIS Score",
-        description: "Instantly assess sequence quality with our proprietary Structural Assurance Index",
-        size: "medium"
-    },
-    {
-        id: "restriction-sites",
-        title: "Restriction Sites",
-        description: "Automatic detection and flagging of restriction enzyme cut sites",
-        size: "medium"
-    },
-    {
-        id: "ai-analysis",
-        title: "Aisac AI Model",
-        description: "Powered by our proprietary Aisac AI model to intelligently optimize sequences and predict translation efficiency",
-        size: "medium"
-    },
-    // Fila 3: Large + Medium + Medium
-    {
-        id: "visual-canvas",
-        title: "Visual Canvas Workflow",
-        description: "Node-based editing with zoom, pan, and interactive codon manipulation",
-        size: "large",
-        checkpoints: [
-            "Drag & drop nodes",
-            "Add custom notes",
-            "Undo/Redo history"
-        ]
-    },
-    {
-        id: "project-management",
-        title: "Projects & Collaboration",
-        description: "Save, load, and manage your optimization projects with cloud sync",
-        size: "medium"
-    },
-    {
-        id: "privacy-security",
-        title: "Privacy & Security",
-        description: "Enterprise-grade encryption and secure data handling to protect your research",
+        id: "real-time-optimization",
+        title: "Real-Time Optimization",
+        description: "No queues, no waiting. Your sequences are optimized instantly as you work. Changes reflect immediately across your entire workflow.",
         size: "medium"
     }
 ];

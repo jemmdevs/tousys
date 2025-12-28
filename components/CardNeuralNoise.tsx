@@ -179,8 +179,8 @@ export default function CardNeuralNoise({ className, color = 'cyan' }: CardNeura
 
         const currentTime = performance.now();
 
-        pointer.x += (pointer.tX - pointer.x) * 0.1;
-        pointer.y += (pointer.tY - pointer.y) * 0.1;
+        pointer.x += (pointer.tX - pointer.x) * 0.15;
+        pointer.y += (pointer.tY - pointer.y) * 0.15;
 
         gl.uniform1f(uniforms.u_time, currentTime);
         gl.uniform2f(uniforms.u_pointer_position, pointer.x, pointer.y);
