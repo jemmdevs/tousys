@@ -17,12 +17,12 @@
 }
 
 /* ===========================================
-   BENTO GRID LAYOUT - 6 columnas para flexibilidad
+   BENTO GRID LAYOUT - 4 columnas
    =========================================== */
 .grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: 200px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 400px;
     gap: 1.25rem;
 }
 
@@ -47,6 +47,20 @@
 }
 
 /* ===========================================
+   CARD SIZES
+   =========================================== */
+
+/* Large: 2 columnas (caben 2 por fila, o 1 + 2 medium) */
+.large {
+    grid-column: span 2;
+}
+
+/* Medium: 1 columna (caben 4 por fila) */
+.medium {
+    grid-column: span 1;
+}
+
+/* ===========================================
    CARD VISUAL - Área para SVG/imágenes
    =========================================== */
 .cardVisual {
@@ -54,7 +68,7 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 60%;
+    bottom: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +98,7 @@
 
 .cardTitle {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 24px;
     color: #171717;
     margin: 0;
@@ -121,152 +135,29 @@
 .checkIcon {
     width: 14px;
     height: 14px;
-    color: #121317;
+    color: #171717;
     flex-shrink: 0;
-}
-
-
-
-/* ===========================================
-   CARD SIZES & POSITIONS
-   =========================================== */
-
-/* 1. Codon Optimization Engine - LARGE (4 cols, 2 rows) */
-.codon_optimization {
-    grid-column: span 4;
-    grid-row: span 2;
-}
-
-/* 2. Ribosomal Kinetic Profile - MEDIUM (2 cols, 2 rows) */
-.kinetic_profile {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
-/* 3. Multi-Organism - SMALL (2 cols, 1 row) */
-.multi_organism {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-/* 4. 3D Protein Structure - MEDIUM (2 cols, 2 rows) */
-.protein_structure {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
-/* 5. DAIS Score - SMALL (2 cols, 1 row) */
-.dais_score {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-/* 6. Restriction Sites - SMALL (2 cols, 1 row) */
-.restriction_sites {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-/* 7. AI Kinetic Analysis - MEDIUM (2 cols, 2 rows) */
-.ai_analysis {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-
-/* 8. Visual Canvas Workflow - LARGE (4 cols, 2 rows) */
-.visual_canvas {
-    grid-column: span 4;
-    grid-row: span 2;
-}
-
-/* 9. Project Management - SMALL (2 cols, 1 row) */
-.project_management {
-    grid-column: span 2;
-    grid-row: span 1;
-}
-
-/* 10. Theme Toggle - MINI (1 col, 1 row) */
-.theme_toggle {
-    grid-column: span 1;
-    grid-row: span 1;
-}
-
-/* Ajuste para tarjetas pequeñas - contenido más compacto */
-.multi_organism .cardDescription,
-.dais_score .cardDescription,
-.restriction_sites .cardDescription,
-.project_management .cardDescription,
-.theme_toggle .cardDescription {
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.theme_toggle .cardTitle {
-    font-size: 16px;
-}
-
-.theme_toggle .cardDescription {
-    font-size: 12px;
-}
-
-/* Tarjetas grandes - más espacio para visual */
-.codon_optimization .cardVisual,
-.visual_canvas .cardVisual {
-    bottom: 40%;
 }
 
 /* ===========================================
    RESPONSIVE
    =========================================== */
-@media (max-width: 1200px) {
-    .grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .codon_optimization,
-    .visual_canvas {
-        grid-column: span 4;
-    }
-
-    .kinetic_profile,
-    .protein_structure,
-    .ai_analysis {
-        grid-column: span 2;
-    }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 180px;
+        grid-auto-rows: 280px;
     }
 
-    .codon_optimization,
-    .visual_canvas {
+    .large {
         grid-column: span 2;
-        grid-row: span 2;
     }
 
-    .kinetic_profile,
-    .protein_structure,
-    .ai_analysis {
-        grid-column: span 2;
-        grid-row: span 2;
-    }
-
-    .multi_organism,
-    .dais_score,
-    .restriction_sites,
-    .project_management {
+    .medium {
         grid-column: span 1;
-    }
-
-    .theme_toggle {
-        grid-column: span 2;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
     .section {
         padding: 2rem 0 4rem;
     }
@@ -277,23 +168,17 @@
         gap: 1rem;
     }
 
+    .large,
+    .medium {
+        grid-column: span 1;
+        min-height: 200px;
+    }
+
     .card {
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
-        min-height: 160px;
         padding: 1.25rem;
     }
 
-    .codon_optimization,
-    .visual_canvas {
-        min-height: 220px;
-    }
-
-    .cardTitle {
-        font-size: 18px !important;
-    }
-
-    .cardDescription {
-        font-size: 13px !important;
+    .cardContent {
+        max-width: 100%;
     }
 }

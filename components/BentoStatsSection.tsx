@@ -6,13 +6,14 @@ interface FeatureCard {
     id: string;
     title: string;
     description: string;
-    size: "large" | "medium" | "small";
+    size: "large" | "medium";
     checkpoints?: string[];
     // Área para SVG/fondo personalizado - trabajar después
     visual?: React.ReactNode;
 }
 
 const features: FeatureCard[] = [
+    // Fila 1: Large + Medium + Medium
     {
         id: "codon-optimization",
         title: "Codon Optimization Engine",
@@ -34,8 +35,9 @@ const features: FeatureCard[] = [
         id: "multi-organism",
         title: "Multi-Organism",
         description: "Switch between E. coli, Yeast, and Human codon tables instantly",
-        size: "small"
+        size: "medium"
     },
+    // Fila 2: Medium + Medium + Medium + Medium
     {
         id: "protein-structure",
         title: "3D Structure Prediction",
@@ -46,13 +48,13 @@ const features: FeatureCard[] = [
         id: "dais-score",
         title: "DAIS Score",
         description: "Instantly assess sequence quality with our proprietary Structural Assurance Index",
-        size: "small"
+        size: "medium"
     },
     {
         id: "restriction-sites",
         title: "Restriction Sites",
         description: "Automatic detection and flagging of restriction enzyme cut sites",
-        size: "small"
+        size: "medium"
     },
     {
         id: "ai-analysis",
@@ -60,6 +62,7 @@ const features: FeatureCard[] = [
         description: "Powered by our proprietary Aisac AI model to intelligently optimize sequences and predict translation efficiency",
         size: "medium"
     },
+    // Fila 3: Large + Medium + Medium
     {
         id: "visual-canvas",
         title: "Visual Canvas Workflow",
@@ -75,7 +78,13 @@ const features: FeatureCard[] = [
         id: "project-management",
         title: "Projects & Collaboration",
         description: "Save, load, and manage your optimization projects with cloud sync",
-        size: "small"
+        size: "medium"
+    },
+    {
+        id: "privacy-security",
+        title: "Privacy & Security",
+        description: "Enterprise-grade encryption and secure data handling to protect your research",
+        size: "medium"
     }
 ];
 
@@ -87,7 +96,7 @@ export default function BentoStatsSection() {
                     {features.map((feature) => (
                         <div
                             key={feature.id}
-                            className={`${styles.card} ${styles[feature.id.replace(/-/g, "_")]}`}
+                            className={`${styles.card} ${styles[feature.size]}`}
                         >
                             {/* Área para visual/SVG personalizado */}
                             {feature.visual && (
