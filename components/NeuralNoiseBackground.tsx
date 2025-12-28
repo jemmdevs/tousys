@@ -101,6 +101,7 @@ export default function NeuralNoiseBackground() {
     const uniformsRef = useRef<Uniforms | null>(null);
     const animationRef = useRef<number>(0);
     const pointerRef = useRef({ x: 0, y: 0, tX: 0, tY: 0 });
+    const isVisibleRef = useRef(true);
 
     const createShader = useCallback((gl: WebGLRenderingContext, sourceCode: string, type: number) => {
         const shader = gl.createShader(type);
@@ -175,7 +176,8 @@ export default function NeuralNoiseBackground() {
 
         if (!canvas || !gl || !uniforms) return;
 
-        const devicePixelRatio = Math.min(window.devicePixelRatio, 2);
+        // Reduced pixel ratio for performance (1.5 is visually acceptable for shader effects)
+        const devicePixelRatio = Math.min(window.devicePixelRatio, 1.5);
         canvas.width = window.innerWidth * devicePixelRatio;
         canvas.height = window.innerHeight * devicePixelRatio;
 
@@ -184,6 +186,12 @@ export default function NeuralNoiseBackground() {
     }, []);
 
     const render = useCallback(() => {
+        // Skip rendering if not visible to save GPU resources
+        if (!isVisibleRef.current) {
+            animationRef.current = requestAnimationFrame(render);
+            return;
+        }
+
         const gl = glRef.current;
         const uniforms = uniformsRef.current;
         const pointer = pointerRef.current;
@@ -244,6 +252,17 @@ export default function NeuralNoiseBackground() {
             updateMousePosition(e.clientX, e.clientY);
         };
 
+        // Visibility detection for performance - pause rendering when off-screen
+        const visibilityObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    isVisibleRef.current = entry.isIntersecting;
+                });
+            },
+            { threshold: 0, rootMargin: '50px' }
+        );
+        visibilityObserver.observe(canvas);
+
         // Add event listeners
         window.addEventListener("resize", resizeCanvas);
         window.addEventListener("pointermove", handlePointerMove);
@@ -255,6 +274,7 @@ export default function NeuralNoiseBackground() {
             if (animationRef.current) {
                 cancelAnimationFrame(animationRef.current);
             }
+            visibilityObserver.disconnect();
             window.removeEventListener("resize", resizeCanvas);
             window.removeEventListener("pointermove", handlePointerMove);
             window.removeEventListener("touchmove", handleTouchMove);

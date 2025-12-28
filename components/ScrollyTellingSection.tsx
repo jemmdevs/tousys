@@ -1,10 +1,25 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import Snap from "lenis/snap";
+import Image from "next/image";
 import styles from "./ScrollyTellingSection.module.css";
+
+// Utility function for throttling scroll events
+function throttle<T extends (...args: Parameters<T>) => void>(func: T, limit: number): T {
+    let inThrottle: boolean;
+    let lastResult: void;
+    return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+        if (!inThrottle) {
+            lastResult = func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+        return lastResult;
+    } as T;
+}
 
 // Datos de ejemplo para las features
 const features = [
@@ -113,33 +128,31 @@ export default function ScrollyTellingSection() {
 
     const lenis = useLenis();
 
-    // Detectar qué feature está en el centro basándose en la posición de scroll
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!isSectionActive) return;
+    // Detectar qué feature está en el centro basándose en la posición de scroll - THROTTLED
+    const handleFeatureScroll = useMemo(() => throttle(() => {
+        if (!isSectionActive) return;
 
-            const viewportCenter = window.innerHeight * 0.45; // Un poco por encima del centro
+        const viewportCenter = window.innerHeight * 0.45; // Un poco por encima del centro
 
-            for (let i = blockRefs.current.length - 1; i >= 0; i--) {
-                const block = blockRefs.current[i];
-                if (!block) continue;
+        for (let i = blockRefs.current.length - 1; i >= 0; i--) {
+            const block = blockRefs.current[i];
+            if (!block) continue;
 
-                const rect = block.getBoundingClientRect();
-                // El bloque está activo si su parte superior está por encima del centro del viewport
-                if (rect.top < viewportCenter) {
-                    if (i !== activeFeature) {
-                        setActiveFeature(i);
-                    }
-                    break;
-                }
+            const rect = block.getBoundingClientRect();
+            // El bloque está activo si su parte superior está por encima del centro del viewport
+            if (rect.top < viewportCenter) {
+                setActiveFeature(prev => prev !== i ? i : prev);
+                break;
             }
-        };
+        }
+    }, 16), [isSectionActive]); // ~60fps throttle
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
+    useEffect(() => {
+        window.addEventListener('scroll', handleFeatureScroll, { passive: true });
+        handleFeatureScroll();
 
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [isSectionActive, activeFeature]);
+        return () => window.removeEventListener('scroll', handleFeatureScroll);
+    }, [handleFeatureScroll]);
 
     // Configurar Lenis Snap
     useEffect(() => {
@@ -191,21 +204,21 @@ export default function ScrollyTellingSection() {
         lastActiveRef.current = activeFeature;
     }, [activeFeature, isSectionActive]);
 
-    // Detectar cuándo la sección está "sticky"
+    // Detectar cuándo la sección está "sticky" - THROTTLED
+    const handleStickyScroll = useMemo(() => throttle(() => {
+        if (sectionRef.current) {
+            const rect = sectionRef.current.getBoundingClientRect();
+            const isActive = rect.top <= 0 && rect.bottom > window.innerHeight * 0.5;
+            setIsSectionActive(prev => prev !== isActive ? isActive : prev);
+        }
+    }, 32), []); // ~30fps is enough for sticky detection
+
     useEffect(() => {
-        const handleScroll = () => {
-            if (sectionRef.current) {
-                const rect = sectionRef.current.getBoundingClientRect();
-                const isActive = rect.top <= 0 && rect.bottom > window.innerHeight * 0.5;
-                setIsSectionActive(isActive);
-            }
-        };
+        window.addEventListener('scroll', handleStickyScroll, { passive: true });
+        handleStickyScroll();
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        return () => window.removeEventListener('scroll', handleStickyScroll);
+    }, [handleStickyScroll]);
 
     return (
         <section ref={sectionRef} className={styles.section}>
@@ -253,10 +266,14 @@ export default function ScrollyTellingSection() {
                                         ease: [0.4, 0, 0.2, 1]
                                     }}
                                 >
-                                    <img
+                                    <Image
                                         src={feature.image}
                                         alt={feature.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                         className={styles.featureImage}
+                                        loading={index === 0 ? "eager" : "lazy"}
+                                        priority={index === 0}
                                     />
                                 </motion.div>
                             ))}

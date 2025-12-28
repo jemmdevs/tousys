@@ -85,6 +85,7 @@ export default function CardNeuralNoise({ className, color = 'cyan' }: CardNeura
     } | null>(null);
     const animationRef = useRef<number>(0);
     const pointerRef = useRef({ x: 0.5, y: 0.5, tX: 0.5, tY: 0.5 });
+    const isVisibleRef = useRef(false); // Start false, will be set by IntersectionObserver
 
     const createShader = useCallback((gl: WebGLRenderingContext, sourceCode: string, type: number) => {
         const shader = gl.createShader(type);
@@ -162,7 +163,8 @@ export default function CardNeuralNoise({ className, color = 'cyan' }: CardNeura
         if (!canvas || !container || !gl || !uniforms) return;
 
         const rect = container.getBoundingClientRect();
-        const devicePixelRatio = Math.min(window.devicePixelRatio, 2);
+        // Reduced pixel ratio for performance on cards
+        const devicePixelRatio = Math.min(window.devicePixelRatio, 1.5);
         canvas.width = rect.width * devicePixelRatio;
         canvas.height = rect.height * devicePixelRatio;
 
@@ -171,6 +173,12 @@ export default function CardNeuralNoise({ className, color = 'cyan' }: CardNeura
     }, []);
 
     const render = useCallback(() => {
+        // Skip rendering if not visible to save GPU resources
+        if (!isVisibleRef.current) {
+            animationRef.current = requestAnimationFrame(render);
+            return;
+        }
+
         const gl = glRef.current;
         const uniforms = uniformsRef.current;
         const pointer = pointerRef.current;
@@ -191,7 +199,8 @@ export default function CardNeuralNoise({ className, color = 'cyan' }: CardNeura
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (!canvas) return;
+        const container = containerRef.current;
+        if (!canvas || !container) return;
 
         const gl = initShader(canvas);
         if (!gl) return;
@@ -204,19 +213,31 @@ export default function CardNeuralNoise({ className, color = 'cyan' }: CardNeura
         window.addEventListener("resize", handleResize);
 
         const handlePointerMove = (e: PointerEvent) => {
-            const container = containerRef.current;
-            if (!container) return;
-            const rect = container.getBoundingClientRect();
+            const containerEl = containerRef.current;
+            if (!containerEl) return;
+            const rect = containerEl.getBoundingClientRect();
             pointerRef.current.tX = (e.clientX - rect.left) / rect.width;
             pointerRef.current.tY = 1 - (e.clientY - rect.top) / rect.height;
         };
 
         window.addEventListener("pointermove", handlePointerMove);
 
+        // Visibility detection for performance - pause rendering when off-screen
+        const visibilityObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    isVisibleRef.current = entry.isIntersecting;
+                });
+            },
+            { threshold: 0, rootMargin: '100px' }
+        );
+        visibilityObserver.observe(container);
+
         return () => {
             if (animationRef.current) {
                 cancelAnimationFrame(animationRef.current);
             }
+            visibilityObserver.disconnect();
             window.removeEventListener("resize", handleResize);
             window.removeEventListener("pointermove", handlePointerMove);
         };

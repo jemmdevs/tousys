@@ -24,6 +24,8 @@ export default function LogoMarquee() {
                             width={200}
                             height={90}
                             className={`${styles.logoImage} ${logo.className}`}
+                            loading={index < 4 ? "eager" : "lazy"}
+                            sizes="200px"
                         />
                     </div>
                 ))}
@@ -37,6 +39,8 @@ export default function LogoMarquee() {
                             width={200}
                             height={90}
                             className={`${styles.logoImage} ${logo.className}`}
+                            loading="lazy"
+                            sizes="200px"
                         />
                     </div>
                 ))}
