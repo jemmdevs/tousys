@@ -1,6 +1,10 @@
 "use client";
 
+import { useState, lazy, Suspense } from "react";
 import styles from "./BentoStatsSection.module.css";
+
+// Lazy load visual components for performance
+const SecurityVisual = lazy(() => import("./bento/SecurityVisual"));
 
 interface FeatureCard {
     id: string;
@@ -8,8 +12,7 @@ interface FeatureCard {
     description: string;
     size: "large" | "medium";
     checkpoints?: string[];
-    // Área para SVG/fondo personalizado - trabajar después
-    visual?: React.ReactNode;
+    hasVisual?: boolean;
 }
 
 const features: FeatureCard[] = [
@@ -27,9 +30,10 @@ const features: FeatureCard[] = [
     },
     {
         id: "privacy-security",
-        title: "Enterprise-Grade Security",
+        title: "Security",
         description: "Your sequences never leave your control. End-to-end encryption and secure authentication protect your intellectual property.",
-        size: "medium"
+        size: "medium",
+        hasVisual: true
     },
     {
         id: "cloud-storage",
@@ -64,42 +68,67 @@ const features: FeatureCard[] = [
     }
 ];
 
+// Individual card component
+function BentoCard({ feature }: { feature: FeatureCard }) {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const renderVisual = () => {
+        if (!feature.hasVisual) return null;
+
+        switch (feature.id) {
+            case "privacy-security":
+                return (
+                    <Suspense fallback={<div className={styles.visualPlaceholder} />}>
+                        <SecurityVisual isHovered={isHovered} />
+                    </Suspense>
+                );
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <div
+            className={`${styles.card} ${styles[feature.size]}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            {/* Visual area */}
+            {feature.hasVisual && (
+                <div className={styles.cardVisual}>
+                    {renderVisual()}
+                </div>
+            )}
+
+            <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>{feature.title}</h3>
+                <p className={styles.cardDescription}>{feature.description}</p>
+            </div>
+
+            {/* Checkpoints for large cards */}
+            {feature.checkpoints && (
+                <ul className={styles.checkpoints}>
+                    {feature.checkpoints.map((checkpoint, idx) => (
+                        <li key={idx} className={styles.checkpoint}>
+                            <svg className={styles.checkIcon} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            {checkpoint}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+}
+
 export default function BentoStatsSection() {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.grid}>
                     {features.map((feature) => (
-                        <div
-                            key={feature.id}
-                            className={`${styles.card} ${styles[feature.size]}`}
-                        >
-                            {/* Área para visual/SVG personalizado */}
-                            {feature.visual && (
-                                <div className={styles.cardVisual}>
-                                    {feature.visual}
-                                </div>
-                            )}
-
-                            <div className={styles.cardContent}>
-                                <h3 className={styles.cardTitle}>{feature.title}</h3>
-                                <p className={styles.cardDescription}>{feature.description}</p>
-                            </div>
-
-                            {/* Checkpoints en la parte inferior para tarjetas grandes */}
-                            {feature.checkpoints && (
-                                <ul className={styles.checkpoints}>
-                                    {feature.checkpoints.map((checkpoint, idx) => (
-                                        <li key={idx} className={styles.checkpoint}>
-                                            <svg className={styles.checkIcon} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
-                                            {checkpoint}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </div>
+                        <BentoCard key={feature.id} feature={feature} />
                     ))}
                 </div>
             </div>
