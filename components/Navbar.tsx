@@ -177,18 +177,23 @@ export default function Navbar() {
         const handleScroll = () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
-                    const currentScrollY = window.scrollY;
+                    const currentScrollY = Math.max(0, window.scrollY);
+                    const scrollDiff = currentScrollY - lastScrollYRef.current;
+                    const minScrollChange = 5; // Threshold to prevent jitter
 
-                    if (currentScrollY > lastScrollYRef.current && currentScrollY > 10) {
-                        // Scrolling down - hide navbar
-                        setIsHidden(true);
-                        setActiveDropdown(null);
-                    } else {
-                        // Scrolling up - show navbar
-                        setIsHidden(false);
+                    // Only update if scroll change is significant
+                    if (Math.abs(scrollDiff) > minScrollChange) {
+                        if (scrollDiff > 0 && currentScrollY > 10) {
+                            // Scrolling down significant amount - hide navbar
+                            setIsHidden(true);
+                            setActiveDropdown(null);
+                        } else if (scrollDiff < 0) {
+                            // Scrolling up significant amount - show navbar
+                            setIsHidden(false);
+                        }
+                        lastScrollYRef.current = currentScrollY;
                     }
 
-                    lastScrollYRef.current = currentScrollY;
                     ticking = false;
                 });
                 ticking = true;
