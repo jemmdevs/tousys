@@ -23,6 +23,11 @@ const BentoStatsSection = dynamic(() => import("@/components/BentoStatsSection")
   ssr: true,
 });
 
+const LatestPosts = dynamic(() => import("@/components/LatestPosts"), {
+  loading: () => <div style={{ minHeight: '40vh' }} />,
+  ssr: true,
+});
+
 const CTASection = dynamic(() => import("@/components/CTASection"), {
   loading: () => <div style={{ minHeight: '40vh' }} />,
   ssr: true,
@@ -48,6 +53,7 @@ export default function Home() {
         <BentoStatsSection />
         <ScrollyTellingSection />
         <DeveloperSection />
+        <LatestPosts />
         <CTASection />
         <PreFooter />
       </main>
@@ -55,3 +61,4 @@ export default function Home() {
     </>
   );
 }
+

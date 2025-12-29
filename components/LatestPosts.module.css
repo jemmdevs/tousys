@@ -1,0 +1,131 @@
+.section {
+    padding: 6rem 0;
+    background: #ffffff;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 0.75rem;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #707070;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.viewAll {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: #707070;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.viewAll:hover {
+    color: #171717;
+}
+
+.viewAll svg {
+    transition: transform 0.15s ease;
+}
+
+.viewAll:hover svg {
+    transform: translateX(4px);
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card */
+.card {
+    text-decoration: none;
+    display: block;
+}
+
+.card:hover .postTitle {
+    text-decoration: underline;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #f5f5f5;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.image {
+    object-fit: cover;
+}
+
+.content {
+    padding: 0;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.category {
+    font-size: 13px;
+    font-weight: 500;
+    color: #171717;
+}
+
+.date {
+    font-size: 13px;
+    color: #707070;
+}
+
+.postTitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: #171717;
+    margin: 0;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+}
