@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import styles from "./Navbar.module.css";
 
@@ -9,8 +10,7 @@ const navLinks = [
     { label: "Products", href: "#", hasDropdown: true },
     { label: "Use Cases", href: "#", hasDropdown: true },
     { label: "Resources", href: "#", hasDropdown: true },
-    { label: "Blog", href: "#", hasDropdown: false },
-
+    { label: "Blog", href: "/blog", hasDropdown: false },
 ];
 
 // Componente de flecha hacia abajo (para Products/Resources)
@@ -154,9 +154,22 @@ const dropdownContent: Record<string, React.ReactNode> = {
 };
 
 export default function Navbar() {
+    const pathname = usePathname();
+    const router = useRouter();
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [isHidden, setIsHidden] = useState(false);
     const lastScrollYRef = useRef(0);
+
+    // Handle logo click - scroll to top on homepage, navigate to homepage on other pages
+    const handleLogoClick = () => {
+        if (pathname === '/') {
+            // On homepage - smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            // On other pages - navigate to homepage
+            router.push('/');
+        }
+    };
 
     useEffect(() => {
         let ticking = false;
@@ -197,8 +210,8 @@ export default function Navbar() {
                     <div className={styles.navLeft}>
                         <button
                             className={styles.logo}
-                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                            aria-label="Scroll to top"
+                            onClick={handleLogoClick}
+                            aria-label="Go to home"
                         >
                             <span className={styles.logoMain}>Al-Awal</span>
                             <span className={styles.logoSub}>Biotech</span>

@@ -22,17 +22,17 @@
 
 .navContainer {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     min-height: var(--navbar-height);
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0.5rem 0.75rem 0;
+    padding: 0 0.75rem;
 }
 
 @media (min-width: 1024px) {
     .navContainer {
-        padding: 0.5rem 2rem 0;
+        padding: 0 2rem;
     }
 }
 
@@ -361,7 +361,7 @@
 
 /* Añade estos estilos si no tienes las variables CSS definidas */
 :root {
-    --navbar-height: 64px;
+    --navbar-height: 56px;
     --foreground: #1a1a1a;
     --background: #ffffff;
     --neutral-100: #f5f5f5;
