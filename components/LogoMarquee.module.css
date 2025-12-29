@@ -1,9 +1,41 @@
+.marqueeWrapper {
+    margin-top: 3rem;
+}
+
+.marqueeLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: #707070;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 1rem 0;
+}
+
+.marqueeLabel::before,
+.marqueeLabel::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 1px;
+}
+
+.marqueeLabel::before {
+    background: linear-gradient(to right, transparent, #a0a0a0);
+}
+
+.marqueeLabel::after {
+    background: linear-gradient(to right, #a0a0a0, transparent);
+}
+
 .marqueeContainer {
     position: relative;
     width: 100%;
     overflow: hidden;
     display: flex;
-    margin-top: 3rem;
     padding: 1rem 0;
     pointer-events: none;
 

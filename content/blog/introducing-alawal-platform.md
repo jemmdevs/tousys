@@ -4,6 +4,7 @@ excerpt: "Discover how our new AI-powered platform is revolutionizing genomic re
 date: "2025-12-28"
 author: "Al-Awal Team"
 image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop"
+category: "Product"
 ---
 
 # Introducing the Al-Awal Platform

@@ -10,6 +10,7 @@ export interface BlogPost {
     date: string;
     author: string;
     image: string;
+    category?: string;
     content: string;
 }
 
@@ -37,6 +38,7 @@ export function getAllBlogPosts(): BlogPost[] {
                 date: data.date || new Date().toISOString().split('T')[0],
                 author: data.author || 'Unknown',
                 image: data.image || '',
+                category: data.category,
                 content: content.trim(),
             } as BlogPost;
         });

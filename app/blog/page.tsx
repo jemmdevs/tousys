@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { getAllBlogPosts } from "@/lib/blog-posts";
+import BlogPostsList from "./BlogPostsList";
 import styles from "./blog.module.css";
 
 // Lazy load footer components
@@ -69,38 +70,8 @@ export default function BlogPage() {
                         </Link>
                     )}
 
-                    {/* Posts Grid */}
-                    <div className={styles.postsGrid}>
-                        {posts.map((post, index) => (
-                            <Link
-                                key={post.slug}
-                                href={`/blog/${post.slug}`}
-                                className={styles.postCard}
-                            >
-                                <article>
-                                    <div className={styles.imageWrapper}>
-                                        <Image
-                                            src={post.image}
-                                            alt={post.title}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                            className={styles.postImage}
-                                            loading={index < 3 ? "eager" : "lazy"}
-                                        />
-                                    </div>
-                                    <div className={styles.postContent}>
-                                        <time className={styles.postDate}>
-                                            {formatDate(post.date)}
-                                        </time>
-                                        <h2 className={styles.postTitle}>{post.title}</h2>
-                                        {post.excerpt && (
-                                            <p className={styles.postExcerpt}>{post.excerpt}</p>
-                                        )}
-                                    </div>
-                                </article>
-                            </Link>
-                        ))}
-                    </div>
+                    {/* Filter Buttons + Posts Grid */}
+                    <BlogPostsList posts={posts} />
                 </div>
             </main>
             <PreFooter />

@@ -23,9 +23,10 @@
     display: block;
     text-decoration: none;
     padding: 1rem;
-    margin: -1rem -1rem 3rem -1rem;
+    margin: 0 0 3rem 0;
     border-radius: 16px;
     transition: background-color 0.2s ease;
+    max-width: 95%;
 }
 
 .featuredCard:hover {
@@ -57,7 +58,7 @@
 
 @media (min-width: 768px) {
     .featuredImageWrapper {
-        width: 40%;
+        width: 45%;
     }
 }
 
@@ -98,11 +99,201 @@
     margin: 0;
 }
 
+/* Filter Buttons */
+.filterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-top: 1px solid #ebebeb;
+}
+
+@media (max-width: 1023px) {
+    .filterContainer {
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+.filterButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filterButton {
+    font-size: 14px;
+    font-weight: 500;
+    color: #707070;
+    background: transparent;
+    border: 1px solid #e5e5e5;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.filterButton:hover {
+    color: #171717;
+    border-color: #d0d0d0;
+}
+
+.filterButtonActive {
+    color: #171717;
+    background: #f3f3f3;
+    border-color: #d0d0d0;
+}
+
+/* Search Input */
+.searchContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 0.875rem;
+    color: #a0a0a0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+}
+
+.searchInput {
+    font-size: 14px;
+    color: #171717;
+    background: transparent;
+    border: 1px solid #c0c0c0;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    border-radius: 8px;
+    width: 200px;
+    transition: all 0.15s ease;
+}
+
+.searchInput::placeholder {
+    color: #a0a0a0;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #a0a0a0;
+}
+
+/* Search and View Toggle Container */
+.searchAndViewContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.viewToggleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    color: #707070;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.viewToggleButton:hover {
+    color: #171717;
+    border-color: #a0a0a0;
+}
+
+.viewToggleActive {
+    color: #171717;
+    background: #f3f3f3;
+    border-color: #a0a0a0;
+}
+
+/* No Results */
+.noResults {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #707070;
+    font-size: 16px;
+    padding: 3rem 0;
+}
+
+/* Posts List View */
+.postsList {
+    display: flex;
+    flex-direction: column;
+}
+
+.listItem {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #ebebeb;
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+
+.listItem:first-child {
+    border-top: 1px solid #ebebeb;
+}
+
+.listItem:hover .listTitle {
+    text-decoration: underline;
+}
+
+.listItem:hover .listDate {
+    color: #171717;
+}
+
+.listTitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: #171717;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.listCategory {
+    font-size: 10px;
+    font-weight: 600;
+    color: #333333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.4rem;
+    margin-left: 4rem;
+    background: #ffffff;
+    border: 1px solid #c0c0c0;
+    border-radius: 9999px;
+}
+
+.listDate {
+    font-size: 14px;
+    font-weight: 400;
+    color: #a0a0a0;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+    text-align: right;
+}
+
 /* Posts Grid */
 .postsGrid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 2.5rem;
+    gap: 3rem;
 }
 
 @media (min-width: 768px) {

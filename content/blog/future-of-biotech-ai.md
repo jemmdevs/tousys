@@ -3,6 +3,7 @@ title: "The Future of Biotech: How AI is Transforming Research"
 date: "2025-12-15"
 author: "James Wilson"
 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop"
+category: "Product"
 ---
 
 # The Future of Biotech: How AI is Transforming Research
