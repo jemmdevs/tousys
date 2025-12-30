@@ -35,7 +35,7 @@ float neuro_shape(vec2 uv, float t, float p) {
     vec2 res = vec2(0.);
     float scale = 8.;
 
-    for (int j = 0; j < 15; j++) {
+    for (int j = 0; j < 10; j++) {
         uv = rotate(uv, 1.);
         sine_acc = rotate(sine_acc, 1.);
         vec2 layer = uv * scale + float(j) + sine_acc - t;
@@ -176,8 +176,8 @@ export default function NeuralNoiseBackground() {
 
         if (!canvas || !gl || !uniforms) return;
 
-        // Reduced pixel ratio for performance (1.5 is visually acceptable for shader effects)
-        const devicePixelRatio = Math.min(window.devicePixelRatio, 1.5);
+        // Reduced pixel ratio for performance (1.0 is visually sufficient for shader noise effects)
+        const devicePixelRatio = Math.min(window.devicePixelRatio, 1.0);
         canvas.width = window.innerWidth * devicePixelRatio;
         canvas.height = window.innerHeight * devicePixelRatio;
 
@@ -186,9 +186,8 @@ export default function NeuralNoiseBackground() {
     }, []);
 
     const render = useCallback(() => {
-        // Skip rendering if not visible to save GPU resources
+        // Completely skip if not visible - don't even schedule next frame
         if (!isVisibleRef.current) {
-            animationRef.current = requestAnimationFrame(render);
             return;
         }
 
@@ -252,14 +251,20 @@ export default function NeuralNoiseBackground() {
             updateMousePosition(e.clientX, e.clientY);
         };
 
-        // Visibility detection for performance - pause rendering when off-screen
+        // Visibility detection for performance - completely stop rendering when off-screen
         const visibilityObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
+                    const wasVisible = isVisibleRef.current;
                     isVisibleRef.current = entry.isIntersecting;
+
+                    // Restart render loop when becoming visible again
+                    if (!wasVisible && entry.isIntersecting) {
+                        animationRef.current = requestAnimationFrame(render);
+                    }
                 });
             },
-            { threshold: 0, rootMargin: '50px' }
+            { threshold: 0, rootMargin: '100px' }
         );
         visibilityObserver.observe(canvas);
 
