@@ -26,7 +26,7 @@
   --primary-hover: #262626;
 
   /* Typography */
-  --font-sans: "Google Sans", "google-sans", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
 
   /* Spacing */
   --section-padding-x: 1rem;
