@@ -32,10 +32,10 @@ const particles: Array<{
         { x: 12, y: 5, size: 0.7, color: "green" },
 
         // Zona superior - ENCIMA DEL CUBO (más arriba)
-        { x: 38, y: 3, size: 1.4, color: "green" },       // verde, izquierda del centro
-        { x: 55, y: 6, size: 1.2, color: "gray" },        // gris clara, centro
-        { x: 70, y: 4, size: 1.5, color: "green" },       // verde, derecha del centro
-        { x: 88, y: 5, size: 0.7, color: "darkGray" },
+        { x: 30, y: -1, size: 1.4, color: "green" },       // verde, izquierda del centro
+        { x: 55, y: -7, size: 1.2, color: "gray" },        // gris clara, centro
+        { x: 70, y: -3, size: 1.5, color: "green" },       // verde, derecha del centro
+        { x: 88, y: -8, size: 0.7, color: "darkGray" },
 
         // Zona derecha
         { x: 98, y: 20, size: 0.8, color: "gray" },

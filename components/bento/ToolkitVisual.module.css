@@ -17,7 +17,7 @@
 
 /* Líneas conectoras - más visibles */
 .connectorLine {
-    stroke: #22c55e;
+    stroke: #64D8A3;
     stroke-width: 0.5;
     stroke-dasharray: 2, 2;
     fill: none;
@@ -35,7 +35,7 @@
 
 /* Partículas verdes */
 .particleGreen {
-    fill: #22c55e;
+    fill: #64D8A3;
     opacity: 0.75;
 }
 
@@ -71,5 +71,5 @@
 
 /* Hover - solo afecta a los bordes del cubo */
 .hovered .cubeEdge {
-    stroke: #22c55e;
+    stroke: #64D8A3;
 }

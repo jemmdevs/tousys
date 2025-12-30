@@ -1,0 +1,89 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+}
+
+.chartContainer {
+    width: 300px;
+    height: 200px;
+    overflow: visible;
+}
+
+/* Líneas de grid - más visibles */
+.gridLine {
+    stroke: #c8c8c8;
+    stroke-width: 0.5;
+    stroke-dasharray: 3, 4;
+    fill: none;
+    opacity: 0.7;
+}
+
+/* Área degradada debajo de la curva */
+.areaFill {
+    fill: url(#areaGradient);
+    opacity: 0.6;
+}
+
+/* Línea del gráfico */
+.chartLine {
+    stroke: #a8a8a8;
+    stroke-width: 0.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+/* Anillos pulsantes - solo visibles en hover */
+.pulseRing {
+    fill: none;
+    stroke: #64D8A3;
+    stroke-width: 1;
+    opacity: 0;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+.hovered .pulseRing {
+    opacity: 1;
+    animation: pulse 2.5s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes pulse {
+    0% {
+        r: 2;
+        opacity: 0.8;
+    }
+
+    100% {
+        r: 8;
+        opacity: 0;
+    }
+}
+
+/* Puntos de datos */
+.dataPoint {
+    fill: #a8a8a8;
+    transition: fill 0.3s ease;
+    transition-delay: var(--delay);
+}
+
+.hovered .dataPoint {
+    fill: #64D8A3;
+}
+
+/* Punto destacado (valor máximo) */
+.highlightPoint {
+    fill: #6b6b6b;
+    transition: fill 0.35s ease;
+}
+
+.hovered .highlightPoint {
+    fill: #64D8A3;
+}
