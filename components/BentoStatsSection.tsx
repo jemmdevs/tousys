@@ -9,6 +9,7 @@ const CloudStorageVisual = lazy(() => import("./bento/CloudStorageVisual"));
 const ToolkitVisual = lazy(() => import("./bento/ToolkitVisual"));
 const AnalyticsVisual = lazy(() => import("./bento/AnalyticsVisual"));
 const MultiOrganismVisual = lazy(() => import("./bento/MultiOrganismVisual"));
+const RealTimeOptimizationVisual = lazy(() => import("./bento/RealTimeOptimizationVisual"));
 
 interface FeatureCard {
     id: string;
@@ -71,8 +72,9 @@ const features: FeatureCard[] = [
     {
         id: "real-time-optimization",
         title: "Real-Time Optimization",
-        description: "No queues, no waiting. Your sequences are optimized instantly as you work. Changes reflect immediately across your entire workflow.",
-        size: "medium"
+        description: "No queues, no waiting. Your sequences are optimized instantly as you work.",
+        size: "medium",
+        hasVisual: true
     }
 ];
 
@@ -112,6 +114,12 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
                 return (
                     <Suspense fallback={<div className={styles.visualPlaceholder} />}>
                         <MultiOrganismVisual isHovered={isHovered} />
+                    </Suspense>
+                );
+            case "real-time-optimization":
+                return (
+                    <Suspense fallback={<div className={styles.visualPlaceholder} />}>
+                        <RealTimeOptimizationVisual isHovered={isHovered} />
                     </Suspense>
                 );
             default:
@@ -167,6 +175,11 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
                             <path d="M16.24 16.24L19.07 19.07" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             <path d="M2 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             <path d="M15 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                    )}
+                    {feature.id === "real-time-optimization" && (
+                        <svg className={styles.titleIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     )}
                     {feature.title}
