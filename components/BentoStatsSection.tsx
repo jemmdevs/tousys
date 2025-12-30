@@ -6,6 +6,7 @@ import styles from "./BentoStatsSection.module.css";
 // Lazy load visual components for performance
 const SecurityVisual = lazy(() => import("./bento/SecurityVisual"));
 const CloudStorageVisual = lazy(() => import("./bento/CloudStorageVisual"));
+const ToolkitVisual = lazy(() => import("./bento/ToolkitVisual"));
 
 interface FeatureCard {
     id: string;
@@ -48,7 +49,8 @@ const features: FeatureCard[] = [
         id: "complete-toolkit",
         title: "Complete Toolkit",
         description: "Everything you need in one place: 3D structure prediction, restriction site detection, kinetic profiling, mutation analysis, and more.",
-        size: "medium"
+        size: "medium",
+        hasVisual: true
     },
     {
         id: "real-time-analytics",
@@ -90,6 +92,12 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
                         <CloudStorageVisual isHovered={isHovered} />
                     </Suspense>
                 );
+            case "complete-toolkit":
+                return (
+                    <Suspense fallback={<div className={styles.visualPlaceholder} />}>
+                        <ToolkitVisual isHovered={isHovered} />
+                    </Suspense>
+                );
             default:
                 return null;
         }
@@ -119,6 +127,13 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
                     {feature.id === "cloud-storage" && (
                         <svg className={styles.titleIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 7C3 5.89543 3.89543 5 5 5H9.58579C9.851 5 10.1054 5.10536 10.2929 5.29289L12 7H19C20.1046 7 21 7.89543 21 9V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    )}
+                    {feature.id === "complete-toolkit" && (
+                        <svg className={styles.titleIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     )}
                     {feature.title}

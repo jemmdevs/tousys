@@ -1,0 +1,75 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+}
+
+.cubeContainer {
+    width: 350px;
+    height: 350px;
+    overflow: visible;
+}
+
+/* Líneas conectoras - más visibles */
+.connectorLine {
+    stroke: #22c55e;
+    stroke-width: 0.5;
+    stroke-dasharray: 2, 2;
+    fill: none;
+    opacity: 0.55;
+}
+
+/* Líneas de proyección del vértice inferior */
+.projectionLine {
+    stroke: #c8c8c8;
+    stroke-width: 0.4;
+    stroke-linecap: round;
+    fill: none;
+    opacity: 0.6;
+}
+
+/* Partículas verdes */
+.particleGreen {
+    fill: #22c55e;
+    opacity: 0.75;
+}
+
+/* Partículas grises (claro) */
+.particleGray {
+    fill: #a8a8a8;
+    opacity: 0.55;
+}
+
+/* Partículas grises oscuras */
+.particleDarkGray {
+    fill: #6b6b6b;
+    opacity: 0.6;
+}
+
+/* Cubo */
+.cube {
+    transition: filter 0.35s ease;
+}
+
+.cubeFace {
+    fill: #ffffff;
+    stroke: none;
+}
+
+.cubeEdge {
+    stroke: #a8a8a8;
+    stroke-width: 0.6;
+    stroke-linecap: round;
+    fill: none;
+    transition: stroke 0.35s ease;
+}
+
+/* Hover - solo afecta a los bordes del cubo */
+.hovered .cubeEdge {
+    stroke: #22c55e;
+}
