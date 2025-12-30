@@ -5,6 +5,7 @@ import styles from "./BentoStatsSection.module.css";
 
 // Lazy load visual components for performance
 const SecurityVisual = lazy(() => import("./bento/SecurityVisual"));
+const CloudStorageVisual = lazy(() => import("./bento/CloudStorageVisual"));
 
 interface FeatureCard {
     id: string;
@@ -39,7 +40,8 @@ const features: FeatureCard[] = [
         id: "cloud-storage",
         title: "Cloud Storage",
         description: "Save and sync your projects securely. Access your work from anywhere, anytime.",
-        size: "medium"
+        size: "medium",
+        hasVisual: true
     },
     // Fila 2: Medium + Medium + Medium
     {
@@ -82,6 +84,12 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
                         <SecurityVisual isHovered={isHovered} />
                     </Suspense>
                 );
+            case "cloud-storage":
+                return (
+                    <Suspense fallback={<div className={styles.visualPlaceholder} />}>
+                        <CloudStorageVisual isHovered={isHovered} />
+                    </Suspense>
+                );
             default:
                 return null;
         }
@@ -101,7 +109,20 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
             )}
 
             <div className={styles.cardContent}>
-                <h3 className={styles.cardTitle}>{feature.title}</h3>
+                <h3 className={styles.cardTitle}>
+                    {feature.id === "privacy-security" && (
+                        <svg className={styles.titleIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L4 5.5V11.5C4 16.45 7.4 21.05 12 22C16.6 21.05 20 16.45 20 11.5V5.5L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    )}
+                    {feature.id === "cloud-storage" && (
+                        <svg className={styles.titleIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 7C3 5.89543 3.89543 5 5 5H9.58579C9.851 5 10.1054 5.10536 10.2929 5.29289L12 7H19C20.1046 7 21 7.89543 21 9V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    )}
+                    {feature.title}
+                </h3>
                 <p className={styles.cardDescription}>{feature.description}</p>
             </div>
 

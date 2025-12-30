@@ -56,9 +56,21 @@
     display: flex;
     align-items: center;
     gap: 4rem;
-    animation: scroll 20s linear infinite;
     flex-shrink: 0;
     padding-right: 4rem;
+    will-change: transform;
+    animation: scroll 20s linear infinite;
+    animation-play-state: paused;
+    /* Pausado por defecto */
+}
+
+/* Estados de animación controlados por JS */
+.playing .marqueeTrack {
+    animation-play-state: running;
+}
+
+.paused .marqueeTrack {
+    animation-play-state: paused;
 }
 
 .marqueeItem {

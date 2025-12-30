@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./LogoMarquee.module.css";
 
@@ -10,13 +11,39 @@ const marqueeLogos = [
 ];
 
 export default function LogoMarquee() {
-    // Duplicamos los items múltiples veces para crear el efecto infinito
-    const repeatedLogos = [...marqueeLogos, ...marqueeLogos, ...marqueeLogos, ...marqueeLogos];
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    // IntersectionObserver para pausar animación fuera de viewport
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            {
+                rootMargin: "50px", // Pre-activar 50px antes de ser visible
+                threshold: 0
+            }
+        );
+
+        observer.observe(container);
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Duplicamos solo lo necesario para el efecto infinito (3 repeticiones)
+    const repeatedLogos = [...marqueeLogos, ...marqueeLogos, ...marqueeLogos];
 
     return (
         <div className={styles.marqueeWrapper}>
             <p className={styles.marqueeLabel}>Part of the Tousys ecosystem</p>
-            <div className={styles.marqueeContainer}>
+            <div
+                ref={containerRef}
+                className={`${styles.marqueeContainer} ${isVisible ? styles.playing : styles.paused}`}
+            >
                 <div className={styles.marqueeTrack}>
                     {repeatedLogos.map((logo, index) => (
                         <div key={index} className={styles.marqueeItem}>
@@ -26,7 +53,7 @@ export default function LogoMarquee() {
                                 width={200}
                                 height={90}
                                 className={`${styles.logoImage} ${logo.className}`}
-                                loading={index < 4 ? "eager" : "lazy"}
+                                loading="lazy"
                                 sizes="200px"
                             />
                         </div>
