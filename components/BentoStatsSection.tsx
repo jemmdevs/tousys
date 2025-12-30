@@ -8,6 +8,7 @@ const SecurityVisual = lazy(() => import("./bento/SecurityVisual"));
 const CloudStorageVisual = lazy(() => import("./bento/CloudStorageVisual"));
 const ToolkitVisual = lazy(() => import("./bento/ToolkitVisual"));
 const AnalyticsVisual = lazy(() => import("./bento/AnalyticsVisual"));
+const MultiOrganismVisual = lazy(() => import("./bento/MultiOrganismVisual"));
 
 interface FeatureCard {
     id: string;
@@ -64,7 +65,8 @@ const features: FeatureCard[] = [
         id: "multi-organism",
         title: "Multi-Organism Support",
         description: "Optimize for E. coli, Yeast, or Human expression systems with validated codon tables.",
-        size: "medium"
+        size: "medium",
+        hasVisual: true
     },
     {
         id: "real-time-optimization",
@@ -104,6 +106,12 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
                 return (
                     <Suspense fallback={<div className={styles.visualPlaceholder} />}>
                         <AnalyticsVisual isHovered={isHovered} />
+                    </Suspense>
+                );
+            case "multi-organism":
+                return (
+                    <Suspense fallback={<div className={styles.visualPlaceholder} />}>
+                        <MultiOrganismVisual isHovered={isHovered} />
                     </Suspense>
                 );
             default:
@@ -148,6 +156,17 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
                         <svg className={styles.titleIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 3V21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             <path d="M7 16L11 11L15 14L21 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    )}
+                    {feature.id === "multi-organism" && (
+                        <svg className={styles.titleIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
+                            <path d="M12 2C12 2 12 6 12 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M12 15C12 18 12 22 12 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M4.93 4.93L7.76 7.76" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M16.24 16.24L19.07 19.07" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M2 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M15 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                     )}
                     {feature.title}
