@@ -72,7 +72,6 @@ function AnalyticsVisual({ isHovered = false }: AnalyticsVisualProps) {
                         cy={point.y}
                         r={2}
                         className={styles.dataPoint}
-                        style={{ "--delay": `${index * 0.05}s` } as React.CSSProperties}
                     />
                 ))}
 

@@ -16,75 +16,112 @@
     overflow: visible;
 }
 
-/* Líneas de grid - más visibles */
+/* ===========================================
+   LÍNEAS DE GRID - Rayas más finas, animación marquee
+   =========================================== */
 .gridLine {
-    stroke: #c8c8c8;
+    stroke: #d8d8d8;
     stroke-width: 0.5;
-    stroke-dasharray: 3, 4;
+    stroke-dasharray: 1, 2.5;
     fill: none;
+    stroke-dashoffset: 0;
+    transition: stroke 0.2s ease;
+    /* Optimización GPU */
+    will-change: stroke-dashoffset;
+}
+
+.hovered .gridLine {
+    stroke: #c0c0c0;
+    animation: marqueeGrid 15s linear infinite;
+    animation-play-state: running;
+}
+
+@keyframes marqueeGrid {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -50;
+    }
+}
+
+/* ===========================================
+   ÁREA DEGRADADA
+   =========================================== */
+.areaFill {
+    fill: url(#areaGradient);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.hovered .areaFill {
     opacity: 0.7;
 }
 
-/* Área degradada debajo de la curva */
-.areaFill {
-    fill: url(#areaGradient);
-    opacity: 0.6;
-}
-
-/* Línea del gráfico */
+/* ===========================================
+   LÍNEA DEL GRÁFICO
+   =========================================== */
 .chartLine {
     stroke: #a8a8a8;
-    stroke-width: 0.8;
+    stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
 }
 
-/* Anillos pulsantes - solo visibles en hover */
+/* ===========================================
+   ANILLOS PULSANTES (ONDA) - Solo en hover, más fina y notable
+   =========================================== */
 .pulseRing {
     fill: none;
     stroke: #64D8A3;
-    stroke-width: 1;
+    stroke-width: 0.8;
     opacity: 0;
     transform-origin: center;
     transform-box: fill-box;
+    will-change: opacity;
 }
 
 .hovered .pulseRing {
     opacity: 1;
-    animation: pulse 2.5s ease-in-out infinite;
+    animation: pulse 1.8s ease-out infinite;
     animation-delay: var(--delay);
 }
 
 @keyframes pulse {
     0% {
         r: 2;
-        opacity: 0.8;
+        opacity: 0.9;
     }
 
     100% {
-        r: 8;
+        r: 10;
         opacity: 0;
     }
 }
 
-/* Puntos de datos */
+/* ===========================================
+   PUNTOS DE DATOS - Siempre grises
+   =========================================== */
 .dataPoint {
     fill: #a8a8a8;
-    transition: fill 0.3s ease;
-    transition-delay: var(--delay);
 }
 
-.hovered .dataPoint {
-    fill: #64D8A3;
-}
-
-/* Punto destacado (valor máximo) */
+/* ===========================================
+   PUNTO DESTACADO - Siempre gris oscuro
+   =========================================== */
 .highlightPoint {
     fill: #6b6b6b;
-    transition: fill 0.35s ease;
 }
 
-.hovered .highlightPoint {
-    fill: #64D8A3;
+/* ===========================================
+   OPTIMIZACIÓN
+   =========================================== */
+@media (prefers-reduced-motion: reduce) {
+
+    .hovered .gridLine,
+    .hovered .pulseRing {
+        animation: none;
+    }
 }
