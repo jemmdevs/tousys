@@ -5,6 +5,7 @@
     align-items: flex-start;
     justify-content: center;
     padding-top: 0.5rem;
+    contain: layout style;
 }
 
 .grid {

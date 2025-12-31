@@ -219,7 +219,7 @@ export default function CardNeuralNoise({ className, color = 'cyan' }: CardNeura
             pointerRef.current.tY = 1 - (e.clientY - rect.top) / rect.height;
         };
 
-        window.addEventListener("pointermove", handlePointerMove);
+        window.addEventListener("pointermove", handlePointerMove, { passive: true });
 
         // Visibility detection for performance - completely stop rendering when off-screen
         const visibilityObserver = new IntersectionObserver(

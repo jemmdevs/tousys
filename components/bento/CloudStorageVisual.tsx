@@ -1,12 +1,13 @@
 "use client";
 
+import { memo } from "react";
 import styles from "./CloudStorageVisual.module.css";
 
 interface CloudStorageVisualProps {
     isHovered?: boolean;
 }
 
-export default function CloudStorageVisual({ isHovered = false }: CloudStorageVisualProps) {
+function CloudStorageVisual({ isHovered = false }: CloudStorageVisualProps) {
     return (
         <div className={`${styles.container} ${isHovered ? styles.hovered : ""}`}>
             <div className={styles.stack}>
@@ -37,3 +38,5 @@ export default function CloudStorageVisual({ isHovered = false }: CloudStorageVi
         </div>
     );
 }
+
+export default memo(CloudStorageVisual);

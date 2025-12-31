@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import styles from "./ToolkitVisual.module.css";
 
 interface ToolkitVisualProps {
@@ -61,7 +62,7 @@ const colorClassMap: Record<ParticleColor, string> = {
     darkGray: styles.particleDarkGray,
 };
 
-export default function ToolkitVisual({ isHovered = false }: ToolkitVisualProps) {
+function ToolkitVisual({ isHovered = false }: ToolkitVisualProps) {
     return (
         <div className={`${styles.container} ${isHovered ? styles.hovered : ""}`}>
             <svg
@@ -129,3 +130,5 @@ export default function ToolkitVisual({ isHovered = false }: ToolkitVisualProps)
         </div>
     );
 }
+
+export default memo(ToolkitVisual);

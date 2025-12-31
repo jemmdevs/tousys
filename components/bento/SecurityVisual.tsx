@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import styles from "./SecurityVisual.module.css";
 
 interface InputFieldProps {
@@ -28,7 +29,7 @@ interface SecurityVisualProps {
     isHovered?: boolean;
 }
 
-export default function SecurityVisual({ isHovered = false }: SecurityVisualProps) {
+function SecurityVisual({ isHovered = false }: SecurityVisualProps) {
     return (
         <div className={styles.container}>
             <div className={styles.grid}>
@@ -45,3 +46,5 @@ export default function SecurityVisual({ isHovered = false }: SecurityVisualProp
         </div>
     );
 }
+
+export default memo(SecurityVisual);

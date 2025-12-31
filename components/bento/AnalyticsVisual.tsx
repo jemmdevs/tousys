@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import styles from "./AnalyticsVisual.module.css";
 
 interface AnalyticsVisualProps {
@@ -24,7 +25,7 @@ const linePath = dataPoints
 // Generar el path del área (cierra el path hacia abajo)
 const areaPath = `${linePath} L 85 50 L 10 50 Z`;
 
-export default function AnalyticsVisual({ isHovered = false }: AnalyticsVisualProps) {
+function AnalyticsVisual({ isHovered = false }: AnalyticsVisualProps) {
     return (
         <div className={`${styles.container} ${isHovered ? styles.hovered : ""}`}>
             <svg
@@ -86,3 +87,5 @@ export default function AnalyticsVisual({ isHovered = false }: AnalyticsVisualPr
         </div>
     );
 }
+
+export default memo(AnalyticsVisual);

@@ -7,6 +7,7 @@
     overflow: visible;
     transform: translateY(-120px);
     position: relative;
+    contain: layout style;
 }
 
 .optimizeBadge {
