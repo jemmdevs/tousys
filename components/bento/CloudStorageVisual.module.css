@@ -57,7 +57,48 @@
     letter-spacing: 0.2px;
 }
 
-/* Folder Back - más oscura y más atrás */
+/* ===========================================
+   TEXTO DINÁMICO - Gris por defecto, verde en hover
+   =========================================== */
+.folderLabelDynamic {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.65);
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+    min-width: 50px;
+    transition: color 0.3s ease;
+}
+
+.hovered .folderLabelDynamic {
+    color: #64D8A3;
+}
+
+.cursor {
+    display: inline-block;
+    width: 1px;
+    height: 11px;
+    background-color: #64D8A3;
+    margin-left: 1px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ===========================================
+   FOLDER BACK
+   =========================================== */
 .folderBack {
     z-index: 1;
     transform: translateY(0) scale(0.92);
@@ -68,7 +109,9 @@
     background: #d4d4d4;
 }
 
-/* Folder Middle */
+/* ===========================================
+   FOLDER MIDDLE
+   =========================================== */
 .folderMiddle {
     z-index: 2;
     transform: translateY(12px) scale(0.96);
@@ -79,7 +122,9 @@
     background: #e5e5e5;
 }
 
-/* Folder Front - más clara y más adelante */
+/* ===========================================
+   FOLDER FRONT
+   =========================================== */
 .folderFront {
     z-index: 3;
     transform: translateY(24px) scale(1);
@@ -94,11 +139,9 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.folderFront .folderLabel {
-    color: rgba(0, 0, 0, 0.65);
-}
-
-/* Hover state - carpetas se expanden */
+/* ===========================================
+   HOVER STATE
+   =========================================== */
 .hovered .folderBack {
     transform: translateY(-8px) translateX(-8px) scale(0.92) rotate(-2deg);
 }
@@ -109,4 +152,14 @@
 
 .hovered .folderFront {
     transform: translateY(28px) translateX(6px) scale(1) rotate(1deg);
+}
+
+/* ===========================================
+   OPTIMIZACIÓN
+   =========================================== */
+@media (prefers-reduced-motion: reduce) {
+    .cursor {
+        animation: none;
+        opacity: 1;
+    }
 }
