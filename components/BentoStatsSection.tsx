@@ -25,7 +25,7 @@ const features: FeatureCard[] = [
     // Fila 1: Large + Medium + Medium
     {
         id: "ai-codon-optimization",
-        title: "AI-Powered Codon Optimization",
+        title: "AI-Powered Optimization",
         description: "Our proprietary AI engine analyzes and optimizes your DNA sequences using advanced kinetic models, maximizing protein expression rates.",
         size: "large",
         hasVisual: true,
@@ -150,6 +150,15 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
 
             <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>
+                    {feature.id === "ai-codon-optimization" && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                            src="/iconaisac.svg"
+                            alt=""
+                            className={styles.titleIconLarge}
+                            aria-hidden="true"
+                        />
+                    )}
                     {feature.id === "privacy-security" && (
                         <svg className={styles.titleIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2L4 5.5V11.5C4 16.45 7.4 21.05 12 22C16.6 21.05 20 16.45 20 11.5V5.5L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
