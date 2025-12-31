@@ -10,6 +10,7 @@ const ToolkitVisual = lazy(() => import("./bento/ToolkitVisual"));
 const AnalyticsVisual = lazy(() => import("./bento/AnalyticsVisual"));
 const MultiOrganismVisual = lazy(() => import("./bento/MultiOrganismVisual"));
 const RealTimeOptimizationVisual = lazy(() => import("./bento/RealTimeOptimizationVisual"));
+const AICodonVisual = lazy(() => import("./bento/AICodonVisual"));
 
 interface FeatureCard {
     id: string;
@@ -27,6 +28,7 @@ const features: FeatureCard[] = [
         title: "AI-Powered Codon Optimization",
         description: "Our proprietary AI engine analyzes and optimizes your DNA sequences using advanced kinetic models, maximizing protein expression rates.",
         size: "large",
+        hasVisual: true,
         checkpoints: [
             "LGRK kinetic modeling",
             "tRNA availability scoring",
@@ -86,6 +88,12 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
         if (!feature.hasVisual) return null;
 
         switch (feature.id) {
+            case "ai-codon-optimization":
+                return (
+                    <Suspense fallback={<div className={styles.visualPlaceholder} />}>
+                        <AICodonVisual isHovered={isHovered} />
+                    </Suspense>
+                );
             case "privacy-security":
                 return (
                     <Suspense fallback={<div className={styles.visualPlaceholder} />}>

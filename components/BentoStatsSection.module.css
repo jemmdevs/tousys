@@ -85,6 +85,16 @@
     object-fit: contain;
 }
 
+/* Excepción para tarjetas grandes - permitir overflow */
+.large .cardVisual {
+    overflow: visible;
+}
+
+.large .cardVisual img {
+    max-width: none;
+    max-height: none;
+}
+
 .visualPlaceholder {
     width: 100%;
     height: 100%;
