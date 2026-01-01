@@ -37,7 +37,7 @@
 @media (max-width: 767px) {
     .navContainer {
         max-width: 100%;
-        padding: 0 1.25rem;
+        padding: 0 1.75rem;
     }
 }
 
@@ -388,8 +388,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     padding: 0;
     background: transparent;
     border: none;
@@ -488,7 +488,8 @@
 .mobileMenuLink {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 0.5rem;
     width: 100%;
     padding: 1.25rem 0;
     font-size: 1.5rem;
@@ -500,17 +501,13 @@
     cursor: pointer;
     font-family: inherit;
     text-align: left;
-    transition: color 0.2s ease;
-}
-
-.mobileMenuLink:hover {
-    color: var(--neutral-600);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .mobileMenuLink .chevron {
     width: 24px;
     height: 24px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.2s ease;
 }
 
 .mobileMenuLinkActive .chevron {
@@ -519,13 +516,12 @@
 
 /* Mobile Submenu */
 .mobileSubmenu {
-    max-height: 0;
+    display: none;
     overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mobileSubmenuOpen {
-    max-height: 300px;
+    display: block;
 }
 
 .mobileSubmenuContent {
@@ -537,14 +533,13 @@
 .mobileSubmenuLink {
     font-size: 1.125rem;
     font-weight: 400;
-    color: var(--neutral-600);
+    color: var(--foreground);
     text-decoration: none;
     padding: 0.75rem 0 0.75rem 1rem;
-    transition: color 0.2s ease;
 }
 
 .mobileSubmenuLink:hover {
-    color: var(--foreground);
+    opacity: 0.7;
 }
 
 /* Añade estos estilos si no tienes las variables CSS definidas */
