@@ -359,6 +359,174 @@
         visibility 0s linear 0.05s;
 }
 
+/* ========================================
+   MOBILE MENU STYLES
+   ======================================== */
+
+/* Mobile Menu Button */
+.mobileMenuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--foreground);
+    transition: background 0.2s ease, color 0.2s ease;
+    z-index: 101;
+}
+
+.mobileMenuButtonOpen {
+    background: var(--foreground);
+    color: var(--background);
+}
+
+.mobileMenuButton:hover {
+    background: var(--neutral-100);
+}
+
+.mobileMenuButtonOpen:hover {
+    background: #2F3034;
+}
+
+@media (min-width: 768px) {
+    .mobileMenuButton {
+        display: none;
+    }
+}
+
+/* Hide desktop nav elements on mobile */
+@media (max-width: 767px) {
+    .navRight {
+        display: none;
+    }
+}
+
+/* Mobile Menu Panel */
+.mobileMenu {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background);
+    z-index: 98;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobileMenuOpen {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+    .mobileMenu {
+        display: none;
+    }
+}
+
+/* Mobile Menu Navigation */
+.mobileMenuNav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+}
+
+/* Mobile Menu Item */
+.mobileMenuItem {
+    border-bottom: 1px solid var(--neutral-200);
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.mobileMenuOpen .mobileMenuItem {
+    animation: mobileItemSlideIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes mobileItemSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobileMenuItem:last-child {
+    border-bottom: none;
+}
+
+/* Mobile Menu Link */
+.mobileMenuLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.25rem 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--foreground);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: color 0.2s ease;
+}
+
+.mobileMenuLink:hover {
+    color: var(--neutral-600);
+}
+
+.mobileMenuLink .chevron {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobileMenuLinkActive .chevron {
+    transform: rotate(-180deg);
+}
+
+/* Mobile Submenu */
+.mobileSubmenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobileSubmenuOpen {
+    max-height: 300px;
+}
+
+.mobileSubmenuContent {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
+
+.mobileSubmenuLink {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--neutral-600);
+    text-decoration: none;
+    padding: 0.75rem 0 0.75rem 1rem;
+    transition: color 0.2s ease;
+}
+
+.mobileSubmenuLink:hover {
+    color: var(--foreground);
+}
+
 /* Añade estos estilos si no tienes las variables CSS definidas */
 :root {
     --navbar-height: 56px;

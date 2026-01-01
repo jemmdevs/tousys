@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./Navbar.module.css";
 
 // Links con dropdown tendrán hasDropdown: true
@@ -153,11 +153,67 @@ const dropdownContent: Record<string, React.ReactNode> = {
     ),
 };
 
+// Icono Hamburguesa
+const HamburgerIcon = () => (
+    <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            d="M3 12H21"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+        />
+        <path
+            d="M3 6H21"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+        />
+        <path
+            d="M3 18H21"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+        />
+    </svg>
+);
+
+// Icono X (cerrar)
+const CloseIcon = () => (
+    <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            d="M18 6L6 18"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+        />
+        <path
+            d="M6 6L18 18"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+        />
+    </svg>
+);
+
 export default function Navbar() {
     const pathname = usePathname();
     const router = useRouter();
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [isHidden, setIsHidden] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
     const lastScrollYRef = useRef(0);
 
     // Handle logo click - scroll to top on homepage, navigate to homepage on other pages
@@ -169,7 +225,38 @@ export default function Navbar() {
             // On other pages - navigate to homepage
             router.push('/');
         }
+        // Close mobile menu if open
+        setIsMobileMenuOpen(false);
     };
+
+    // Toggle mobile menu
+    const toggleMobileMenu = useCallback(() => {
+        setIsMobileMenuOpen(prev => !prev);
+        setActiveMobileDropdown(null);
+    }, []);
+
+    // Toggle mobile dropdown
+    const toggleMobileDropdown = useCallback((label: string) => {
+        setActiveMobileDropdown(prev => prev === label ? null : label);
+    }, []);
+
+    // Close mobile menu on route change
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+        setActiveMobileDropdown(null);
+    }, [pathname]);
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isMobileMenuOpen]);
 
     useEffect(() => {
         let ticking = false;
@@ -249,13 +336,23 @@ export default function Navbar() {
                         </ul>
                     </div>
 
-                    {/* Contact CTA */}
+                    {/* Contact CTA - Desktop */}
                     <div className={styles.navRight}>
                         <Link href="#" className={styles.contactLink}>
                             Get in touch
                             <MailIcon />
                         </Link>
                     </div>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className={`${styles.mobileMenuButton} ${isMobileMenuOpen ? styles.mobileMenuButtonOpen : ''}`}
+                        onClick={toggleMobileMenu}
+                        aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={isMobileMenuOpen}
+                    >
+                        {isMobileMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+                    </button>
                 </nav>
 
                 {/* Dropdown Panel */}
@@ -276,6 +373,67 @@ export default function Navbar() {
                     </div>
                 </div>
             </header>
+
+            {/* Mobile Menu Panel */}
+            <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+                <nav className={styles.mobileMenuNav}>
+                    {navLinks.map((link, index) => (
+                        <div
+                            key={link.label}
+                            className={styles.mobileMenuItem}
+                            style={{ animationDelay: isMobileMenuOpen ? `${index * 0.05}s` : '0s' }}
+                        >
+                            {link.hasDropdown ? (
+                                <>
+                                    <button
+                                        className={`${styles.mobileMenuLink} ${activeMobileDropdown === link.label ? styles.mobileMenuLinkActive : ''}`}
+                                        onClick={() => toggleMobileDropdown(link.label)}
+                                    >
+                                        {link.label}
+                                        <ChevronDown />
+                                    </button>
+                                    <div className={`${styles.mobileSubmenu} ${activeMobileDropdown === link.label ? styles.mobileSubmenuOpen : ''}`}>
+                                        {/* Submenu items */}
+                                        {dropdownContent[link.label] && (
+                                            <div className={styles.mobileSubmenuContent}>
+                                                {link.label === 'Products' && (
+                                                    <>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Product One</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Product Two</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Product Three</Link>
+                                                    </>
+                                                )}
+                                                {link.label === 'Use Cases' && (
+                                                    <>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Research Labs</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Pharmaceutical</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Biotech Startups</Link>
+                                                    </>
+                                                )}
+                                                {link.label === 'Resources' && (
+                                                    <>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Documentation</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Tutorials</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>API Reference</Link>
+                                                    </>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                </>
+                            ) : (
+                                <Link
+                                    href={link.href}
+                                    className={styles.mobileMenuLink}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    {link.label}
+                                </Link>
+                            )}
+                        </div>
+                    ))}
+                </nav>
+            </div>
 
             {/* Overlay oscuro - fuera del header */}
             <div

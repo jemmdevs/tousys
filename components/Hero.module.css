@@ -11,6 +11,17 @@
     isolation: isolate;
 }
 
+/* Mobile: Hero + Navbar = 100vh */
+@media (max-width: 767px) {
+    .hero {
+        min-height: calc(100vh - var(--navbar-height));
+        min-height: calc(100dvh - var(--navbar-height));
+        /* Dynamic viewport height for mobile browsers */
+        padding: 3rem 1.5rem 2rem;
+        align-items: center;
+    }
+}
+
 @media (min-width: 1024px) {
     .hero {
         padding-left: var(--section-padding-x-lg);
@@ -30,6 +41,13 @@
     pointer-events: none;
 }
 
+@media (max-width: 767px) {
+    .content {
+        gap: 1.5rem;
+        max-width: 100%;
+    }
+}
+
 /* Company Logo */
 .companyLogo {
     display: flex;
@@ -37,6 +55,13 @@
     gap: 0.5rem;
     font-size: 1.375rem;
     letter-spacing: -0.02em;
+}
+
+@media (max-width: 767px) {
+    .companyLogo {
+        font-size: 1.125rem;
+        gap: 0.35rem;
+    }
 }
 
 .logoMain {
@@ -58,12 +83,26 @@
     max-width: 800px;
 }
 
+@media (max-width: 767px) {
+    .headline {
+        gap: 0.5rem;
+    }
+}
+
 .headlinePrimary {
     font-size: 80px;
     font-weight: 500;
     line-height: 88px;
     letter-spacing: -0.03em;
     color: #121317;
+}
+
+/* Responsive typography - fluid scaling */
+@media (max-width: 767px) {
+    .headlinePrimary {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        line-height: 1.1;
+    }
 }
 
 .headlineSecondary {
@@ -73,6 +112,14 @@
     letter-spacing: -0.02em;
     color: #45474d;
     white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .headlineSecondary {
+        font-size: clamp(1.25rem, 5vw, 1.75rem);
+        line-height: 1.4;
+        white-space: normal;
+    }
 }
 
 /* CTA Button */
@@ -90,6 +137,16 @@
     border-radius: 9999px;
     transition: background var(--transition-base);
     pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+    .ctaButton {
+        margin-top: 1.5rem;
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 280px;
+    }
 }
 
 .ctaButton:hover {
