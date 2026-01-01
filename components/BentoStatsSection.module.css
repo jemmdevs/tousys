@@ -143,8 +143,7 @@
     width: 72px;
     height: 72px;
     flex-shrink: 0;
-    align-self: flex-start;
-    margin-top: -0.5rem;
+    align-self: center;
     margin-left: -1.35rem;
     margin-right: -1rem;
 }
