@@ -16,8 +16,8 @@
 @media (max-width: 767px) {
     .hero {
         min-height: calc(100vh - var(--navbar-height));
-        min-height: calc(100dvh - var(--navbar-height));
-        /* Dynamic viewport height for mobile browsers */
+        min-height: calc(100svh - var(--navbar-height));
+        /* svh = small viewport height - static, doesn't change when address bar shows/hides */
         padding: 3rem 1.5rem 2rem;
         align-items: center;
     }
