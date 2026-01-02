@@ -221,16 +221,95 @@ function BentoCard({ feature }: { feature: FeatureCard }) {
     );
 }
 
+// Iconos para la versión móvil (sin visuales)
+function FeatureIcon({ featureId }: { featureId: string }) {
+    switch (featureId) {
+        case "ai-codon-optimization":
+            return (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                    src="/iconaisac.svg"
+                    alt=""
+                    className={styles.mobileIcon}
+                    aria-hidden="true"
+                />
+            );
+        case "privacy-security":
+            return (
+                <svg className={styles.mobileIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 5.5V11.5C4 16.45 7.4 21.05 12 22C16.6 21.05 20 16.45 20 11.5V5.5L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            );
+        case "cloud-storage":
+            return (
+                <svg className={styles.mobileIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 7C3 5.89543 3.89543 5 5 5H9.58579C9.851 5 10.1054 5.10536 10.2929 5.29289L12 7H19C20.1046 7 21 7.89543 21 9V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            );
+        case "complete-toolkit":
+            return (
+                <svg className={styles.mobileIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            );
+        case "real-time-analytics":
+            return (
+                <svg className={styles.mobileIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 3V21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M7 16L11 11L15 14L21 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            );
+        case "multi-organism":
+            return (
+                <svg className={styles.mobileIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
+                    <path d="M12 2C12 2 12 6 12 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M12 15C12 18 12 22 12 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M4.93 4.93L7.76 7.76" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M16.24 16.24L19.07 19.07" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M2 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M15 12H22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+            );
+        case "real-time-optimization":
+            return (
+                <svg className={styles.mobileIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            );
+        default:
+            return null;
+    }
+}
+
 export default function BentoStatsSection() {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
-                <div className={styles.grid}>
+                {/* ========== DESKTOP VIEW - Bento Grid ========== */}
+                <div className={styles.desktopGrid}>
                     {features.map((feature) => (
                         <BentoCard key={feature.id} feature={feature} />
+                    ))}
+                </div>
+
+                {/* ========== MOBILE VIEW - Simple List ========== */}
+                <div className={styles.mobileList}>
+                    {features.map((feature) => (
+                        <div key={feature.id} className={styles.mobileItem}>
+                            <div className={styles.mobileItemHeader}>
+                                <FeatureIcon featureId={feature.id} />
+                                <h3 className={styles.mobileItemTitle}>{feature.title}</h3>
+                            </div>
+                            <p className={styles.mobileItemDescription}>{feature.description}</p>
+                        </div>
                     ))}
                 </div>
             </div>
         </section>
     );
 }
+

@@ -222,7 +222,8 @@ export default function ScrollyTellingSection() {
 
     return (
         <section ref={sectionRef} className={styles.section}>
-            <div className={styles.container}>
+            {/* ========== DESKTOP VIEW ========== */}
+            <div className={styles.desktopContainer}>
                 {/* Columna Izquierda - Textos */}
                 <div className={styles.textColumn}>
                     {/* Espaciador inicial */}
@@ -281,6 +282,35 @@ export default function ScrollyTellingSection() {
                     </div>
                 </div>
             </div>
+
+            {/* ========== MOBILE VIEW ========== */}
+            <div className={styles.mobileContainer}>
+                {features.map((feature, index) => (
+                    <div key={feature.id} className={styles.mobileFeatureCard}>
+                        {/* Imagen */}
+                        <div className={styles.mobileImageWrapper}>
+                            <Image
+                                src={feature.image}
+                                alt={feature.title}
+                                fill
+                                sizes="100vw"
+                                className={styles.mobileFeatureImage}
+                                loading={index === 0 ? "eager" : "lazy"}
+                            />
+                        </div>
+                        {/* Texto */}
+                        <div className={styles.mobileFeatureContent}>
+                            <h3 className={styles.mobileFeatureTitle}>{feature.title}</h3>
+                            <p className={styles.mobileFeatureDescription}>{feature.description}</p>
+                        </div>
+                    </div>
+                ))}
+                {/* Botón Explore Product - Mobile */}
+                <a href="#" className={styles.mobileExploreButton}>
+                    Explore Product
+                </a>
+            </div>
         </section>
     );
 }
+

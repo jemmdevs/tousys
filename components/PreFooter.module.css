@@ -5,6 +5,12 @@
     overflow: hidden;
 }
 
+@media (max-width: 767px) {
+    .section {
+        padding: 1.5rem 0 0;
+    }
+}
+
 .container {
     max-width: 1440px;
     margin: 0 auto;
@@ -14,6 +20,12 @@
 @media (min-width: 1024px) {
     .container {
         padding: 0 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 0 1.75rem;
     }
 }
 
@@ -30,6 +42,16 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: flex-start;
+    }
+}
+
+@media (max-width: 767px) {
+    .topRow {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 2rem 1rem;
+        margin-bottom: 2.5rem;
     }
 }
 
@@ -53,6 +75,13 @@
     }
 }
 
+@media (max-width: 767px) {
+    .taglineText {
+        font-size: 1.375rem;
+        white-space: nowrap;
+    }
+}
+
 /* Navigation columns */
 .navColumns {
     display: flex;
@@ -65,10 +94,43 @@
     }
 }
 
+@media (max-width: 767px) {
+    .navColumns {
+        display: contents;
+    }
+}
+
+/* First nav column (Product) - top right in mobile grid */
+.navColumn:first-child {}
+
+@media (max-width: 767px) {
+    .navColumn:first-child {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+    }
+}
+
+/* Second nav column (Resources) - bottom left in mobile grid */
+.navColumn:last-child {}
+
+@media (max-width: 767px) {
+    .navColumn:last-child {
+        grid-column: 1;
+        grid-row: 2;
+    }
+}
+
 .navColumn {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+@media (max-width: 767px) {
+    .navColumn {
+        gap: 0.75rem;
+    }
 }
 
 .navTitle {
@@ -77,6 +139,13 @@
     color: #121317;
     margin: 0;
     line-height: 25px;
+}
+
+@media (max-width: 767px) {
+    .navTitle {
+        font-size: 1rem;
+        font-weight: 600;
+    }
 }
 
 .navList {
@@ -88,6 +157,13 @@
     gap: 0.75rem;
 }
 
+@media (max-width: 767px) {
+    .navList {
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+}
+
 .navLink {
     font-size: 15px;
     font-weight: 500;
@@ -95,6 +171,14 @@
     text-decoration: none;
     transition: text-decoration 0.15s ease;
     line-height: 21px;
+}
+
+@media (max-width: 767px) {
+    .navLink {
+        font-size: 0.9375rem;
+        font-weight: 400;
+        color: #121317;
+    }
 }
 
 .navLink:hover {
@@ -111,6 +195,13 @@
     background: var(--background);
 }
 
+@media (max-width: 767px) {
+    .brandRow {
+        height: 120px;
+        padding-bottom: 1rem;
+    }
+}
+
 /* Text layer - black text at the base */
 .textMask {
     position: absolute;
@@ -119,6 +210,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 767px) {
+    .textMask {
+        justify-content: center;
+    }
 }
 
 .brandText {
@@ -130,6 +227,13 @@
     letter-spacing: -0.03em;
     white-space: nowrap;
     text-align: center;
+}
+
+@media (max-width: 767px) {
+    .brandText {
+        font-size: 5rem;
+        text-align: center;
+    }
 }
 
 /* Neural noise layer - on top with multiply to show through text */

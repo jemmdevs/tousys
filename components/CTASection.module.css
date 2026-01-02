@@ -117,10 +117,11 @@
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive */
+/* Responsive - Tablet */
 @media (max-width: 768px) {
     .title {
         font-size: 36px;
+        line-height: 1.3;
     }
 
     .buttons {
@@ -135,12 +136,35 @@
     }
 }
 
-@media (max-width: 480px) {
-    .title {
-        font-size: 28px;
+/* Responsive - Mobile */
+@media (max-width: 767px) {
+    .section {
+        min-height: 570px;
     }
 
     .content {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1.75rem;
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: 1.625rem;
+        line-height: 1.4;
+        min-height: 80px;
+        margin: 0 0 2rem;
+        max-width: 100%;
+    }
+
+    .cursor {
+        font-size: 1.875rem;
+    }
+
+    .buttons {
+        align-items: flex-start;
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        width: auto;
     }
 }

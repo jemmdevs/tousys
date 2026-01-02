@@ -4,19 +4,27 @@
     position: relative;
 }
 
-.container {
+/* ========================================
+   DESKTOP LAYOUT
+   ======================================== */
+.desktopContainer {
     max-width: 1440px;
     margin: 0 auto;
     display: flex;
     gap: 2rem;
     padding: 0 0.25rem 0 0.75rem;
-    /* Menos padding a la derecha */
 }
 
 @media (min-width: 1024px) {
-    .container {
+    .desktopContainer {
         padding: 0 1rem 0 2rem;
-        /* Menos padding a la derecha */
+    }
+}
+
+/* Hide desktop view on mobile */
+@media (max-width: 767px) {
+    .desktopContainer {
+        display: none;
     }
 }
 
@@ -56,7 +64,6 @@
     line-height: 24px;
     background: #B7BFD91A;
     border: 1px solid #efefef;
-    /* Borde más sutil */
     text-decoration: none;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
@@ -131,39 +138,83 @@
         max-width: 40%;
     }
 
-    .textColumnMaskTop,
-    .textColumnMaskBottom {
-        width: calc((100vw - 2 * var(--section-padding-x)) * 0.40);
-        max-width: calc(1600px * 0.40);
-    }
-
     .visualCard {
         max-width: 550px;
         height: 520px;
     }
 }
 
-@media (max-width: 1024px) {
-    .container {
-        flex-direction: column;
-    }
+/* ========================================
+   MOBILE LAYOUT
+   ======================================== */
+.mobileContainer {
+    display: none;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 1.75rem;
+}
 
-    .textColumn {
-        flex: 1;
-        max-width: 100%;
+@media (max-width: 767px) {
+    .mobileContainer {
+        display: flex;
     }
+}
 
-    .textColumnMaskTop,
-    .textColumnMaskBottom {
-        display: none;
-    }
+.mobileFeatureCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
 
-    .visualColumn {
-        display: none;
-    }
+.mobileImageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000000;
+}
 
-    .featureBlock {
-        min-height: auto;
-        padding: 4rem 0;
-    }
+.mobileFeatureImage {
+    object-fit: cover;
+}
+
+.mobileFeatureContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mobileFeatureTitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #121317;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.mobileFeatureDescription {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #45474d;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.mobileExploreButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #121317;
+    background: #B7BFD91A;
+    border: 1px solid #efefef;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 280px;
+    align-self: center;
 }
