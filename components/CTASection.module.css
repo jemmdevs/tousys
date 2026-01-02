@@ -4,6 +4,12 @@
     padding: 2rem 0;
 }
 
+@media (max-width: 767px) {
+    .wrapper {
+        padding: 2rem 0 4rem;
+    }
+}
+
 .section {
     position: relative;
     width: auto;
