@@ -275,6 +275,8 @@
     flex-shrink: 0;
     margin-left: -23px;
     margin-right: -15px;
+    margin-top: -23px;
+    margin-bottom: -23px;
 }
 
 .mobileItemTitle {
