@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactLenis, useLenis } from "lenis/react";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 interface SmoothScrollProps {
@@ -24,27 +24,6 @@ function ScrollReset() {
 }
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        // Check if device is mobile/touch
-        const checkMobile = () => {
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            const isSmallScreen = window.innerWidth < 768;
-            setIsMobile(isTouchDevice && isSmallScreen);
-        };
-
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    // On mobile, use native scroll (no Lenis)
-    if (isMobile) {
-        return <>{children}</>;
-    }
-
-    // On desktop, use Lenis smooth scroll
     return (
         <ReactLenis
             root
@@ -58,3 +37,4 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         </ReactLenis>
     );
 }
+
