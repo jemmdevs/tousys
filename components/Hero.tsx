@@ -23,10 +23,15 @@ export default function Hero() {
                     <span className={styles.headlineSecondary}>with the next-generation platforms</span>
                 </h1>
 
-                {/* CTA Button */}
-                <Link href="#" className={styles.ctaButton}>
-                    Explore our products
-                </Link>
+                {/* CTA Buttons */}
+                <div className={styles.ctaButtons}>
+                    <Link href="#" className={styles.ctaButton}>
+                        Get access
+                    </Link>
+                    <Link href="#" className={styles.ctaButtonSecondary}>
+                        Explore our products
+                    </Link>
+                </div>
             </div>
         </section>
     );
