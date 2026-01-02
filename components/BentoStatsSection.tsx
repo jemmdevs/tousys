@@ -230,7 +230,7 @@ function FeatureIcon({ featureId }: { featureId: string }) {
                 <img
                     src="/iconaisac.svg"
                     alt=""
-                    className={styles.mobileIcon}
+                    className={styles.mobileIconLarge}
                     aria-hidden="true"
                 />
             );

@@ -269,6 +269,14 @@
     flex-shrink: 0;
 }
 
+.mobileIconLarge {
+    width: 66px;
+    height: 66px;
+    flex-shrink: 0;
+    margin-left: -23px;
+    margin-right: -15px;
+}
+
 .mobileItemTitle {
     font-size: 1rem;
     font-weight: 600;
