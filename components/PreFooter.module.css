@@ -7,7 +7,7 @@
 
 @media (max-width: 767px) {
     .section {
-        padding: 2rem 0 0;
+        padding: 1rem 0 0;
     }
 }
 
@@ -97,7 +97,7 @@
     .navColumns {
         display: flex;
         flex-direction: row;
-        gap: 3rem;
+        gap: 5rem;
     }
 }
 
