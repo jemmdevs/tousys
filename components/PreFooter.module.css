@@ -47,11 +47,10 @@
 
 @media (max-width: 767px) {
     .topRow {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
-        gap: 2rem 1rem;
-        margin-bottom: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 2rem;
     }
 }
 
@@ -96,30 +95,16 @@
 
 @media (max-width: 767px) {
     .navColumns {
-        display: contents;
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
     }
 }
 
-/* First nav column (Product) - top right in mobile grid */
+/* Navigation columns - no special positioning in mobile */
 .navColumn:first-child {}
 
-@media (max-width: 767px) {
-    .navColumn:first-child {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: end;
-    }
-}
-
-/* Second nav column (Resources) - bottom left in mobile grid */
 .navColumn:last-child {}
-
-@media (max-width: 767px) {
-    .navColumn:last-child {
-        grid-column: 1;
-        grid-row: 2;
-    }
-}
 
 .navColumn {
     display: flex;
