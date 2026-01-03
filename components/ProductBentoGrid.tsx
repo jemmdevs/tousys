@@ -1,86 +1,162 @@
 "use client";
 
-import { memo, useState, useEffect } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./ProductBentoGrid.module.css";
 
-// Tools data - each tool links to its detail page
+// Tools data
+// modalTitle and modalDescription are optional - if not set, uses title/description
 const tools = [
     {
         id: 1,
-        slug: "agent-manager",
         title: "Agent Manager",
         description: "Manage multiple agents in parallel across workspaces",
         image: "/features/feature-agent-manager.png",
+        // modalTitle: "Custom Modal Title",
+        // modalDescription: "Custom modal description here",
     },
     {
         id: 2,
-        slug: "codon-optimizer",
         title: "Codon Optimizer",
         description: "AI-powered optimization for protein expression",
         image: "/features/feature-codon-optimizer.png",
     },
     {
         id: 3,
-        slug: "neural-processing",
         title: "Neural Processing",
         description: "Advanced brain-inspired computing",
         image: "/features/brain.avif",
     },
     {
         id: 4,
-        slug: "notion-integration",
         title: "Notion Integration",
         description: "Seamless workflow management",
         image: "/features/notion.avif",
     },
     {
         id: 5,
-        slug: "ai-platform",
         title: "AI Platform",
         description: "Next-generation intelligence",
         image: "/features/aiga-square.avif",
     },
 ];
 
-// Memoized Bento Card for performance
-const BentoCard = memo(({
-    item,
-    shouldLoadImage
+type Tool = {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    modalTitle?: string;
+    modalDescription?: string;
+};
+
+// Close Icon
+const CloseIcon = memo(() => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+));
+CloseIcon.displayName = "CloseIcon";
+
+// Modal Component
+const ToolModal = memo(({
+    tool,
+    onClose
 }: {
-    item: typeof tools[0];
-    shouldLoadImage: boolean;
+    tool: Tool | null;
+    onClose: () => void;
 }) => {
+    // Close on Escape key
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+        };
+        if (tool) {
+            document.addEventListener("keydown", handleEscape);
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.removeEventListener("keydown", handleEscape);
+            document.body.style.overflow = "";
+        };
+    }, [tool, onClose]);
+
+    if (!tool) return null;
+
     return (
-        <Link href={`/product/${item.slug}`} className={styles.cardLink}>
-            <article className={styles.card}>
-                <div className={styles.imageWrapper}>
-                    {shouldLoadImage && (
+        <div className={styles.modalOverlay} onClick={onClose} data-lenis-prevent>
+            {/* Contenedor1 - Full height panel */}
+            <div className={styles.modalPanel} onClick={(e) => e.stopPropagation()}>
+                {/* Contenedor2 - Image container */}
+                <div className={styles.modalImageContainer}>
+                    <button className={styles.closeButton} onClick={onClose} aria-label="Close">
+                        <CloseIcon />
+                    </button>
+                    <div className={styles.modalImageInner}>
                         <Image
-                            src={item.image}
-                            alt={item.title}
+                            src={tool.image}
+                            alt={tool.title}
                             width={800}
                             height={600}
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className={styles.image}
-                            loading="lazy"
-                            quality={80}
+                            className={styles.modalImage}
+                            quality={90}
                         />
-                    )}
+                    </div>
                 </div>
-                <div className={styles.content}>
-                    <h3 className={styles.title}>{item.title}</h3>
-                    <p className={styles.description}>{item.description}</p>
+
+                {/* Title & Description - Outside contenedor2, inside contenedor1 */}
+                <div className={styles.modalInfo}>
+                    <h2 className={styles.modalTitle}>{tool.modalTitle || tool.title}</h2>
+                    <p className={styles.modalDescription}>{tool.modalDescription || tool.description}</p>
                 </div>
-            </article>
-        </Link>
+            </div>
+        </div>
+    );
+});
+ToolModal.displayName = "ToolModal";
+
+// Bento Card Component
+const BentoCard = memo(({
+    item,
+    shouldLoadImage,
+    onSelect
+}: {
+    item: Tool;
+    shouldLoadImage: boolean;
+    onSelect: (tool: Tool) => void;
+}) => {
+    const handleClick = useCallback(() => {
+        onSelect(item);
+    }, [onSelect, item]);
+
+    return (
+        <article className={styles.card} onClick={handleClick}>
+            <div className={styles.imageWrapper}>
+                {shouldLoadImage && (
+                    <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={800}
+                        height={600}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className={styles.image}
+                        loading="lazy"
+                        quality={80}
+                    />
+                )}
+            </div>
+            <div className={styles.content}>
+                <h3 className={styles.title}>{item.title}</h3>
+                <p className={styles.description}>{item.description}</p>
+            </div>
+        </article>
     );
 });
 BentoCard.displayName = "BentoCard";
 
 export default function ProductBentoGrid() {
     const [isMounted, setIsMounted] = useState(false);
+    const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
 
     // Defer image loading until after hydration
     useEffect(() => {
@@ -90,18 +166,30 @@ export default function ProductBentoGrid() {
         return () => cancelAnimationFrame(timer);
     }, []);
 
+    const handleCardClick = useCallback((tool: Tool) => {
+        setSelectedTool(tool);
+    }, []);
+
+    const handleCloseModal = useCallback(() => {
+        setSelectedTool(null);
+    }, []);
+
     return (
-        <section className={styles.section}>
-            <div className={styles.grid}>
-                {tools.map((item) => (
-                    <BentoCard
-                        key={item.id}
-                        item={item}
-                        shouldLoadImage={isMounted}
-                    />
-                ))}
-            </div>
-        </section>
+        <>
+            <section className={styles.section}>
+                <div className={styles.grid}>
+                    {tools.map((item) => (
+                        <BentoCard
+                            key={item.id}
+                            item={item}
+                            shouldLoadImage={isMounted}
+                            onSelect={handleCardClick}
+                        />
+                    ))}
+                </div>
+            </section>
+
+            <ToolModal tool={selectedTool} onClose={handleCloseModal} />
+        </>
     );
 }
-
