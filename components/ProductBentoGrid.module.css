@@ -6,13 +6,13 @@
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    padding: calc(var(--navbar-height, 56px) + 3rem) 2rem 3rem;
+    padding: 0 2rem 3rem;
     background: #ffffff;
 }
 
 @media (max-width: 767px) {
     .section {
-        padding: calc(var(--navbar-height, 56px) + 2rem) 1rem 2rem;
+        padding: 0 1rem 2rem;
     }
 }
 
@@ -43,6 +43,12 @@
 /* ================================================
    Bento Card
    ================================================ */
+
+.cardLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 
 .card {
     display: flex;
@@ -75,7 +81,7 @@
     pointer-events: none;
 }
 
-.card:hover .imageWrapper::after {
+.cardLink:hover .imageWrapper::after {
     background: rgba(0, 0, 0, 0.19);
 }
 

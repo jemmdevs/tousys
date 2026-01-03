@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
+import ProductHero from "@/components/ProductHero";
 import ProductBentoGrid from "@/components/ProductBentoGrid";
 
 // Lazy load components below the fold for better performance
@@ -28,6 +29,7 @@ export default function ProductPage() {
         <>
             <Navbar />
             <main>
+                <ProductHero />
                 <ProductBentoGrid />
                 <CTASection />
                 <PreFooter />
@@ -36,5 +38,6 @@ export default function ProductPage() {
         </>
     );
 }
+
 
 
