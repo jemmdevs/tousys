@@ -7,7 +7,7 @@ import styles from "./Navbar.module.css";
 
 // Links con dropdown tendrán hasDropdown: true
 const navLinks = [
-    { label: "Products", href: "#", hasDropdown: true },
+    { label: "Product", href: "/product", hasDropdown: false },
     { label: "Use Cases", href: "#", hasDropdown: true },
     { label: "Resources", href: "#", hasDropdown: true },
     { label: "Blog", href: "/blog", hasDropdown: false },
@@ -82,29 +82,6 @@ const MailIcon = () => (
 
 // Contenido placeholder para los dropdowns - lo personalizarás después
 const dropdownContent: Record<string, React.ReactNode> = {
-    Products: (
-        <div className={styles.dropdownInner}>
-            <div className={styles.dropdownSection}>
-                <h4 className={styles.dropdownTitle}>Intuitive for every type of builder</h4>
-                <p className={styles.dropdownDescription}>Explore how Tousys Biotech helps you build</p>
-                <Link href="#" className={styles.dropdownCta}>See overview</Link>
-            </div>
-            <div className={styles.dropdownLinks}>
-                <Link href="#" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>Product One</span>
-                    <ChevronRight />
-                </Link>
-                <Link href="#" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>Product Two</span>
-                    <ChevronRight />
-                </Link>
-                <Link href="#" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>Product Three</span>
-                    <ChevronRight />
-                </Link>
-            </div>
-        </div>
-    ),
     "Use Cases": (
         <div className={styles.dropdownInner}>
             <div className={styles.dropdownSection}>
@@ -358,10 +335,6 @@ export default function Navbar() {
                 {/* Dropdown Panel */}
                 <div className={`${styles.dropdownPanel} ${activeDropdown ? styles.dropdownPanelOpen : ''}`}>
                     <div className={styles.dropdownContainer}>
-                        {/* Products Dropdown */}
-                        <div className={`${styles.dropdownContent} ${activeDropdown === 'Products' ? styles.dropdownContentActive : ''}`}>
-                            {dropdownContent.Products}
-                        </div>
                         {/* Use Cases Dropdown */}
                         <div className={`${styles.dropdownContent} ${activeDropdown === 'Use Cases' ? styles.dropdownContentActive : ''}`}>
                             {dropdownContent["Use Cases"]}
@@ -396,13 +369,6 @@ export default function Navbar() {
                                         {/* Submenu items */}
                                         {dropdownContent[link.label] && (
                                             <div className={styles.mobileSubmenuContent}>
-                                                {link.label === 'Products' && (
-                                                    <>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Product One</Link>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Product Two</Link>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Product Three</Link>
-                                                    </>
-                                                )}
                                                 {link.label === 'Use Cases' && (
                                                     <>
                                                         <Link href="#" className={styles.mobileSubmenuLink}>Research Labs</Link>

@@ -1,0 +1,144 @@
+/* ================================================
+   ProductBentoGrid - Bento Grid Component
+   ================================================ */
+
+.section {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: calc(var(--navbar-height, 56px) + 3rem) 2rem 3rem;
+    background: #ffffff;
+}
+
+@media (max-width: 767px) {
+    .section {
+        padding: calc(var(--navbar-height, 56px) + 2rem) 1rem 2rem;
+    }
+}
+
+/* ================================================
+   Grid Layout - 3 columns
+   ================================================ */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* ================================================
+   Bento Card
+   ================================================ */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+/* ================================================
+   Image Wrapper
+   ================================================ */
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    background: #f5f5f5;
+    overflow: hidden;
+}
+
+.imageWrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+    pointer-events: none;
+}
+
+.card:hover .imageWrapper::after {
+    background: rgba(0, 0, 0, 0.19);
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ================================================
+   Content
+   ================================================ */
+
+.content {
+    padding: 0.5rem 0;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.01em;
+}
+
+.description {
+    font-size: 13px;
+    font-weight: 400;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* ================================================
+   Responsive - Tablet
+   ================================================ */
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 14px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+}
+
+/* ================================================
+   Responsive - Mobile
+   ================================================ */
+
+@media (max-width: 640px) {
+    .content {
+        padding: 0.4rem 0;
+    }
+
+    .title {
+        font-size: 14px;
+    }
+
+    .description {
+        font-size: 11px;
+    }
+}
