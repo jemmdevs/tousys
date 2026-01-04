@@ -12,8 +12,8 @@ const tools = [
         title: "Agent Manager",
         description: "Manage multiple agents in parallel across workspaces",
         image: "/features/fullApp2_converted.avif",
-        // modalTitle: "Custom Modal Title",
-        // modalDescription: "Custom modal description here",
+        isNew: true,
+        date: "Jan 2024",
     },
     {
         id: 2,
@@ -38,6 +38,8 @@ const tools = [
         title: "In-Canvas Tools",
         description: "Powerful editing tools at your fingertips",
         image: "/features/inCanvasTools_converted.avif",
+        isNew: true,
+        date: "Dec 2023",
     },
     {
         id: 6,
@@ -62,6 +64,7 @@ const tools = [
         title: "Dark Mode",
         description: "Enhanced visual experience for extended sessions",
         image: "/features/darkMode_converted.avif",
+        date: "Nov 2023",
     },
 ];
 
@@ -72,6 +75,8 @@ type Tool = {
     image: string;
     modalTitle?: string;
     modalDescription?: string;
+    isNew?: boolean;
+    date?: string;
 };
 
 // Close Icon
@@ -130,7 +135,12 @@ const ToolModal = memo(({
 
                 {/* Title & Description - Outside contenedor2, inside contenedor1 */}
                 <div className={styles.modalInfo}>
-                    <h2 className={styles.modalTitle}>{tool.modalTitle || tool.title}</h2>
+                    <div className={styles.modalHeader}>
+                        <h2 className={styles.modalTitle}>{tool.modalTitle || tool.title}</h2>
+                        {tool.date && <span className={styles.modalDate}>{tool.date}</span>}
+                    </div>
+                    {tool.isNew && <span className={styles.modalBadge}>NEW</span>}
+                    <div className={styles.modalDivider}></div>
                     <p className={styles.modalDescription}>{tool.modalDescription || tool.description}</p>
                 </div>
             </div>
