@@ -17,26 +17,24 @@
 }
 
 /* ================================================
-   Grid Layout - 3 columns
+   Masonry Layout - 3 columns
    ================================================ */
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    column-count: 3;
+    column-gap: 1rem;
 }
 
 @media (max-width: 1024px) {
     .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        column-count: 2;
+        column-gap: 0.75rem;
     }
 }
 
 @media (max-width: 640px) {
     .grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        column-count: 1;
     }
 }
 
@@ -57,6 +55,8 @@
     border-radius: 0;
     overflow: hidden;
     cursor: pointer;
+    break-inside: avoid;
+    margin-bottom: 1rem;
 }
 
 /* ================================================
@@ -83,13 +83,14 @@
 }
 
 .card:hover .imageWrapper::after {
-    background: rgba(0, 0, 0, 0.19);
+    background: rgba(0, 0, 0, 0.03);
 }
 
 .image {
     width: 100%;
     height: auto;
     display: block;
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* ================================================
