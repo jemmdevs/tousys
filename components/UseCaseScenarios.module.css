@@ -1,0 +1,165 @@
+/* Sticky wrapper - creates scroll distance */
+.stickyWrapper {
+    height: 250vh;
+    position: relative;
+    margin-top: -8rem;
+}
+
+/* Sticky container - stays fixed during scroll */
+.stickyContainer {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    contain: layout style paint;
+}
+
+/* Fade gradients on edges */
+.fadeLeft,
+.fadeRight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.fadeLeft {
+    left: 0;
+    background: linear-gradient(to right, #ffffff 0%, transparent 100%);
+}
+
+.fadeRight {
+    right: 0;
+    background: linear-gradient(to left, #ffffff 0%, transparent 100%);
+}
+
+/* Scroll container - no user scroll, controlled by JS */
+.scrollContainer {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    will-change: scroll-position;
+}
+
+/* Track that holds all scenarios */
+.scenariosTrack {
+    display: flex;
+    gap: 6rem;
+    padding: 1rem 0;
+    width: max-content;
+    will-change: transform;
+}
+
+/* Spacers at start and end */
+.spacer {
+    flex-shrink: 0;
+    width: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .spacer {
+        width: calc((100vw - 1200px) / 2 + 2rem);
+    }
+}
+
+/* Individual scenario item */
+.scenarioItem {
+    flex-shrink: 0;
+    max-width: 520px;
+    min-width: 350px;
+}
+
+/* Quote styling */
+.quote {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.45;
+    color: #121317;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.quoteOpen,
+.quoteClose {
+    font-size: 36px;
+    font-weight: 200;
+    color: #45474d;
+    line-height: 1;
+}
+
+.quoteOpen {
+    margin-right: 4px;
+}
+
+.quoteClose {
+    margin-left: 4px;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 900px) {
+    .stickyWrapper {
+        height: 200vh;
+    }
+
+    .fadeLeft,
+    .fadeRight {
+        width: 80px;
+    }
+
+    .scenariosTrack {
+        gap: 5rem;
+    }
+
+    .scenarioItem {
+        max-width: 420px;
+        min-width: 300px;
+    }
+
+    .quote {
+        font-size: 24px;
+    }
+
+    .quoteOpen,
+    .quoteClose {
+        font-size: 30px;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 767px) {
+    .stickyWrapper {
+        height: 180vh;
+    }
+
+    .fadeLeft,
+    .fadeRight {
+        width: 50px;
+    }
+
+    .scenariosTrack {
+        gap: 3.5rem;
+    }
+
+    .spacer {
+        width: 1.5rem;
+    }
+
+    .scenarioItem {
+        max-width: 320px;
+        min-width: 280px;
+    }
+
+    .quote {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    .quoteOpen,
+    .quoteClose {
+        font-size: 26px;
+    }
+}

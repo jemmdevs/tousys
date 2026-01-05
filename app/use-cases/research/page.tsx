@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import UseCaseHeader from "@/components/UseCaseHeader";
+import UseCaseScenarios from "@/components/UseCaseScenarios";
 import UseCaseToolsList from "@/components/UseCaseToolsList";
 
 // Lazy load components below the fold for better performance
@@ -18,6 +19,14 @@ const Footer = dynamic(() => import("@/components/Footer"), {
     loading: () => <div style={{ minHeight: '60px' }} />,
     ssr: true,
 });
+
+// Research scenarios - typical use cases
+const researchScenarios = [
+    { quote: "I'm cloning this gene to express it in E. coli and publish the crystal structure" },
+    { quote: "I want to understand why this mutation affects the expression of my protein of interest" },
+    { quote: "I need to prepare a figure for my paper showing ribosomal pause sites" },
+    { quote: "I'm teaching molecular biology and want to show my students how codon optimization works" },
+];
 
 // Research tools data
 const researchTools = [
@@ -83,13 +92,15 @@ export default function ResearchPage() {
         <>
             <Navbar />
             <main>
-                {/* Spacer for navbar + breathing room */}
-                <div style={{ height: 'calc(80px + 8vh)' }} aria-hidden="true" />
+                {/* Spacer for navbar */}
+                <div style={{ height: 'calc(80px + 4vh)' }} aria-hidden="true" />
 
                 <UseCaseHeader
                     title="Research"
                     description="Researchers in universities, academic laboratories, graduate students, postdocs, and scientific investigators."
                 />
+
+                <UseCaseScenarios scenarios={researchScenarios} />
 
                 <UseCaseToolsList tools={researchTools} />
 
