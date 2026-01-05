@@ -337,6 +337,8 @@
     color: var(--foreground);
     flex-shrink: 0;
     transition: transform 0.2s ease;
+    display: block;
+    align-self: center;
 }
 
 .dropdownLink:hover .dropdownArrow {

@@ -37,8 +37,8 @@ const ChevronDown = () => (
 const ChevronRight = () => (
     <svg
         className={styles.dropdownArrow}
-        width="14"
-        height="14"
+        width="16"
+        height="16"
         viewBox="0 0 18 18"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -91,15 +91,41 @@ const dropdownContent: Record<string, React.ReactNode> = {
             </div>
             <div className={styles.dropdownLinks}>
                 <Link href="/use-cases/research" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>Research Labs</span>
+                    <span className={styles.dropdownLinkText}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '16px', flexShrink: 0 }}>
+                            <path d="M9 3h6v6l3 8H6l3-8V3z" />
+                            <path d="M9 3h6" />
+                            <path d="M12 17v4" />
+                        </svg>
+                        Research Labs
+                    </span>
                     <ChevronRight />
                 </Link>
                 <Link href="/use-cases/pharma" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>Pharmaceutical</span>
+                    <span className={styles.dropdownLinkText}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '16px', flexShrink: 0 }}>
+                            <rect x="3" y="8" width="18" height="8" rx="4" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                        </svg>
+                        Pharmaceutical
+                    </span>
                     <ChevronRight />
                 </Link>
                 <Link href="/use-cases/biotech" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>Biotech Startups</span>
+                    <span className={styles.dropdownLinkText}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '16px', flexShrink: 0 }}>
+                            <circle cx="12" cy="12" r="3" />
+                            <circle cx="12" cy="4" r="2" />
+                            <circle cx="12" cy="20" r="2" />
+                            <circle cx="4" cy="12" r="2" />
+                            <circle cx="20" cy="12" r="2" />
+                            <line x1="12" y1="6" x2="12" y2="9" />
+                            <line x1="12" y1="15" x2="12" y2="18" />
+                            <line x1="6" y1="12" x2="9" y2="12" />
+                            <line x1="15" y1="12" x2="18" y2="12" />
+                        </svg>
+                        Biotech Startups
+                    </span>
                     <ChevronRight />
                 </Link>
             </div>
