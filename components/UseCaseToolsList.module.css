@@ -1,0 +1,216 @@
+.section {
+    width: 100%;
+    padding: 0 0 4rem;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Tool Item Row */
+.toolItem {
+    display: grid;
+    grid-template-columns: 220px 1fr 340px;
+    align-items: flex-start;
+    gap: 4rem;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    position: relative;
+    transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 1440px;
+    margin: 0 auto;
+    contain: layout style;
+}
+
+.toolItem::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.toolItem:first-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.toolItem:hover {
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+}
+
+/* Full-width background on hover */
+.toolItem::marker {
+    content: '';
+}
+
+.toolItemBg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    background-color: transparent;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+    pointer-events: none;
+    will-change: background-color;
+}
+
+.toolItem:hover .toolItemBg {
+    background-color: #F2F7F1;
+}
+
+/* Tool Name */
+.toolName {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #121317;
+    letter-spacing: -0.01em;
+}
+
+/* Tool Description */
+.toolDescription {
+    font-size: 15px;
+    font-weight: 370;
+    line-height: 22px;
+    color: #45474d;
+    margin: 0;
+    max-width: 400px;
+}
+
+/* Tool Image Wrapper - Reveal from top animation */
+.toolImageWrapper {
+    width: 320px;
+    height: 200px;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8e8e8;
+}
+
+.toolImageWrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    will-change: transform;
+}
+
+/* When not hovered, cover the image from bottom to top */
+.toolItem:not(:hover) .toolImageWrapper::before {
+    transform: translateY(0%);
+}
+
+/* When hovered, reveal from top to bottom */
+.toolItem:hover .toolImageWrapper::before {
+    transform: translateY(100%);
+}
+
+/* Tool Image */
+.toolImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 900px) {
+    .toolItem {
+        grid-template-columns: 160px 1fr 160px;
+        gap: 1.5rem;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .toolItem:hover {
+        padding-top: 1.75rem;
+        padding-bottom: 1.75rem;
+    }
+
+    .toolName {
+        font-size: 16px;
+    }
+
+    .toolDescription {
+        font-size: 15px;
+    }
+
+    .toolImageWrapper {
+        width: 160px;
+        height: 105px;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 767px) {
+    .toolItem {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem 1.75rem;
+    }
+
+    /* No hover effects on mobile */
+    .toolItem:hover {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .toolItem:hover .toolItemBg {
+        background-color: transparent;
+    }
+
+    .toolName {
+        font-size: 18px;
+        font-weight: 500;
+        order: 1;
+    }
+
+    /* Image always visible on mobile, no animation */
+    .toolImageWrapper {
+        display: flex;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/10;
+        order: 2;
+    }
+
+    /* Remove reveal animation on mobile */
+    .toolImageWrapper::before {
+        display: none;
+    }
+
+    .toolImage {
+        width: 100%;
+        height: 100%;
+    }
+
+    .toolDescription {
+        font-size: 15px;
+        line-height: 23px;
+        max-width: 100%;
+        order: 3;
+    }
+}
