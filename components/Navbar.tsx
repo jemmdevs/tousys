@@ -87,18 +87,18 @@ const dropdownContent: Record<string, React.ReactNode> = {
             <div className={styles.dropdownSection}>
                 <h4 className={styles.dropdownTitle}>Discover what's possible</h4>
                 <p className={styles.dropdownDescription}>See how teams are using our platform</p>
-                <Link href="#" className={styles.dropdownCta}>View all use cases</Link>
+                <Link href="/use-cases/research" className={styles.dropdownCta}>View all use cases</Link>
             </div>
             <div className={styles.dropdownLinks}>
-                <Link href="#" className={styles.dropdownLink}>
+                <Link href="/use-cases/research" className={styles.dropdownLink}>
                     <span className={styles.dropdownLinkText}>Research Labs</span>
                     <ChevronRight />
                 </Link>
-                <Link href="#" className={styles.dropdownLink}>
+                <Link href="/use-cases/pharma" className={styles.dropdownLink}>
                     <span className={styles.dropdownLinkText}>Pharmaceutical</span>
                     <ChevronRight />
                 </Link>
-                <Link href="#" className={styles.dropdownLink}>
+                <Link href="/use-cases/biotech" className={styles.dropdownLink}>
                     <span className={styles.dropdownLinkText}>Biotech Startups</span>
                     <ChevronRight />
                 </Link>
@@ -371,9 +371,9 @@ export default function Navbar() {
                                             <div className={styles.mobileSubmenuContent}>
                                                 {link.label === 'Use Cases' && (
                                                     <>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Research Labs</Link>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Pharmaceutical</Link>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Biotech Startups</Link>
+                                                        <Link href="/use-cases/research" className={styles.mobileSubmenuLink}>Research Labs</Link>
+                                                        <Link href="/use-cases/pharma" className={styles.mobileSubmenuLink}>Pharmaceutical</Link>
+                                                        <Link href="/use-cases/biotech" className={styles.mobileSubmenuLink}>Biotech Startups</Link>
                                                     </>
                                                 )}
                                                 {link.label === 'Resources' && (
