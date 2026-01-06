@@ -5,7 +5,7 @@ import styles from "./Footer.module.css";
 
 const footerLinks = [
     { label: "About Al-Awal", href: "#" },
-    { label: "Products", href: "#" },
+    { label: "Product", href: "#" },
     { label: "Privacy", href: "#" },
     { label: "Terms", href: "#" },
 ];

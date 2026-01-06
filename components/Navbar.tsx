@@ -341,8 +341,8 @@ export default function Navbar() {
 
                     {/* Contact CTA - Desktop */}
                     <div className={styles.navRight}>
-                        <Link href="#" className={styles.contactLink}>
-                            Get in touch
+                        <Link href="/contact" className={styles.contactLink}>
+                            Get in Touch
                             <MailIcon />
                         </Link>
                     </div>
@@ -424,6 +424,20 @@ export default function Navbar() {
                             )}
                         </div>
                     ))}
+
+                    {/* Get in Touch CTA - Mobile */}
+                    <div
+                        className={styles.mobileMenuItem}
+                        style={{ animationDelay: isMobileMenuOpen ? `${navLinks.length * 0.05}s` : '0s' }}
+                    >
+                        <Link
+                            href="/contact"
+                            className={styles.mobileContactLink}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Get in Touch
+                        </Link>
+                    </div>
                 </nav>
             </div>
 

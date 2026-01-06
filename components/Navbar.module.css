@@ -544,6 +544,30 @@
     opacity: 0.7;
 }
 
+/* Mobile Contact CTA Link */
+.mobileContactLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #121317;
+    background: #E8F5E9;
+    border: 1px solid #C8E6C9;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobileContactLink:hover {
+    background: #D4EDDA;
+    border-color: #A5D6A7;
+}
+
 /* Añade estos estilos si no tienes las variables CSS definidas */
 :root {
     --navbar-height: 56px;
