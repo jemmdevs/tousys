@@ -429,3 +429,35 @@
     outline: 2px solid var(--foreground);
     outline-offset: 2px;
 }
+
+/* Submit button disabled state */
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Success message */
+.successMessage {
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #065f46;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Error message */
+.errorMessage {
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    text-align: center;
+}

@@ -147,6 +147,83 @@ function ContactPageContent() {
 
     const formRef = useRef<HTMLFormElement>(null);
 
+    // Submission states
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<{
+        type: 'success' | 'error' | null;
+        message: string;
+    }>({ type: null, message: '' });
+
+    // Handle Say Hi form submission
+    const handleSayHiSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus({ type: null, message: '' });
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'sayhi',
+                    data: sayHiForm,
+                }),
+            });
+
+            if (response.ok) {
+                setSubmitStatus({
+                    type: 'success',
+                    message: 'Message sent successfully! We\'ll get back to you soon.',
+                });
+                setSayHiForm({ name: '', email: '', source: '', message: '' });
+            } else {
+                throw new Error('Failed to send message');
+            }
+        } catch {
+            setSubmitStatus({
+                type: 'error',
+                message: 'Something went wrong. Please try again.',
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    // Handle Get Access form submission
+    const handleGetAccessSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus({ type: null, message: '' });
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'getaccess',
+                    data: getAccessForm,
+                }),
+            });
+
+            if (response.ok) {
+                setSubmitStatus({
+                    type: 'success',
+                    message: 'Access request submitted! We\'ll be in touch within 24 hours.',
+                });
+                setGetAccessForm({ name: '', email: '', organization: '', message: '' });
+            } else {
+                throw new Error('Failed to submit request');
+            }
+        } catch {
+            setSubmitStatus({
+                type: 'error',
+                message: 'Something went wrong. Please try again.',
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <>
             <Navbar />
@@ -195,7 +272,7 @@ function ContactPageContent() {
 
                             {/* Right Side - Form */}
                             <div className={styles.formSide}>
-                                <form ref={formRef} className={styles.form}>
+                                <form ref={formRef} className={styles.form} onSubmit={handleSayHiSubmit}>
                                     <div className={styles.formGrid}>
                                         <FormInput
                                             label="Name"
@@ -238,10 +315,20 @@ function ContactPageContent() {
                                             <input type="checkbox" className={styles.checkbox} />
                                             <span>Signup to Newsletter</span>
                                         </label>
-                                        <button type="submit" className={styles.submitButton}>
-                                            Submit
+                                        <button
+                                            type="submit"
+                                            className={styles.submitButton}
+                                            disabled={isSubmitting}
+                                        >
+                                            {isSubmitting ? 'Sending...' : 'Submit'}
                                         </button>
                                     </div>
+
+                                    {submitStatus.type && (
+                                        <p className={submitStatus.type === 'success' ? styles.successMessage : styles.errorMessage}>
+                                            {submitStatus.message}
+                                        </p>
+                                    )}
                                 </form>
                             </div>
                         </div>
@@ -270,7 +357,7 @@ function ContactPageContent() {
 
                             {/* Right Side - Form */}
                             <div className={styles.formSide}>
-                                <form className={styles.form}>
+                                <form className={styles.form} onSubmit={handleGetAccessSubmit}>
                                     <div className={styles.formGrid}>
                                         <FormInput
                                             label="Name"
@@ -313,10 +400,20 @@ function ContactPageContent() {
                                             <input type="checkbox" className={styles.checkbox} />
                                             <span>I agree to the Terms of Service</span>
                                         </label>
-                                        <button type="submit" className={styles.submitButton}>
-                                            Request Access
+                                        <button
+                                            type="submit"
+                                            className={styles.submitButton}
+                                            disabled={isSubmitting}
+                                        >
+                                            {isSubmitting ? 'Submitting...' : 'Request Access'}
                                         </button>
                                     </div>
+
+                                    {submitStatus.type && (
+                                        <p className={submitStatus.type === 'success' ? styles.successMessage : styles.errorMessage}>
+                                            {submitStatus.message}
+                                        </p>
+                                    )}
                                 </form>
                             </div>
                         </div>
