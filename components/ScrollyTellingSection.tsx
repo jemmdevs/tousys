@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import Snap from "lenis/snap";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./ScrollyTellingSection.module.css";
 
@@ -242,9 +243,9 @@ export default function ScrollyTellingSection() {
                     ))}
 
                     {/* Botón Explore Product */}
-                    <a href="#" className={styles.exploreButton}>
+                    <Link href="/product" className={styles.exploreButton}>
                         Explore Product
-                    </a>
+                    </Link>
 
                     {/* Espaciador final para que el último texto pueda scrollearse hasta los 15vh */}
                     <div className={styles.endSpacer} />
@@ -306,9 +307,9 @@ export default function ScrollyTellingSection() {
                     </div>
                 ))}
                 {/* Botón Explore Product - Mobile */}
-                <a href="#" className={styles.mobileExploreButton}>
+                <Link href="/product" className={styles.mobileExploreButton}>
                     Explore Product
-                </a>
+                </Link>
             </div>
         </section>
     );

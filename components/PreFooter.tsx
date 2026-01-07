@@ -6,13 +6,13 @@ import CardNeuralNoise from "./CardNeuralNoise";
 
 const productLinks = [
     { label: "Download", href: "#" },
-    { label: "Product", href: "#" },
+    { label: "Product", href: "/product" },
     { label: "Docs", href: "#" },
     { label: "Changelog", href: "#" },
 ];
 
 const resourceLinks = [
-    { label: "Blog", href: "#" },
+    { label: "Blog", href: "/blog" },
     { label: "Pricing", href: "#" },
     { label: "Use Cases", href: "#" },
 ];

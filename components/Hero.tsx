@@ -25,11 +25,11 @@ export default function Hero() {
 
                 {/* CTA Buttons */}
                 <div className={styles.ctaButtons}>
-                    <Link href="#" className={styles.ctaButton}>
+                    <Link href="/contact?tab=getaccess" className={styles.ctaButton}>
                         Get access
                     </Link>
-                    <Link href="#" className={styles.ctaButtonSecondary}>
-                        Explore our products
+                    <Link href="/product" className={styles.ctaButtonSecondary}>
+                        Explore our product
                     </Link>
                 </div>
             </div>

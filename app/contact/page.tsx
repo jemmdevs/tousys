@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useCallback, useState, memo } from "react";
+import { useRef, useCallback, useState, memo, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import styles from "./page.module.css";
@@ -96,8 +97,20 @@ const FormTextarea = memo(function FormTextarea({
 // Tab types
 type ActiveTab = "sayhi" | "getaccess";
 
-export default function ContactPage() {
-    const [activeTab, setActiveTab] = useState<ActiveTab>("sayhi");
+function ContactPageContent() {
+    const searchParams = useSearchParams();
+    const initTab = searchParams.get("tab") as ActiveTab;
+    const [activeTab, setActiveTab] = useState<ActiveTab>(
+        initTab === "getaccess" || initTab === "sayhi" ? initTab : "sayhi"
+    );
+
+    // Sync tab with URL parameter if it changes
+    useEffect(() => {
+        const tab = searchParams.get("tab");
+        if (tab === "getaccess" || tab === "sayhi") {
+            setActiveTab(tab as ActiveTab);
+        }
+    }, [searchParams]);
 
     // Form states - SAY HI
     const [sayHiForm, setSayHiForm] = useState({
@@ -312,5 +325,13 @@ export default function ContactPage() {
             </main>
             <Footer />
         </>
+    );
+}
+
+export default function ContactPage() {
+    return (
+        <Suspense fallback={null}>
+            <ContactPageContent />
+        </Suspense>
     );
 }

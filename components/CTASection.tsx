@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useAnimationControls } from "framer-motion";
+import Link from "next/link";
 import CardNeuralNoise from "./CardNeuralNoise";
 import styles from "./CTASection.module.css";
 
@@ -92,12 +93,9 @@ export default function CTASection() {
                     </p>
 
                     <div className={styles.buttons}>
-                        <a href="#" className={styles.primaryButton}>
-                            Create free account
-                        </a>
-                        <a href="#" className={styles.secondaryButton}>
-                            Sign in to Al-Awal
-                        </a>
+                        <Link href="/contact?tab=getaccess" className={styles.primaryButton}>
+                            Get access
+                        </Link>
                     </div>
                 </div>
             </motion.div>
