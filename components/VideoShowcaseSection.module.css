@@ -1,0 +1,259 @@
+.section {
+    width: 100%;
+    background: #ffffff;
+    padding: 6rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 2.5rem;
+}
+
+.title {
+    font-size: 2.75rem;
+    font-weight: 600;
+    color: #121317;
+    line-height: 1.2;
+    margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+    font-size: 2.75rem;
+    font-weight: 400;
+    color: #9ca3af;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Tab Buttons */
+.tabsContainer {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.tabButton {
+    padding: 0.625rem 1.25rem;
+    border-radius: 9999px;
+    border: 1.5px solid #e5e7eb;
+    background: #ffffff;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tabButton:hover {
+    border-color: #9ca3af;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.tabButtonActive {
+    border-color: #121317;
+    color: #121317;
+    background: #ffffff;
+}
+
+/* Features List */
+.featuresList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+}
+
+.featureItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: #6b7280;
+}
+
+.checkIcon {
+    width: 18px;
+    height: 18px;
+    color: #121317;
+    flex-shrink: 0;
+}
+
+/* Video Container - Mockup Window */
+.videoContainer {
+    width: 100%;
+    max-width: 1100px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #d1d5db;
+    overflow: hidden;
+    /* Padding interno: más arriba, pequeño en laterales y abajo */
+    padding: 0 10px 10px 10px;
+}
+
+/* Window Header (macOS style dots) - sin línea separadora */
+.windowHeader {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 6px;
+    background: #ffffff;
+    /* Sin border-bottom - el borde del video crea la separación */
+}
+
+.windowDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d4d4d8;
+}
+
+.windowDotRed {
+    background: #d4d4d8;
+}
+
+.windowDotYellow {
+    background: #d4d4d8;
+}
+
+.windowDotGreen {
+    background: #d4d4d8;
+}
+
+/* Video Wrapper - con borde propio y border-radius */
+.videoWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #fafafa;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #e2e4e9;
+    /* GPU acceleration and layout isolation */
+    transform: translateZ(0);
+    contain: layout style paint;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+}
+
+.video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    /* Optimized transition with GPU acceleration */
+    transition: opacity 0.3s ease-out;
+    will-change: opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: strict;
+}
+
+.videoActive {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ========================================
+   RESPONSIVE - TABLET
+   ======================================== */
+@media (max-width: 1024px) {
+    .section {
+        padding: 5rem 1.5rem;
+    }
+
+    .title,
+    .subtitle {
+        font-size: 2.25rem;
+    }
+
+    .videoContainer {
+        max-width: 700px;
+    }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE
+   ======================================== */
+@media (max-width: 768px) {
+    .section {
+        padding: 4rem 1.25rem;
+    }
+
+    .title,
+    .subtitle {
+        font-size: 1.75rem;
+    }
+
+    .tabsContainer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tabButton {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .featuresList {
+        gap: 1rem 1.25rem;
+    }
+
+    .featureItem {
+        font-size: 0.8125rem;
+    }
+
+    .checkIcon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .windowDot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .windowHeader {
+        padding: 12px 14px;
+        gap: 6px;
+    }
+
+    /* Reorder: features list goes below video on mobile */
+    .section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .featuresList {
+        order: 10;
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+
+    .videoContainer {
+        order: 5;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .title,
+    .subtitle {
+        font-size: 1.5rem;
+    }
+
+    /* Keep features centered and wrapped, not vertical */
+    .featuresList {
+        gap: 0.5rem 1rem;
+    }
+}

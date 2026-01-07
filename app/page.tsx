@@ -8,8 +8,14 @@ const IntroSection = dynamic(() => import("@/components/IntroSection"), {
   ssr: true,
 });
 
-const ScrollyTellingSection = dynamic(() => import("@/components/ScrollyTellingSection"), {
-  loading: () => <div style={{ minHeight: '100vh' }} />,
+// BACKUP: Original ScrollyTellingSection (uncomment to restore)
+// const ScrollyTellingSection = dynamic(() => import("@/components/ScrollyTellingSection"), {
+//   loading: () => <div style={{ minHeight: '100vh' }} />,
+//   ssr: true,
+// });
+
+const VideoShowcaseSection = dynamic(() => import("@/components/VideoShowcaseSection"), {
+  loading: () => <div style={{ minHeight: '80vh' }} />,
   ssr: true,
 });
 
@@ -51,7 +57,7 @@ export default function Home() {
         <Hero />
         <IntroSection />
         <BentoStatsSection />
-        <ScrollyTellingSection />
+        <VideoShowcaseSection />
         <DeveloperSection />
         <LatestPosts />
         <CTASection />
