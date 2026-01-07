@@ -109,8 +109,8 @@
 }
 
 .windowDot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: #d4d4d8;
 }
