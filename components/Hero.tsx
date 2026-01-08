@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Hero.module.css";
 import NeuralNoiseBackground from "./NeuralNoiseBackground";
 
@@ -13,7 +14,14 @@ export default function Hero() {
             <div className={styles.content}>
                 {/* Company Logo */}
                 <div className={styles.companyLogo}>
-                    <span className={styles.logoMain}>Al-Awal</span>
+                    <Image
+                        src="/alawal-logo.svg"
+                        alt="Al-Awal Logo"
+                        width={28}
+                        height={28}
+                        className={styles.logoIcon}
+                    />
+                    <span className={styles.logoMain}>Alawal</span>
                     <span className={styles.logoSub}>Biotech</span>
                 </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./Navbar.module.css";
@@ -283,7 +284,14 @@ export default function Navbar() {
                             onClick={handleLogoClick}
                             aria-label="Go to home"
                         >
-                            <span className={styles.logoMain}>Al-Awal</span>
+                            <Image
+                                src="/alawal-logo.svg"
+                                alt="Al-Awal Logo"
+                                width={22}
+                                height={22}
+                                className={styles.logoIcon}
+                            />
+                            <span className={styles.logoMain}>Alawal</span>
                             <span className={styles.logoSub}>Biotech</span>
                         </button>
 

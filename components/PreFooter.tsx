@@ -67,7 +67,7 @@ export default function PreFooter() {
                     </div>
                     {/* Text mask layer */}
                     <div className={styles.textMask}>
-                        <span className={styles.brandText}>Al-Awal</span>
+                        <span className={styles.brandText}>Alawal</span>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@ export default function Footer() {
             <div className={styles.container}>
                 {/* Logo */}
                 <div className={styles.logo}>
-                    <span className={styles.logoMain}>Al-Awal</span>
+                    <span className={styles.logoMain}>Alawal</span>
                 </div>
 
                 {/* Links */}
