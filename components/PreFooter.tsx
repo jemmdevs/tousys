@@ -5,16 +5,15 @@ import Link from "next/link";
 import CardNeuralNoise from "./CardNeuralNoise";
 
 const productLinks = [
-    { label: "Download", href: "#" },
+    { label: "Get Access", href: "/contact?tab=getaccess" },
     { label: "Product", href: "/product" },
     { label: "Docs", href: "#" },
-    { label: "Changelog", href: "#" },
 ];
 
 const resourceLinks = [
     { label: "Blog", href: "/blog" },
-    { label: "Pricing", href: "#" },
-    { label: "Use Cases", href: "#" },
+    { label: "Terms", href: "#" },
+    { label: "Services", href: "#" },
 ];
 
 export default function PreFooter() {

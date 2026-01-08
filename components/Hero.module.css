@@ -91,9 +91,9 @@
 }
 
 .headlinePrimary {
-    font-size: 80px;
+    font-size: 68px;
     font-weight: 600;
-    line-height: 88px;
+    line-height: 76px;
     letter-spacing: -0.03em;
     color: #121317;
 }
@@ -107,11 +107,11 @@
 }
 
 .headlineSecondary {
-    font-size: 56px;
+    font-size: 48px;
     font-weight: 500;
-    line-height: 62px;
+    line-height: 54px;
     letter-spacing: -0.02em;
-    color: #45474d;
+    color: #3fcf8e;
     white-space: nowrap;
 }
 
@@ -146,19 +146,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.875rem 2rem;
+    padding: 0.625rem 2rem;
     font-size: 0.9375rem;
     font-weight: 500;
-    color: var(--background);
-    background: var(--foreground);
+    color: #121317;
+    background: #72E3AD;
+    border: 1.5px solid #4FD192;
     text-decoration: none;
     border-radius: 9999px;
-    transition: background var(--transition-base);
+    transition: background var(--transition-base), border-color var(--transition-base);
 }
 
 @media (max-width: 767px) {
     .ctaButton {
-        padding: 1rem 2.5rem;
+        padding: 0.75rem 2.5rem;
         font-size: 1rem;
         width: 100%;
         max-width: 280px;
@@ -166,7 +167,7 @@
 }
 
 .ctaButton:hover {
-    background: #2F3034;
+    background: #5DD99A;
 }
 
 /* Secondary CTA Button - same style as exploreButton in ScrollyTellingSection */
@@ -174,7 +175,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.875rem 2rem;
+    padding: 0.625rem 2rem;
     font-size: 0.9375rem;
     font-weight: 600;
     color: #121317;
@@ -187,7 +188,7 @@
 
 @media (max-width: 767px) {
     .ctaButtonSecondary {
-        padding: 1rem 2.5rem;
+        padding: 0.75rem 2.5rem;
         font-size: 1rem;
         width: 100%;
         max-width: 280px;

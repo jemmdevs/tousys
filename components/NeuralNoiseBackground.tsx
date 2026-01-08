@@ -76,7 +76,8 @@ void main() {
     
     noise *= vignette;
 
-    color = normalize(vec3(.2, .5 + .4 * cos(3. * u_scroll_progress), .5 + .5 * sin(3. * u_scroll_progress)));
+    // #34B27B green color
+    color = normalize(vec3(0.204, 0.698, 0.482));
 
     color = color * noise;
 

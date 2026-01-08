@@ -7,7 +7,7 @@
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 2rem 3rem;
-    background: #ffffff;
+    background: #FCFCFC;
 }
 
 @media (max-width: 767px) {
@@ -51,7 +51,7 @@
 .card {
     display: flex;
     flex-direction: column;
-    background: #ffffff;
+    background: #FCFCFC;
     border-radius: 0;
     overflow: hidden;
     cursor: pointer;
@@ -183,7 +183,7 @@
 /* Contenedor1 - Full height panel */
 .modalPanel {
     position: relative;
-    background: #ffffff;
+    background: #FCFCFC;
     width: 100%;
     max-width: 850px;
     height: calc(100% - 0.5rem);
@@ -267,7 +267,7 @@
 /* Title & Description - Outside contenedor2 */
 .modalInfo {
     padding: 1rem 1.5rem 1.5rem;
-    background: #ffffff;
+    background: #FCFCFC;
 }
 
 .modalHeader {

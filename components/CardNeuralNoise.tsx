@@ -111,8 +111,8 @@ export default function CardNeuralNoise({ className, color = 'cyan' }: CardNeura
             return null;
         }
 
-        // Definir colores según el prop
-        const colorValues = color === 'red' ? { r: 0.8, g: 0.2, b: 0.1 } : { r: 0.2, g: 0.5, b: 0.5 };
+        // Definir colores según el prop - #34B27B = rgb(52, 178, 123) normalized
+        const colorValues = color === 'red' ? { r: 0.8, g: 0.2, b: 0.1 } : { r: 0.204, g: 0.698, b: 0.482 };
         const fragmentShaderSource = getFragmentShaderSource(colorValues.r, colorValues.g, colorValues.b);
 
         const vertexShader = createShader(gl, vertexShaderSource, gl.VERTEX_SHADER);

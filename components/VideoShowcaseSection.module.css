@@ -1,6 +1,6 @@
 .section {
     width: 100%;
-    background: #ffffff;
+    background: #FCFCFC;
     padding: 6rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
 }
 
 .title {
-    font-size: 2.75rem;
+    font-size: 2.25rem;
     font-weight: 600;
     color: #121317;
     line-height: 1.2;
@@ -23,7 +23,7 @@
 }
 
 .subtitle {
-    font-size: 2.75rem;
+    font-size: 2.25rem;
     font-weight: 400;
     color: #9ca3af;
     line-height: 1.2;
@@ -41,7 +41,7 @@
     padding: 0.625rem 1.25rem;
     border-radius: 9999px;
     border: 1.5px solid #e5e7eb;
-    background: #ffffff;
+    background: #FCFCFC;
     font-size: 0.9375rem;
     font-weight: 500;
     color: #6b7280;
@@ -58,7 +58,7 @@
 .tabButtonActive {
     border-color: #121317;
     color: #121317;
-    background: #ffffff;
+    background: #FCFCFC;
 }
 
 /* Features List */
@@ -90,7 +90,7 @@
 .videoContainer {
     width: 100%;
     max-width: 1150px;
-    background: #ffffff;
+    background: #FCFCFC;
     border-radius: 16px;
     border: 1px solid #d1d5db;
     overflow: hidden;
@@ -104,7 +104,7 @@
     align-items: center;
     gap: 6px;
     padding: 14px 6px;
-    background: #ffffff;
+    background: #FCFCFC;
     /* Sin border-bottom - el borde del video crea la separación */
 }
 
