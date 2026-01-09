@@ -5,9 +5,9 @@ import styles from "./VideoShowcaseSection.module.css";
 
 // Tab data - defined outside component to avoid recreation
 const TABS = [
-    { id: 0, label: "Table Editor", video: "/videos1.webm" },
-    { id: 1, label: "SQL Editor", video: "/videos2.webm" },
-    { id: 2, label: "RLS Policies", video: "/videos3.webm" },
+    { id: 0, label: "AI Optimizer", video: "/videos1.webm" },
+    { id: 1, label: "Single Codon Optimizer", video: "/videos2.webm" },
+    { id: 2, label: "Toolbox", video: "/videos3.webm" },
 ] as const;
 
 // Features list - defined outside to avoid recreation
