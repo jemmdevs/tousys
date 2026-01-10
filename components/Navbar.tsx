@@ -115,16 +115,16 @@ const dropdownContent: Record<string, React.ReactNode> = {
                 <Link href="#" className={styles.dropdownCta}>Browse all</Link>
             </div>
             <div className={styles.dropdownLinks}>
-                <Link href="#" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>Documentation</span>
+                <Link href="/docs" className={styles.dropdownLink}>
+                    <span className={styles.dropdownLinkTextNoIcon}>Docs</span>
                     <ChevronRight />
                 </Link>
-                <Link href="#" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>Tutorials</span>
+                <Link href="/terms" className={styles.dropdownLink}>
+                    <span className={styles.dropdownLinkTextNoIcon}>Terms</span>
                     <ChevronRight />
                 </Link>
-                <Link href="#" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkText}>API Reference</span>
+                <Link href="/services" className={styles.dropdownLink}>
+                    <span className={styles.dropdownLinkTextNoIcon}>Services</span>
                     <ChevronRight />
                 </Link>
             </div>
@@ -386,9 +386,9 @@ export default function Navbar() {
                                                 )}
                                                 {link.label === 'Resources' && (
                                                     <>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Documentation</Link>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Tutorials</Link>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>API Reference</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Docs</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Terms</Link>
+                                                        <Link href="#" className={styles.mobileSubmenuLink}>Services</Link>
                                                     </>
                                                 )}
                                             </div>

@@ -353,6 +353,13 @@
     gap: 0.5rem;
 }
 
+.dropdownLinkTextNoIcon {
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    /* Same space as icon (20px) + marginRight (16px) */
+}
+
 .dropdownArrow {
     color: var(--foreground);
     flex-shrink: 0;
