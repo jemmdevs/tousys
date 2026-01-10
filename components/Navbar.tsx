@@ -291,7 +291,7 @@ export default function Navbar() {
                                 height={22}
                                 className={styles.logoIcon}
                             />
-                            <span className={styles.logoMain}>Alawal</span>
+                            <span className={styles.logoMain}>Tousys</span>
                             <span className={styles.logoSub}>Biotech</span>
                         </button>
 
