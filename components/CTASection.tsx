@@ -87,10 +87,21 @@ export default function CTASection() {
 
                 {/* Content */}
                 <div className={styles.content}>
-                    <p className={styles.title}>
-                        {displayedText}
-                        {showCursor && <span className={styles.cursor}>|</span>}
-                    </p>
+                    <div className={styles.titleWrapper}>
+                        {/* Texto fantasma invisible - reserva el espacio */}
+                        <span className={styles.titleGhost} aria-hidden="true">
+                            {ctaText}
+                        </span>
+                        {/* Texto visible con animación */}
+                        <p className={styles.title}>
+                            {isTyping ? (
+                                <span translate="no">{displayedText}</span>
+                            ) : (
+                                <span>{ctaText}</span>
+                            )}
+                            {showCursor && <span className={styles.cursor}>|</span>}
+                        </p>
+                    </div>
 
                     <div className={styles.buttons}>
                         <Link href="/contact?tab=getaccess" className={styles.primaryButton}>

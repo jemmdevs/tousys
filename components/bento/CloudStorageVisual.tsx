@@ -118,7 +118,7 @@ function CloudStorageVisual({ isHovered = false }: CloudStorageVisualProps) {
                 <div className={`${styles.folder} ${styles.folderFront}`}>
                     <div className={styles.folderTab}></div>
                     <div className={styles.folderBody}>
-                        <span className={styles.folderLabelDynamic}>
+                        <span className={styles.folderLabelDynamic} translate="no">
                             {text}
                             {isHovered && <span className={styles.cursor} />}
                         </span>

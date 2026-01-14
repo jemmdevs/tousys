@@ -55,10 +55,21 @@ export default function IntroSection() {
     return (
         <section ref={sectionRef} className={styles.introSection}>
             <div className={styles.container}>
-                <p className={styles.introText}>
-                    {displayedText}
-                    {showCursor && <span className={styles.cursor}>|</span>}
-                </p>
+                <div className={styles.introTextWrapper}>
+                    {/* Texto fantasma invisible - reserva el espacio */}
+                    <span className={styles.introTextGhost} aria-hidden="true">
+                        {introText}
+                    </span>
+                    {/* Texto visible con animación */}
+                    <p className={styles.introText}>
+                        {isTyping ? (
+                            <span translate="no">{displayedText}</span>
+                        ) : (
+                            <span>{introText}</span>
+                        )}
+                        {showCursor && <span className={styles.cursor}>|</span>}
+                    </p>
+                </div>
                 <LogoMarquee />
                 {/* <SpiralText /> */}
             </div>
