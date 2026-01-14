@@ -108,7 +108,7 @@ function MultiOrganismVisual({ isHovered = false }: MultiOrganismVisualProps) {
         <div className={`${styles.container} ${isHovered ? styles.hovered : ""}`}>
             <div className={styles.optimizeBadge}>
                 <span className={styles.staticText}>Optimize: </span>
-                <span className={styles.dynamicText}>
+                <span className={styles.dynamicText} translate="no">
                     {text}
                     {isHovered && <span className={styles.cursor} />}
                 </span>
