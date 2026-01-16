@@ -9,8 +9,8 @@ import styles from "./ProductBentoGrid.module.css";
 const tools = [
     {
         id: 1,
-        title: "Agent Manager",
-        description: "Manage multiple agents in parallel across workspaces",
+        title: "Optimization Report",
+        description: "Generate lab-ready optimization reports.",
         image: "/features/fullApp2_converted.avif",
         isNew: true,
         date: "Jan 2024",
@@ -49,8 +49,8 @@ const tools = [
     },
     {
         id: 7,
-        title: "Neural Processing",
-        description: "Advanced brain-inspired computing",
+        title: "AI Kinetic Peak Analysis",
+        description: "Detect and resolve translational bottlenecks.",
         image: "/features/kineticChart_converted.avif",
     },
     {
