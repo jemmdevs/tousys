@@ -8,14 +8,14 @@ export default function DeveloperSection() {
             <div className={styles.container}>
                 <div className={styles.leftContent}>
                     <h2 className={styles.title}>
-                        Built for developers
+                        Built for Researchers
                         <br />
-                        <span className={styles.titleSubtle}>for the agent-first era</span>
+                        <span className={styles.titleSubtle}>for the next generation of biological design</span>
                     </h2>
                 </div>
                 <div className={styles.rightContent}>
                     <p className={styles.description}>
-                        Google Antigravity is built for user trust, whether you're a professional developer working in a large enterprise codebase, a hobbyist vibe-coding in their spare time, or anyone in between.
+                        Tousys Biotech is built for scientific rigor, whether you're optimizing a single construct or engineering large-scale sequence libraries for translational research.
                     </p>
                 </div>
             </div>

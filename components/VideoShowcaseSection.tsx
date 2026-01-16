@@ -5,18 +5,19 @@ import styles from "./VideoShowcaseSection.module.css";
 
 // Tab data - defined outside component to avoid recreation
 const TABS = [
-    { id: 0, label: "AI Optimizer", video: "/videos1.webm" },
-    { id: 1, label: "Single Codon Optimizer", video: "/videos2.webm" },
-    { id: 2, label: "Toolbox", video: "/videos3.webm" },
+    { id: 0, label: "Kinetic Optimization", video: "/videos1.webm" },
+    { id: 1, label: "Single Codon Optimization", video: "/videos2.webm" },
+    { id: 2, label: "Bio-Toolkit", video: "/videos3.webm" },
 ] as const;
 
 // Features list - defined outside to avoid recreation
 const FEATURES = [
-    "Full CRUD",
-    "Materialized Views",
-    "Foreign Tables",
-    "Partitioned Tables",
-    "Easy as a spreadsheet",
+    "Version Control",
+    "Dynamic Modeling",
+    "FASTA Import",
+    "High-Precision Interface",
+    "Project Management",
+    "Native Folding Validation",
 ] as const;
 
 // Memoized Checkmark SVG component to prevent re-renders

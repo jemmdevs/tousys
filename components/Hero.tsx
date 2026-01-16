@@ -28,7 +28,7 @@ export default function Hero() {
                 {/* Main Headline */}
                 <h1 className={styles.headline}>
                     <span className={styles.headlinePrimary}>We engineer progress</span>
-                    <span className={styles.headlineSecondary}>with the next-generation platforms</span>
+                    <span className={styles.headlineSecondary}>with the next-generation platform</span>
                 </h1>
 
                 {/* CTA Buttons */}

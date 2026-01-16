@@ -5,7 +5,7 @@ import styles from "./IntroSection.module.css";
 import LogoMarquee from "./LogoMarquee";
 
 
-const introText = "Tousys Biotech is our web app ecosystem, crafting intelligent, scalable digital experiences.";
+const introText = "Tousys Biotech redesigns translation kinetics, optimizing codons for higher expression and structural stability.";
 
 export default function IntroSection() {
     const [displayedText, setDisplayedText] = useState("");

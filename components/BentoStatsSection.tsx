@@ -38,14 +38,14 @@ const features: FeatureCard[] = [
     {
         id: "privacy-security",
         title: "Security",
-        description: "Your sequences never leave your control. End-to-end encryption and secure authentication protect your intellectual property.",
+        description: "Your sequences remain under your control, protected by end-to-end encryption and advanced authentication.",
         size: "medium",
         hasVisual: true
     },
     {
         id: "cloud-storage",
         title: "Cloud Storage",
-        description: "Save and sync your projects securely. Access your work from anywhere, anytime.",
+        description: "Centralized, secure storage for all your sequence optimization projects.",
         size: "medium",
         hasVisual: true
     },

@@ -1,6 +1,6 @@
 .section {
     width: 100%;
-    padding: 6rem 0;
+    padding: 5rem 0;
     background: var(--background);
 }
 
@@ -22,6 +22,7 @@
 
 .leftContent {
     flex: 1;
+    max-width: 600px;
 }
 
 .rightContent {
