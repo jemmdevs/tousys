@@ -123,8 +123,8 @@ const dropdownContent: Record<string, React.ReactNode> = {
                     <span className={styles.dropdownLinkTextNoIcon}>Terms</span>
                     <ChevronRight />
                 </Link>
-                <Link href="/services" className={styles.dropdownLink}>
-                    <span className={styles.dropdownLinkTextNoIcon}>Services</span>
+                <Link href="/privacy" className={styles.dropdownLink}>
+                    <span className={styles.dropdownLinkTextNoIcon}>Privacy</span>
                     <ChevronRight />
                 </Link>
             </div>
@@ -386,9 +386,9 @@ export default function Navbar() {
                                                 )}
                                                 {link.label === 'Resources' && (
                                                     <>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Docs</Link>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Terms</Link>
-                                                        <Link href="#" className={styles.mobileSubmenuLink}>Services</Link>
+                                                        <Link href="/docs" className={styles.mobileSubmenuLink}>Docs</Link>
+                                                        <Link href="/terms" className={styles.mobileSubmenuLink}>Terms</Link>
+                                                        <Link href="/privacy" className={styles.mobileSubmenuLink}>Privacy</Link>
                                                     </>
                                                 )}
                                             </div>

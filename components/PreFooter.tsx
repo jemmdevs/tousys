@@ -7,13 +7,13 @@ import CardNeuralNoise from "./CardNeuralNoise";
 const productLinks = [
     { label: "Get Access", href: "/contact?tab=getaccess" },
     { label: "Product", href: "/product" },
-    { label: "Docs", href: "#" },
+    { label: "Docs", href: "/docs" },
 ];
 
 const resourceLinks = [
     { label: "Blog", href: "/blog" },
-    { label: "Terms", href: "#" },
-    { label: "Services", href: "#" },
+    { label: "Terms", href: "/terms" },
+    { label: "Privacy", href: "/privacy" },
 ];
 
 export default function PreFooter() {

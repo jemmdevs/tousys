@@ -4,10 +4,9 @@ import Link from "next/link";
 import styles from "./Footer.module.css";
 
 const footerLinks = [
-    { label: "About Al-Awal", href: "#" },
-    { label: "Product", href: "#" },
-    { label: "Privacy", href: "#" },
-    { label: "Terms", href: "#" },
+    { label: "Product", href: "/product" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
 ];
 
 export default function Footer() {

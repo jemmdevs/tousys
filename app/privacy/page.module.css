@@ -1,0 +1,115 @@
+.main {
+    min-height: 100vh;
+    padding: 10rem 2rem 6rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Header */
+.pageTitle {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.pageSubtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 4rem;
+    line-height: 1.6;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+.sectionDate {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.heading {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 1.5rem 0 0.75rem;
+    color: #111;
+}
+
+.subHeading {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 1.25rem 0 0.5rem;
+    color: #333;
+}
+
+/* Text & Lists */
+.text {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0 1rem;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.8;
+}
+
+.introList {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.introList li {
+    padding-left: 1rem;
+    border-left: 2px solid #ddd;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Links */
+.link {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.link:hover {
+    color: #555;
+}
+
+/* Divider */
+.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 3rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main {
+        padding: 8rem 1.5rem 4rem;
+    }
+
+    .pageTitle {
+        font-size: 2rem;
+    }
+}

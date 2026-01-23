@@ -1,0 +1,200 @@
+.main {
+    min-height: 100vh;
+    padding: 10rem 2rem 6rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICES SECTION
+═══════════════════════════════════════════════════════════ */
+
+.pageTitle {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.pageSubtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 4rem;
+    line-height: 1.6;
+}
+
+.serviceSection {
+    margin-bottom: 4rem;
+}
+
+.serviceName {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #111;
+}
+
+.serviceType {
+    font-size: 0.875rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.serviceDescription {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.includesNote {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.featureList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    line-height: 2.2;
+    color: #333;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 3rem 0;
+}
+
+/* CTA Button */
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.75rem;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    color: #ffffff;
+    background: #000000;
+    border: none;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.ctaButton:hover {
+    background: #222222;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LEGAL / TERMS SECTION
+═══════════════════════════════════════════════════════════ */
+
+.legalSpacer {
+    height: 6rem;
+    border-top: 2px solid #111;
+    margin-top: 4rem;
+}
+
+.legalTitle {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.legalDate {
+    font-size: 0.875rem;
+    color: #888;
+    margin-bottom: 3rem;
+}
+
+.legalSection {
+    margin-bottom: 2.5rem;
+}
+
+.legalHeading {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #111;
+}
+
+.legalSubheading {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 1.5rem 0 0.75rem;
+    color: #333;
+}
+
+.legalSection p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.legalList {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0 1rem;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.8;
+}
+
+.legalImportant {
+    font-weight: 600;
+    color: #111;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.legalLink {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.legalLink:hover {
+    color: #555;
+}
+
+.contactInfo {
+    margin-top: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .main {
+        padding: 8rem 1.5rem 4rem;
+    }
+
+    .pageTitle {
+        font-size: 2rem;
+    }
+
+    .pageSubtitle {
+        margin-bottom: 3rem;
+    }
+
+    .legalTitle {
+        font-size: 1.75rem;
+    }
+
+    .legalSpacer {
+        height: 4rem;
+        margin-top: 3rem;
+    }
+}
