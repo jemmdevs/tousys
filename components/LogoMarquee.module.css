@@ -1,5 +1,7 @@
 .marqueeWrapper {
     margin-top: 3rem;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 @media (max-width: 767px) {
@@ -88,11 +90,11 @@
 .marqueeTrack {
     display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: 6rem;
     flex-shrink: 0;
     padding-right: 4rem;
     will-change: transform;
-    animation: scroll 20s linear infinite;
+    animation: scroll 35s linear infinite;
     animation-play-state: paused;
     /* Pausado por defecto */
 }
@@ -118,36 +120,51 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    /* Fixed width for equal spacing */
+    width: 180px;
 }
 
 .logoImage {
-    height: 90px;
+    /* Uniform sizing - constrain both dimensions */
+    max-height: 40px;
+    max-width: 150px;
     width: auto;
+    height: auto;
     object-fit: contain;
     opacity: 0.7;
-    transition: opacity 0.2s ease;
+    /* Gray filter for colored logos */
+    filter: grayscale(100%) brightness(0.4);
+    transition: all 0.3s ease;
     vertical-align: middle;
 }
 
 @media (max-width: 767px) {
     .logoImage {
-        height: 55px;
+        max-height: 30px;
+        max-width: 110px;
     }
 }
 
-/* Ajustes individuales por logo */
-.logoAlawal {
-    /* Al-Awal - posición normal */
+/* Ajustes individuales por logo si es necesario */
+.logoWorldCourier {
+    /* World Courier */
 }
 
-.logoAisaac {
-    /* Aisaac - bajar un poco para alinear */
-    transform: translateY(20px);
+.logoScientist {
+    /* Scientist.com - logo blanco, invertir primero */
+    filter: invert(1) grayscale(100%) brightness(0.5);
+    max-height: 60px !important;
+    max-width: 200px !important;
+}
+
+.logoGenScript {
+    /* GenScript - más alto, reducir */
+    max-height: 115px;
 }
 
 @media (max-width: 767px) {
-    .logoAisaac {
-        transform: translateY(12px);
+    .logoGenScript {
+        max-height: 26px;
     }
 }
 

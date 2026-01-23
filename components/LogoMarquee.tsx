@@ -6,8 +6,9 @@ import styles from "./LogoMarquee.module.css";
 
 // Logos del marquee
 const marqueeLogos = [
-    { src: "/logoalawal.png", alt: "Al-Awal", className: styles.logoAlawal },
-    { src: "/logoaisac.png", alt: "Aisaac", className: styles.logoAisaac },
+    { src: "/WorldCourierPartner.png", alt: "World Courier", className: styles.logoWorldCourier },
+    { src: "/scientistPartner.png", alt: "Scientist.com", className: styles.logoScientist },
+    { src: "/genscriptPartner.png", alt: "GenScript", className: styles.logoGenScript },
 ];
 
 export default function LogoMarquee() {
@@ -34,8 +35,8 @@ export default function LogoMarquee() {
         return () => observer.disconnect();
     }, []);
 
-    // Duplicamos solo lo necesario para el efecto infinito (3 repeticiones)
-    const repeatedLogos = [...marqueeLogos, ...marqueeLogos, ...marqueeLogos];
+    // Duplicamos para el efecto infinito (4 repeticiones para pantallas anchas)
+    const repeatedLogos = [...marqueeLogos, ...marqueeLogos, ...marqueeLogos, ...marqueeLogos];
 
     return (
         <div className={styles.marqueeWrapper}>
