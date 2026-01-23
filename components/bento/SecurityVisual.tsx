@@ -34,14 +34,14 @@ function SecurityVisual({ isHovered = false }: SecurityVisualProps) {
         <div className={styles.container}>
             <div className={styles.grid}>
                 {/* Row 1: Normal */}
-                <InputField value="b160198@gmail.com" />
-                <InputField value="alex16019356788" alignRight />
+                <InputField value="wearetousys@gmail.com" />
+                <InputField value="alawal16019356788" alignRight />
                 {/* Row 2: Blurred */}
                 <InputField value="• • • • • • • • • •" isBlurred isHovered={isHovered} />
                 <InputField value="• • • • • • • • • •" isBlurred alignRight isHovered={isHovered} />
                 {/* Row 3: Normal */}
-                <InputField value="x234567@gmail.com" />
-                <InputField value="mememaster000" alignRight />
+                <InputField value="ikraOS@gmail.com" />
+                <InputField value="weareengineers000" alignRight />
             </div>
         </div>
     );

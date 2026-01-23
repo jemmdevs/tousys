@@ -150,6 +150,14 @@
     /* World Courier */
 }
 
+@media (max-width: 767px) {
+    .logoWorldCourier {
+        max-height: 38px !important;
+        max-width: none !important;
+        /* Allow width to expand so height can increase */
+    }
+}
+
 .logoScientist {
     /* Scientist.com - logo blanco, invertir primero */
     filter: invert(1) grayscale(100%) brightness(0.5);
@@ -164,7 +172,8 @@
 
 @media (max-width: 767px) {
     .logoGenScript {
-        max-height: 26px;
+        max-height: 135px;
+        /* Significant increase for mobile */
     }
 }
 
