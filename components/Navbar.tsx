@@ -63,7 +63,7 @@ const dropdownContent: Record<string, React.ReactNode> = {
             <div className={styles.dropdownSection}>
                 <h4 className={styles.dropdownTitle}>Discover what's possible</h4>
                 <p className={styles.dropdownDescription}>See how teams are using our platform</p>
-                <Link href="/use-cases/research" className={styles.dropdownCta}>View all use cases</Link>
+
             </div>
             <div className={styles.dropdownLinks}>
                 <Link href="/use-cases/research" className={styles.dropdownLink}>
@@ -112,7 +112,6 @@ const dropdownContent: Record<string, React.ReactNode> = {
             <div className={styles.dropdownSection}>
                 <h4 className={styles.dropdownTitle}>Learn and explore</h4>
                 <p className={styles.dropdownDescription}>Resources to help you get started</p>
-                <Link href="#" className={styles.dropdownCta}>Browse all</Link>
             </div>
             <div className={styles.dropdownLinks}>
                 <Link href="/docs" className={styles.dropdownLink}>
