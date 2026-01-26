@@ -11,9 +11,9 @@ const tools = [
         id: 1,
         title: "Optimization Report",
         description: "Generate lab-ready optimization reports.",
-        image: "/features/fullApp2_converted.avif",
+        image: "/features/reportOptimization.avif",
         isNew: true,
-        date: "Jan 2024",
+        date: "Jan 2026",
     },
     {
         id: 2,
@@ -39,7 +39,7 @@ const tools = [
         description: "Powerful editing tools at your fingertips",
         image: "/features/inCanvasTools_converted.avif",
         isNew: true,
-        date: "Dec 2023",
+        date: "Dec 2025",
     },
     {
         id: 6,
@@ -64,7 +64,7 @@ const tools = [
         title: "Dark Mode",
         description: "Enhanced visual experience for extended sessions",
         image: "/features/darkMode_converted.avif",
-        date: "Nov 2023",
+        date: "Nov 2025",
     },
 ];
 
