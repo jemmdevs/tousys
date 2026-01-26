@@ -79,6 +79,13 @@ const researchTools = [
         name: "Notes System",
         description: "Document observations and reasoning during analysis for your digital lab notebook.",
         image: "/features/darkMode_converted.avif"
+    },
+    {
+        name: "Optimization Report",
+        description: "Generate lab-ready optimization reports for notebooks and supplementary data.",
+        image: "/features/reportOptimization.avif",
+        isNew: true,
+        date: "Jan 2026"
     }
 ];
 

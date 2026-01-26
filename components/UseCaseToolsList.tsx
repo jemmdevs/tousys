@@ -8,6 +8,8 @@ interface Tool {
     name: string;
     description: string;
     image: string;
+    isNew?: boolean;
+    date?: string;
 }
 
 interface UseCaseToolsListProps {
@@ -30,8 +32,19 @@ const ToolItem = memo(function ToolItem({ tool }: { tool: Tool }) {
             {/* Full-width background element */}
             <div className={styles.toolItemBg} aria-hidden="true" />
 
-            <span className={styles.toolName}>{tool.name}</span>
+            {/* Column 1: Name + Metadata */}
+            <div className={styles.nameColumn}>
+                <div className={styles.header}>
+                    <span className={styles.toolName}>{tool.name}</span>
+                    {tool.isNew && <span className={styles.badge}>NEW</span>}
+                </div>
+                {tool.date && <span className={styles.date}>{tool.date}</span>}
+            </div>
+
+            {/* Column 2: Description */}
             <p className={styles.toolDescription}>{tool.description}</p>
+
+            {/* Column 3: Image */}
             <div className={`${styles.toolImageWrapper} ${isHovered ? styles.toolImageVisible : ''}`}>
                 <Image
                     src={tool.image}

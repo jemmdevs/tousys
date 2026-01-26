@@ -76,9 +76,11 @@ const pharmaTools = [
         image: "/features/darkMode_converted.avif"
     },
     {
-        name: "Optimization Stats",
-        description: "Quantifiable metrics to report in IND/NDA submissions.",
-        image: "/features/aiPeakAnalysis_converted.avif"
+        name: "Optimization Report",
+        description: "Quantifiable metrics and detailed reports for IND/NDA submissions.",
+        image: "/features/reportOptimization.avif",
+        isNew: true,
+        date: "Jan 2026"
     }
 ];
 

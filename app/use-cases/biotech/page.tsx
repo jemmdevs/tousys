@@ -76,9 +76,11 @@ const biotechTools = [
         image: "/features/codonOptimization_converted.avif"
     },
     {
-        name: "Optimization Stats",
-        description: "Report improvement metrics to clients or internal stakeholders.",
-        image: "/features/aiPeakAnalysis_converted.avif"
+        name: "Optimization Report",
+        description: "Generate lab-ready optimization reports for clients or internal stakeholders.",
+        image: "/features/reportOptimization.avif",
+        isNew: true,
+        date: "Jan 2026"
     }
 ];
 
