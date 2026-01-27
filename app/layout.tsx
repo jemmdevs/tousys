@@ -48,6 +48,11 @@ export const metadata: Metadata = {
   verification: {
     google: "hyMq4WHhrfLEy0adIQYZNIPlQISAQLHFdQ6oPn07mIk",
   },
+  icons: {
+    icon: "/tousys_biotech_logo.svg",
+    shortcut: "/tousys_biotech_logo.png",
+    apple: "/tousys_biotech_logo.png",
+  },
 };
 
 const jsonLd: WithContext<Organization> = {
@@ -55,7 +60,7 @@ const jsonLd: WithContext<Organization> = {
   "@type": "Organization",
   name: "Tousys",
   url: "https://tousys.com",
-  logo: "https://tousys.com/alawal-logo.svg",
+  logo: "https://tousys.com/tousys_biotech_logo.svg",
   sameAs: [
     "https://twitter.com/tousys",
     "https://linkedin.com/company/tousys"

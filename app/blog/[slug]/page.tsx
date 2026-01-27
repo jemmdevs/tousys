@@ -146,7 +146,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             name: "Tousys",
             logo: {
                 "@type": "ImageObject",
-                url: "https://tousys.com/alawal-logo.svg"
+                url: "https://tousys.com/tousys_biotech_logo.svg"
             }
         },
         mainEntityOfPage: {

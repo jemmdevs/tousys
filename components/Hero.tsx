@@ -15,7 +15,7 @@ export default function Hero() {
                 {/* Company Logo */}
                 <div className={styles.companyLogo}>
                     <Image
-                        src="/alawal-logo.svg"
+                        src="/tousys_biotech_logo.svg"
                         alt="Tousys Logo"
                         width={28}
                         height={28}

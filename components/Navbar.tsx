@@ -284,10 +284,10 @@ export default function Navbar() {
                             aria-label="Go to home"
                         >
                             <Image
-                                src="/alawal-logo.svg"
+                                src="/tousys_biotech_logo.svg"
                                 alt="Tousys Logo"
-                                width={22}
-                                height={22}
+                                width={20}
+                                height={20}
                                 className={styles.logoIcon}
                             />
                             <span className={styles.logoMain}>Tousys</span>
