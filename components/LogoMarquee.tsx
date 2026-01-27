@@ -17,14 +17,14 @@ export default function LogoMarquee() {
     // Duplicamos para el efecto infinito (4 repeticiones para pantallas anchas)
     const repeatedLogos = [...marqueeLogos, ...marqueeLogos, ...marqueeLogos, ...marqueeLogos];
 
-    // IntersectionObserver para pausar animación - SIN state, directo al DOM
+    // Observer para pausar animación - manipulación directa del DOM
     useEffect(() => {
         const tracks = tracksRef.current.filter(Boolean);
         if (tracks.length === 0) return;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // Manipular DOM directamente sin re-render
+                // Cambiar animationPlayState directamente en el DOM (sin re-render)
                 tracks.forEach(track => {
                     if (track) {
                         track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
@@ -32,12 +32,12 @@ export default function LogoMarquee() {
                 });
             },
             {
-                rootMargin: "50px",
+                rootMargin: "100px", // Pre-activa 100px antes
                 threshold: 0
             }
         );
 
-        // Observar el primer track como referencia
+        // Observar el primer track
         if (tracks[0]) {
             observer.observe(tracks[0]);
         }
@@ -61,7 +61,7 @@ export default function LogoMarquee() {
                                 width={200}
                                 height={90}
                                 className={`${styles.logoImage} ${logo.className}`}
-                                loading="lazy"
+                                priority
                                 sizes="200px"
                             />
                         </div>
@@ -80,7 +80,7 @@ export default function LogoMarquee() {
                                 width={200}
                                 height={90}
                                 className={`${styles.logoImage} ${logo.className}`}
-                                loading="lazy"
+                                priority
                                 sizes="200px"
                             />
                         </div>
