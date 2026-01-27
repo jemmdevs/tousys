@@ -63,11 +63,9 @@ export default function IntroSection() {
                     </p>
                     {/* Texto visible con animación */}
                     <p className={styles.introText}>
-                        {isTyping ? (
-                            <span translate="no">{displayedText}</span>
-                        ) : (
-                            <span>{introText}</span>
-                        )}
+                        <span translate="no">
+                            {isTyping ? displayedText : introText}
+                        </span>
                         {showCursor && <span className={styles.cursor}>|</span>}
                     </p>
                 </div>
