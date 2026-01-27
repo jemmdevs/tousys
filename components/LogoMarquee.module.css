@@ -97,6 +97,8 @@
     padding-right: 4rem;
     will-change: transform;
     animation: scroll 35s linear infinite;
+    animation-play-state: paused;
+    /* Se activa por IntersectionObserver directo al DOM */
 }
 
 @media (max-width: 767px) {
