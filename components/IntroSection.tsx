@@ -57,10 +57,10 @@ export default function IntroSection() {
             <div className={styles.container}>
                 <div className={styles.introTextWrapper}>
                     {/* Texto fantasma invisible - reserva el espacio */}
-                    <span className={styles.introTextGhost} aria-hidden="true">
-                        {introText}
+                    <p className={styles.introTextGhost} aria-hidden="true">
+                        <span>{introText}</span>
                         <span className={styles.cursor}>|</span>
-                    </span>
+                    </p>
                     {/* Texto visible con animación */}
                     <p className={styles.introText}>
                         {isTyping ? (
