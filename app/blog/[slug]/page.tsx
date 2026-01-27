@@ -1,8 +1,10 @@
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { Article, WithContext } from "schema-dts";
 import Navbar from "@/components/Navbar";
 import { getBlogPost, getAllBlogPosts } from "@/lib/blog-posts";
+import StructuredData from "@/components/StructuredData";
 import styles from "./post.module.css";
 
 // Lazy load footer components
@@ -38,6 +40,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: `${post.title} | Al-Awal Biotech Blog`,
         description: post.excerpt,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: "article",
+            publishedTime: post.date,
+            authors: ["Al-Awal Team"], // Or specific author if available
+            images: [post.image],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: post.title,
+            description: post.excerpt,
+            images: [post.image],
+        },
     };
 }
 
@@ -113,8 +129,35 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     const contentHtml = parseMarkdown(post.content.trim());
     const heroImage = post.detailImage || post.image;
 
+    const jsonLd: WithContext<Article> = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: post.title,
+        description: post.excerpt,
+        image: heroImage ? [`https://tousys.com${heroImage}`] : [],
+        datePublished: post.date,
+        author: {
+            "@type": "Organization",
+            name: "Al-Awal Team",
+            url: "https://tousys.com"
+        },
+        publisher: {
+            "@type": "Organization",
+            name: "Tousys",
+            logo: {
+                "@type": "ImageObject",
+                url: "https://tousys.com/alawal-logo.svg"
+            }
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://tousys.com/blog/${slug}`
+        }
+    };
+
     return (
         <>
+            <StructuredData data={jsonLd} />
             <Navbar />
             <main className={styles.main}>
                 <article className={styles.article}>
