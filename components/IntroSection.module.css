@@ -35,13 +35,16 @@
     }
 }
 
-/* Wrapper - posición relativa para el absolute del texto visible */
+/* Wrapper - grid para superponer elementos */
 .introTextWrapper {
     position: relative;
+    display: grid;
+    grid-template-areas: "text";
 }
 
 /* Texto fantasma - invisible pero reserva el espacio */
 .introTextGhost {
+    grid-area: text;
     font-size: 42px;
     font-weight: 400;
     line-height: 56px;
@@ -53,11 +56,9 @@
     margin: 0;
 }
 
-/* Texto visible - posición absoluta, no afecta el layout */
+/* Texto visible - mismo grid area, superpuesto */
 .introText {
-    position: absolute;
-    top: 0;
-    left: 0;
+    grid-area: text;
     font-size: 42px;
     font-weight: 400;
     line-height: 56px;
@@ -80,13 +81,14 @@
 
 /* Cursor con gradiente blanco-cian (igual que CTA) */
 .cursor {
-    display: inline-block;
+    display: inline;
     background: linear-gradient(180deg, #ffffff 0%, #00CED1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-weight: 200;
     font-size: 48px;
+    line-height: inherit;
     animation: blink 0.6s ease-in-out infinite;
     margin-left: 2px;
     vertical-align: baseline;

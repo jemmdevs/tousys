@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./LogoMarquee.module.css";
 
@@ -12,39 +11,13 @@ const marqueeLogos = [
 ];
 
 export default function LogoMarquee() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    // IntersectionObserver para pausar animación fuera de viewport
-    useEffect(() => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsVisible(entry.isIntersecting);
-            },
-            {
-                rootMargin: "50px", // Pre-activar 50px antes de ser visible
-                threshold: 0
-            }
-        );
-
-        observer.observe(container);
-
-        return () => observer.disconnect();
-    }, []);
-
     // Duplicamos para el efecto infinito (4 repeticiones para pantallas anchas)
     const repeatedLogos = [...marqueeLogos, ...marqueeLogos, ...marqueeLogos, ...marqueeLogos];
 
     return (
         <div className={styles.marqueeWrapper}>
             <p className={styles.marqueeLabel}>Part of the Tousys ecosystem</p>
-            <div
-                ref={containerRef}
-                className={`${styles.marqueeContainer} ${isVisible ? styles.playing : styles.paused}`}
-            >
+            <div className={styles.marqueeContainer}>
                 <div className={styles.marqueeTrack}>
                     {repeatedLogos.map((logo, index) => (
                         <div key={index} className={styles.marqueeItem}>

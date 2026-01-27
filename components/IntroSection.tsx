@@ -58,8 +58,7 @@ export default function IntroSection() {
                 <div className={styles.introTextWrapper}>
                     {/* Texto fantasma invisible - reserva el espacio */}
                     <p className={styles.introTextGhost} aria-hidden="true">
-                        <span>{introText}</span>
-                        <span className={styles.cursor}>|</span>
+                        {introText}
                     </p>
                     {/* Texto visible con animación */}
                     <p className={styles.introText}>
@@ -70,7 +69,6 @@ export default function IntroSection() {
                     </p>
                 </div>
                 <LogoMarquee />
-                {/* <SpiralText /> */}
             </div>
         </section>
     );
