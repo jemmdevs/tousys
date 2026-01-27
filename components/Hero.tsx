@@ -16,7 +16,7 @@ export default function Hero() {
                 <div className={styles.companyLogo}>
                     <Image
                         src="/alawal-logo.svg"
-                        alt="Al-Awal Logo"
+                        alt="Tousys Logo"
                         width={28}
                         height={28}
                         className={styles.logoIcon}

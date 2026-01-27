@@ -285,7 +285,7 @@ export default function Navbar() {
                         >
                             <Image
                                 src="/alawal-logo.svg"
-                                alt="Al-Awal Logo"
+                                alt="Tousys Logo"
                                 width={22}
                                 height={22}
                                 className={styles.logoIcon}
