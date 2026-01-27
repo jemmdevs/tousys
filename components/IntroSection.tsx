@@ -59,6 +59,7 @@ export default function IntroSection() {
                     {/* Texto fantasma invisible - reserva el espacio */}
                     <span className={styles.introTextGhost} aria-hidden="true">
                         {introText}
+                        <span className={styles.cursor}>|</span>
                     </span>
                     {/* Texto visible con animación */}
                     <p className={styles.introText}>
