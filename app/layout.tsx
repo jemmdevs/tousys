@@ -13,6 +13,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Tousys | Engineering Progress",
   description: "We engineer progress with next-generation platforms",
+  verification: {
+    google: "hyMq4WHhrfLEy0adIQYZNIPlQISAQLHFdQ6oPn07mIk",
+  },
 };
 
 export const viewport = {
