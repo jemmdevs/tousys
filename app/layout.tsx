@@ -50,8 +50,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/tousys_biotech_logo.svg",
-    shortcut: "/tousys_biotech_logo.png",
-    apple: "/tousys_biotech_logo.png",
+    shortcut: "/tousys_biotech_logo.svg",
+    apple: "/tousys_biotech_logo.svg",
   },
 };
 
