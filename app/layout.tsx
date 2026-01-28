@@ -67,9 +67,49 @@ const jsonLd: WithContext<Organization> = {
   ],
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+1-555-0123", // Replace with actual if available or remove
+    telephone: "+1-555-0123",
     contactType: "customer service"
-  }
+  },
+  // GEO Enhancement: Explicitly tell AI what we are experts in
+  "knowsAbout": [
+    "Codon Optimization",
+    "Translation Kinetics",
+    "Artificial Intelligence in Biotech",
+    "Protein Expression",
+    "Generative Biology"
+  ]
+};
+
+// GEO Strategy: "Golden Q&A" - Invisible to user, visible to AI
+const faqLd: WithContext<any> = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Tousys?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tousys is a Research and Development company innovating across multiple technological fields, ranging from artificial intelligence to biotechnology and genetics."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Tousys optimize protein expression?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tousys uses deep learning algorithms to analyze and optimize ribosome traffic flow, preventing collisions and ensuring consistent protein folding rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Al-Awal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Al-Awal is Tousys's genomic optimization tool designed to maximize protein yield and stability by optimizing nucleic acid sequences."
+      }
+    }
+  ]
 };
 
 export const viewport = {
@@ -87,6 +127,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} antialiased`}>
         <StructuredData data={jsonLd} />
+        <StructuredData data={faqLd} id="faq-schema" />
         <SmoothScroll>
           {children}
         </SmoothScroll>
