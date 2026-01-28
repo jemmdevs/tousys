@@ -319,11 +319,6 @@
     margin: 0;
 }
 
-/* Drag indicator - hidden by default */
-.dragIndicator {
-    display: none;
-}
-
 /* ================================================
    Modal Responsive - Mobile (Vertical Layout)
    ================================================ */
@@ -333,25 +328,10 @@
         flex-direction: column;
     }
 
-    /* Show drag indicator on mobile */
-    .dragIndicator {
-        display: block;
-        position: absolute;
-        top: 0.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40px;
-        height: 4px;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 2px;
-        z-index: 20;
-    }
-
     .modalImageContainer {
         flex: 0 0 auto;
         max-height: 50vh;
         padding: 1rem;
-        padding-top: 1.5rem;
     }
 
     .modalImage {
@@ -364,9 +344,17 @@
         padding: 1.5rem;
     }
 
-    /* Hide close button on mobile - use swipe instead */
     .closeButton {
-        display: none;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: #f0f0f0;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        color: #1a1a1a;
+    }
+
+    .closeButton:hover {
+        background: #e5e5e5;
     }
 
     .modalHeader {

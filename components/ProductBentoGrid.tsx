@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState, useEffect, useCallback, useRef } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import styles from "./ProductBentoGrid.module.css";
 
@@ -95,11 +95,6 @@ const ToolModal = memo(({
     tool: Tool | null;
     onClose: () => void;
 }) => {
-    const panelRef = useRef<HTMLDivElement>(null);
-    const [dragY, setDragY] = useState(0);
-    const [isDragging, setIsDragging] = useState(false);
-    const startY = useRef(0);
-
     // Close on Escape key
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
@@ -115,61 +110,12 @@ const ToolModal = memo(({
         };
     }, [tool, onClose]);
 
-    // Touch handlers for swipe-to-close (iOS-like)
-    const handleTouchStart = useCallback((e: React.TouchEvent) => {
-        startY.current = e.touches[0].clientY;
-        setIsDragging(true);
-    }, []);
-
-    const handleTouchMove = useCallback((e: React.TouchEvent) => {
-        if (!isDragging) return;
-        const currentY = e.touches[0].clientY;
-        const diff = currentY - startY.current;
-        // Only allow dragging down, with rubber-band resistance
-        if (diff > 0) {
-            // iOS-like rubber-band: diminishing returns as you drag further
-            const resistance = 0.5;
-            const rubberBandDrag = diff * resistance;
-            setDragY(rubberBandDrag);
-        }
-    }, [isDragging]);
-
-    const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-        setIsDragging(false);
-        // Calculate velocity for snap decision
-        const threshold = 50; // Lower threshold since we have rubber-banding
-        if (dragY > threshold) {
-            onClose();
-        }
-        setDragY(0);
-    }, [dragY, onClose]);
-
     if (!tool) return null;
-
-    // iOS-like spring animation
-    const panelStyle = {
-        transform: dragY > 0 ? `translateY(${dragY}px) scale(${1 - dragY / 1000})` : undefined,
-        transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), border-radius 0.3s ease',
-        opacity: dragY > 0 ? 1 - (dragY / 200) : 1,
-        willChange: isDragging ? 'transform, opacity' : 'auto' as const,
-        borderRadius: dragY > 0 ? '20px' : '0px'
-    };
 
     return (
         <div className={styles.modalOverlay} onClick={onClose} data-lenis-prevent>
             {/* Contenedor1 - Full height panel */}
-            <div
-                ref={panelRef}
-                className={styles.modalPanel}
-                onClick={(e) => e.stopPropagation()}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-                style={panelStyle}
-            >
-                {/* Drag indicator for mobile */}
-                <div className={styles.dragIndicator} />
-
+            <div className={styles.modalPanel} onClick={(e) => e.stopPropagation()}>
                 {/* Contenedor2 - Image container */}
                 <div className={styles.modalImageContainer}>
                     <div className={styles.modalImageInner}>
