@@ -118,9 +118,6 @@ const ToolModal = memo(({
             <div className={styles.modalPanel} onClick={(e) => e.stopPropagation()}>
                 {/* Contenedor2 - Image container */}
                 <div className={styles.modalImageContainer}>
-                    <button className={styles.closeButton} onClick={onClose} aria-label="Close">
-                        <CloseIcon />
-                    </button>
                     <div className={styles.modalImageInner}>
                         <Image
                             src={tool.image}
@@ -135,6 +132,9 @@ const ToolModal = memo(({
 
                 {/* Title & Description - Outside contenedor2, inside contenedor1 */}
                 <div className={styles.modalInfo}>
+                    <button className={styles.closeButton} onClick={onClose} aria-label="Close">
+                        <CloseIcon />
+                    </button>
                     <div className={styles.modalHeader}>
                         <h2 className={styles.modalTitle}>{tool.modalTitle || tool.title}</h2>
                         {tool.date && <span className={styles.modalDate}>{tool.date}</span>}
